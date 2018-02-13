@@ -15,53 +15,83 @@ http.createServer(function (req, res) {
 	})
 }).listen(8080);
 
-var DB = function(){
+var DBmongo = function(){
 	var MongoClient = require('mongodb').MongoClient;
-	var url = "mongodb://localhost:27017/SDG";
-	var collection = "SEI";
+	var url = 'mongodb://thonyprice:123@35.198.119.170:27017';
+	var dbName = "SDG"; 
+	var colName = "SEI";
+	var dbConnection = null;
+	var colConnect = null;
 
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
 	  console.log("Database connect success!");
-	  db.close();
+	  dbConnect = db.db(dbName);
+	  colConnect = dbConnect.collection(colName);
+	  console.log(this.query(Object()));
 	});
 
 	this.createCollection = function(collectionName){
-		MongoClient.connect(url, function(err, db) {
-		  if (err) throw err;
-		  db.createCollection(collectionName, function(err, res) {
-		    if (err) throw err;
-		    console.log("Collection created: "+collectionName);
-		    db.close();
-		  });
-		});
+	  dbConnect.createCollection(collectionName, function(err, res) {
+	    if (err) throw err;
+	    console.log("Collection created: "+collectionName);
+	    collection = collectionName;
+	    colConnect = dbConnect.collectionName(collection);
+
+	  });
 	}
 
-	this.query = function(queryCondition, collectionName=collection){
-		MongoClient.connect(url, function(err, db) {
-		  if (err) throw err;
-		  // var myobj = { name: "Company Inc", address: "Highway 37" };
-		  db.collection("customers").find(query).toArray(function(err, result) {
-		    if (err) throw err;
-		    console.log("query success");
-		    db.close();
-		  });
-		});
+	this.query = function(queryCondition){	
+	  colConnect.find(query, { "_id": 0}).toArray(function(err, result) {
+	    if (err) throw err;
+	    console.log("query success");
+	    db.close();
+	    return result;
+	  });
 	}
 
-	this.insert = function(data, collectionName=collection){
-		MongoClient.connect(url, function(err, db) {
-		  if (err) throw err;
-		  db.collection(collection).insertOne(data, function(err, res) {
-		    if (err){
-				throw err;
-				return false;
-			 }
-		    console.log("1 document inserted");
-		    db.close();
-		    return true;
-		  });
-		});
-		return false;
+	this.queryAll = function(){
+	  return this.query({});
+	}
+
+	this.insert = function(data){
+	  colConnect.insertOne(data, function(err, res) {
+	    if (err){
+			throw err;
+			return false;
+		 }
+	    console.log("1 document inserted");
+	    db.close();
+	    return true;
+	  });
+	}
+
+	this.ensureIndex = function(collectionName, indexName){
+	  db.ensureIndex(collectionName, indexName, {unique: true}, function(err, result) {
+	    if (err) throw err;
+	    console.log(collection, " index ", " create ", indexName);
+	    db.close();
+	  });
 	}
 }
+
+var dataJson = JSON.parse(fs.readFileSync('../db_data.json', 'utf8'));
+
+var dbObj = DBmongo();
+// var init = function(){
+// 	var dataJson = JSON.parse(fs.readFileSync('../db_data.json', 'utf8'));
+
+// 	var dbObj = DBmongo();
+// 	while(typeof dbObj == "undefined"){
+// 		console.log(dbObj);
+// 		for ([goal, obj] of Object.entries(dataJson)){
+// 			obj.Goal = goal;
+// 			console.log(dbObj.query({"Goal": goal}));
+// 			// dbObj.insert(goal);
+// 		}
+// 	}
+// 	// dbObj.createCollection("SEI");
+// 	// dbObj.ensureIndex("SEI", "Goal");
+// }
+
+// init();
