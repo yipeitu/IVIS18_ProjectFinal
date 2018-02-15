@@ -17,14 +17,18 @@ def index():
 
 @app.route('/goal', methods=['GET'])
 def query_data():
-	print(request.url_rule)
 	result = mongo.query({"Goal":request.args.get("goal")})
 	if result is None:
 		result = {}
 	return jsonify(result)
 
-@app.route('/save', methods=['POST'])
-def save_data():
+@app.route('/save/form', methods=['POST'])
+def save_data_form():
+	print(request.form)
+	return 'save'
+
+@app.route('/save/json', methods=['POST'])
+def save_data_json():
 	print(request.is_json)
 	content = request.get_json()
 	print(content)
