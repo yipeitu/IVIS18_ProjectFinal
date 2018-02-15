@@ -1,20 +1,13 @@
 from flask import Flask, jsonify
+from script_db import DBmongo
+
 app = Flask(__name__)
-
-from pymongo import MongoClient, ASCENDING
-import json
-
+mongo = DBmongo()
 
 @app.route('/')
 def index():
-	return 'Index Page'
+	return jsonify(mongo.query())
 
 @app.route('/hello')
 def hello():
-	client = MongoClient('mongodb://35.198.97.17', 27017)
-	dbName = "SEI";
-	colName = "Sweden";
-	db = client[dbName]
-	col = db[colName]
-	# print()
-	return jsonify(col.find_one({}, {"_id": False}))
+	return 'hello world'
