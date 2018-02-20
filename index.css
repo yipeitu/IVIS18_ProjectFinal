@@ -1,0 +1,55 @@
+.navbar {
+  justify-content: center;
+  /* color: green; */
+}
+
+.jumbotron {
+  padding-bottom: 5px;
+  /* padding-top: 0; */
+  text-align: center;
+}
+
+.jumbotron img {
+  /* text-align: left; */
+  height: 172px;
+}
+
+.memberContainer{
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+
+.memberContainer img {
+  padding-right: 10px;
+  display: block;
+  float: left;
+  width: 250px;
+}
+
+/* TEMPORARY */
+.content {
+  text-align: center;
+}
+
+.lynn p {
+  font-weight: bold;
+}
+
+/* TEMPORARY */
+
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+a.btn {
+  color: black;
+}
+
+.btn:hover {
+  border-bottom: 2px solid #007bff;
+  /* color: black; */
+}
