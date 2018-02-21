@@ -51,10 +51,24 @@ var getTarget = function(id){
       // console.log("Positive" + i);
     }
   }
+  $("#boxDescription")[0].innerHTML = `<div>name:${jsonList[id].Name}</div>
+              <div>description:${posList}</div>
+              <div>row sum:</div>
+              <div>column sum:</div>
+              <div> + positive influence</div>
+              <div>+3:</div>
+              <div>+2:</div>
+              <div>+1:</div>
+              <div> - negative influence</div>
+              <div>-1:</div>
+              <div>-2:</div>
+              <div>-3:</div>
+              <div>no obvious influence</div>
+              <div>0:</div>`
   //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
-  document.getElementById("name").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
-  document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
-  document.getElementById("page1_container").innerHTML = "<h1>NEUTRAL</h1>" + "</br>" + "<p>"+ neuList + "</p>";
+  // document.getElementById("name").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
+  // document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
+  // document.getElementById("page1_container").innerHTML = "<h1>NEUTRAL</h1>" + "</br>" + "<p>"+ neuList + "</p>";
 
   console.log(jsonList[id].Name);
 
