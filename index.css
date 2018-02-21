@@ -12,6 +12,8 @@ body {
   padding-bottom: 5px;
   /* padding-top: 0; */
   text-align: center;
+  color: #FFFFFF;
+  background-color: #57504F;
 }
 
 .jumbotron img {
@@ -35,6 +37,7 @@ body {
 /* TEMPORARY */
 .content {
   text-align: center;
+  background-color: #F1F0F0
 }
 
 .lynn p {
@@ -51,7 +54,7 @@ body {
 }
 
 a.btn {
-  color: black;
+  color: #FFFFFF;
 }
 
 .btn:hover {
@@ -66,4 +69,5 @@ a.btn {
 
 #boxHistory {
   background-color: #F1F0F0
+  color: #FFFFFF;
 }
