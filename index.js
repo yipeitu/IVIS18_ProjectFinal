@@ -24,5 +24,38 @@ $(document).ready(function(){
 
 }); // end $(document).ready method
 
+var jsonList;
+$.getJSON("https://yipeitu.github.io/IVIS18_ProjectFinal/db_data.json", function(json){
+  // for (var i in json) {
+    jsonList = json;
+  // }
+});
 
+var getTarget = function(id){
+  var posList = [];
+  var negList = [];
+  var neuList = [];
+  var tragetAffect = jsonList[id].affect
+  console.log(tragetAffect);
+  for (var i in tragetAffect) {
+    if (tragetAffect[i] === 0){
+      neuList.push(i);
+      // console.log("Neutral" + i);
+    }
+    else if (tragetAffect[i] < 0){
+      negList.push(i);
+      // console.log("Negative" + i);
+    }
+    else if (tragetAffect[i] > 0){
+      posList.push(i);
+      // console.log("Positive" + i);
+    }
+  }
+  //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
+  document.getElementById("page1_container").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
+  document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
+  document.getElementById("page1_container").innerHTML = "<h1>NEUTRAL</h1>" + "</br>" + "<p>"+ neuList + "</p>";
 
+  console.log(jsonList[id].Name);
+
+}

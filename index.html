@@ -17,8 +17,8 @@
     </div>
 
 <nav class="navbar navbar-default">
-    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
     <div><a class="btn btn-default" href="#page2" id="btn2">Visualization</a></div>
+    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
     <div><a class="btn btn-default" href="#page3" id="btn3">Something</a></div>
     <div><a class="btn btn-default" href="#page4" id="btn4">Contact</a></div>
 </nav>
@@ -26,13 +26,17 @@
 
 <!-- Seperate these pages into individual html files later. -->
   <div class="content">
+    <div id="page2" class="page">
+      <h1>This is the visualization page</h1>
+      <a class="btn btn-default" onclick="getTarget('1.3');">Get Target</a>
+      <a class="btn btn-default" onclick="getTarget('1.5');">Get Target2</a>
+      <div id="page1_container"></div>
+    </div>
+
     <div id="page1" class="page">
       <h1>This is the home page</h1>
     </div>
 
-    <div id="page2" class="page">
-      <h1>This is the visualization page</h1>
-    </div>
 
     <div id="page3" class="page">
       <h1>Don't remeber what should be here</h1>
