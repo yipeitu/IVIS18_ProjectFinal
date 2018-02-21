@@ -52,7 +52,7 @@ var getTarget = function(id){
     }
   }
   //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
-  document.getElementById("page1_container").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
+  document.getElementById("name").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
   document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
   document.getElementById("page1_container").innerHTML = "<h1>NEUTRAL</h1>" + "</br>" + "<p>"+ neuList + "</p>";
 
