@@ -78,7 +78,7 @@ var targetNeg = function(negList){
 }
 
 var targetNeu = function(neuList){
-  var html = "<div>0: </div>";
+  var html = "<div>0 :</div>";
   neuList.forEach(function(target){
     html += `<div>${target+" "+jsonList[target].Name}</div>`;
   })
@@ -111,10 +111,10 @@ var getTarget = function(id){
     }
   }
 
-  $("#boxDescription")[0].innerHTML = `<div>name:${jsonList[id].Name}</div>
-              <div>description:${jsonList[id].Description}</div>
-              <div>row sum:${jsonList[id].Sum}</div>
-              <div>column sum:${jsonList[id].Sum}</div>
+  $("#boxDescription")[0].innerHTML = `<div>name: ${jsonList[id].Name}</div>
+              <div>description: ${jsonList[id].Description}</div>
+              <div>row sum: ${jsonList[id].Sum}</div>
+              <div>column sum: ${jsonList[id].Sum}</div>
               <div> + positive influence</div>
               ${targetPos(posList)}
               <div> - negative influence</div>
