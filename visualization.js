@@ -22,6 +22,11 @@ var link = svg.append("g").selectAll(".link"),
 d3.json("db_data.json", function(error, classes) {
   if (error) throw error;
 
+  var targetList = [];
+  for (targetName in classes) {
+    targetList.push(classes[targetName]);
+  }
+
   var root = packageHierarchy(classes)  //Need to be adjusted for our purpose!
       .sum(function(d) { return d.size; });
 
@@ -34,14 +39,16 @@ d3.json("db_data.json", function(error, classes) {
       .attr("class", "link")
       .attr("d", line);
 
+console.log(targetList);
+
   node = node
-    .data(root.leaves())
+    .data(targetList) // hierarchy thingy was here -----------------
     .enter().append("text")
       .attr("class", "node")
       .attr("dy", "0.31em")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .text(function(d) { return d.data.key; })
+      .text(function(d) { return d["Name"]; })
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted);
 });
