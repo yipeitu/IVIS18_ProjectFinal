@@ -1,6 +1,7 @@
-var diameter = 960,
+var diameter = window.innerWidth*0.5,
     radius = diameter / 2,
     innerRadius = radius - 120;
+console.log("--> ", diameter);
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
@@ -10,7 +11,7 @@ var line = d3.radialLine()
     .radius(function(d) { return d.y; })
     .angle(function(d) { return d.x / 180 * Math.PI; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".container-viz").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
   .append("g")
@@ -19,7 +20,7 @@ var svg = d3.select("body").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("structure_data2.json", function(error, classes) {
+d3.json("structure_data3.json", function(error, classes) {
   if (error) throw error;
 
   var root = packageHierarchy(classes)
@@ -43,8 +44,13 @@ d3.json("structure_data2.json", function(error, classes) {
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .text(function(d) { return d.data.key; })
       .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted);
+      .on("mouseout", mouseouted)
+      .on("click", getData);
 });
+
+function getData(d) {
+  getTarget(d.data.id);
+}
 
 function mouseovered(d) {
   node
