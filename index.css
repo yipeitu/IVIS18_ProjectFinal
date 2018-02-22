@@ -93,7 +93,10 @@ li {
 .posToNeg {
   font-weight: 1000;
   font-size: 18px;
+  max-width: 350px;
 }
+
+
 
 .vertical-padding {
   padding-top: 120px;
