@@ -19,7 +19,7 @@ var svg = d3.select("body").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("structure_data.json", function(error, classes) {
+d3.json("structure_data2.json", function(error, classes) {
   if (error) throw error;
 
   var root = packageHierarchy(classes)
@@ -108,7 +108,7 @@ function packageImports(nodes) {
   // For each import, construct a link from the source to target node.
   nodes.forEach(function(d) {
     if (d.data.imports) d.data.imports.forEach(function(i) {
-      imports.push(map[d.data.name].path(map[i]));
+      imports.push(map[d.data.name].path(map[i.target]));
     });
   });
 
