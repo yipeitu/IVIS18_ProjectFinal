@@ -10,7 +10,7 @@ $(document).ready(function(){
   $("nav div").click(function() {
     $("nav a").removeClass("current"); // Remove any active class
     $(this).addClass("current"); // Add "current" class to selected page
-    console.log(this);
+    // console.log(this);
 
     $("div.page").hide(); // Hide all content
     // $("div").show(); //Show is div in the contact page
@@ -25,64 +25,65 @@ $(document).ready(function(){
 }); // end $(document).ready method
 
 var jsonList;
-$.getJSON("https://yipeitu.github.io/IVIS18_ProjectFinal/db_data.json", function(json){
-  // for (var i in json) {
-    jsonList = json;
-  // }
-});
 
 var getTarget = function(id){
-  var posList3 = [];
-  var posList2 = [];
-  var posList1= [];
+  $.getJSON("http://35.198.97.17:5000/goal?goal="+id, function(json){
+  
+    jsonList = json
+    // console.log(jsonList)
 
-  var neuList = [];
+    var posList3 = [];
+    var posList2 = [];
+    var posList1= [];
 
-  var negList1 = [];
-  var negList2 = [];
-  var negList3 = [];
+    var neuList = [];
 
-  var tragetAffect = jsonList[id].affect
-  console.log(tragetAffect);
+    var negList1 = [];
+    var negList2 = [];
+    var negList3 = [];
 
-  for (var i in tragetAffect) {
-    if (tragetAffect[i] === 3){
-      posList3.push(i);
-      // console.log("Neutral" + i);
-    }
-    else if (tragetAffect[i] === 2){
-      posList2.push(i);
-      // console.log("Neutral" + i);
-    }
-    else if (tragetAffect[i] === 1){
-      posList1.push(i);
-      // console.log("Neutral" + i);
-    }
-    else if (tragetAffect[i] === 0){
-      neuList.push(i);
-      // console.log("Negative" + i);
-    }
-    else if (tragetAffect[i] === -1){
-      negList1.push(i);
-      // console.log("Positive" + i);
-    }
-    else if (tragetAffect[i] === -2){
-      negList2.push(i);
-      // console.log("Positive" + i);
-    }
-    else if (tragetAffect[i] === -3){
-      negList3.push(i);
-      // console.log("Positive" + i);
-    }
+    var tragetAffect = jsonList.affect
+    // console.log(tragetAffect);
+
+    for (var i in tragetAffect) {
+      if (tragetAffect[i] === 3){
+        posList3.push(i);
+        // console.log("Neutral" + i);
+      }
+      else if (tragetAffect[i] === 2){
+        posList2.push(i);
+        // console.log("Neutral" + i);
+      }
+      else if (tragetAffect[i] === 1){
+        posList1.push(i);
+        // console.log("Neutral" + i);
+      }
+      else if (tragetAffect[i] === 0){
+        neuList.push(i);
+        // console.log("Negative" + i);
+      }
+      else if (tragetAffect[i] === -1){
+        negList1.push(i);
+        // console.log("Positive" + i);
+      }
+      else if (tragetAffect[i] === -2){
+        negList2.push(i);
+        // console.log("Positive" + i);
+      }
+      else if (tragetAffect[i] === -3){
+        negList3.push(i);
+        // console.log("Positive" + i);
+      }
 
 
-  }
+    }
+
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
     <div class="row">
       <div class="col-md-7" style="padding-right:0;">
-              <p><h4>${jsonList[id].AI} - ${jsonList[id].Name}</h4></p>
-              <p><text class="contentStyle">Description:</text> ${jsonList[id].Description}</p>
+              <p><h4>${jsonList.AI} - ${jsonList.Name}</h4></p>
+              <p><text class="contentStyle">Description:</text> ${jsonList.Description}</p>
       </div>
       <div class="col">
         <img src="images/UNpics/${parseInt(id)>=10? parseInt(id):"0"+parseInt(id)}.jpg" class="unImg">
@@ -90,7 +91,7 @@ var getTarget = function(id){
     </div>
     <div class="row">
       <div class="col">
-        <p><text class="contentStyle">Total Net Influence:</text> ${jsonList[id].Sum}</p>
+        <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
         <h5>Affects on other targets</h5>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
@@ -100,28 +101,19 @@ var getTarget = function(id){
         </div>
         <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
         <div id="neutral" style="display:none;">
-          <li><text class="posToNeg">0:</text> ${neuList}</li>
-        </div>
-        <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
-        <div id="negative" style="display:none;">
-          <li><text class="posToNeg">-3:</text> ${negList1}</li>
-          <li><text class="posToNeg">-2:</text> ${negList2}</li>
-          <li><text class="posToNeg">-1:</text> ${negList3}</li>
+          <li><text class="posToNeg">0:</text>${neuList}</li>
+            </div>
+            <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
+            <div id="negative" style="display:none;">
+              <li><text class="posToNeg">-3:</text> ${negList1}</li>
+              <li><text class="posToNeg">-2:</text> ${negList2}</li>
+              <li><text class="posToNeg">-1:</text> ${negList3}</li>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  `
-// $("#boxHistory")[0].innerHTML = ` <img src="images/UNpics/01.jpg" class="unImg">  `
-
-
-  //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
-  // document.getElementById("name").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
-  // document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
-  // document.getElementById("page1_container").innerHTML = "<h1>NEUTRAL</h1>" + "</br>" + "<p>"+ neuList + "</p>";
-
-  console.log(jsonList[id].Name);
-
+      `
+  });
 }
 
 var toggle = function(id) {

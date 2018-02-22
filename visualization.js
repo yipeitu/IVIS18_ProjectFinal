@@ -22,7 +22,7 @@ var link = svg.append("g").selectAll(".link"),
 
 d3.json("structure_data5.json", function(error, classes) {
   if (error) throw error;
-
+  
   var root = packageHierarchy(classes)
       .sum(function(d) { return d.size; });
 
