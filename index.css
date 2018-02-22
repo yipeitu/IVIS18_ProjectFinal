@@ -88,12 +88,12 @@ a.btn {
 li {
   list-style-type: none;
   padding-left: 17px;
+  max-width: 350px;
 }
 
 .posToNeg {
   font-weight: 1000;
   font-size: 18px;
-  max-width: 350px;
 }
 
 
