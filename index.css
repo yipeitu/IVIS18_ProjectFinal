@@ -3,6 +3,10 @@ body {
   font-weight: 100;
 }
 
+.container-viz {
+  width: 50%;
+}
+
 .navbar {
   justify-content: center;
   /* color: green; */
