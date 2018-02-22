@@ -1,13 +1,124 @@
 <html>
 <head>
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <title>Test Template</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="visualization.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+  <meta charset="UTF-8">
+  <!-- FILES -->
+  <script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
-  <h1>My Header</h1>
-  <p>My paragraph.</p>
-  <script src="visualization.js"></script>
+  <div class="jumbotron">
+    <div >
+      <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
+      <img class="logo" src="images/infovis-logo4.png"></img>
+    </div>
+
+    <nav class="navbar navbar-default">
+      <div><a class="btn btn-default" href="#page2" id="btn2">Visualization</a></div>
+      <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
+      <div><a class="btn btn-default" href="#page3" id="btn3">Something</a></div>
+      <div><a class="btn btn-default" href="#page4" id="btn4">Contact</a></div>
+    </nav>
+  </div>
+
+  <!-- Seperate these pages into individual html files later. -->
+  <div class="content">
+
+    <div id="page2" class="page container">
+      <div class="row">
+        <div class="col">
+          <h1>This is the visualization page</h1>
+          <a class="btn btn-default" onclick="getTarget('13.1');">Get Target</a>
+          <a class="btn btn-default" onclick="getTarget('1.5');">Get Target2</a>
+          <div class="container">
+          </div>
+        </div>
+
+
+        <div class="col">
+
+          <div class="border-dark text-left d-flex flex-row justify-content-end">
+            <div id="boxDescription" class="px-3 py-2">
+              <!-- <div>name:</div>
+              <div>description:</div>
+              <div>row sum:</div>
+              <div>column sum:</div>
+              <div> + positive influence</div>
+              <div>+3:</div>
+              <div>+2:</div>
+              <div>+1:</div>
+              <div> - negative influence</div>
+              <div>-1:</div>
+              <div>-2:</div>
+              <div>-3:</div>
+              <div>no obvious influence</div>
+              <div>0:</div> -->
+            </div>
+            <!-- <div id="boxHistory" class="px-3 py-2">
+            <div>history box</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="page1" class="page">
+  <h1>This is the home page</h1>
+</div>
+
+
+
+
+<div id="page3" class="page">
+  <h1>Don't remeber what should be here</h1>
+</div>
+
+<div id="page4" class="page">
+  <h1>This is the contact page</h1>
+  <!-- Team Member Template -->
+  <div class="memberContainer">
+    <img src="images/profile-icon.png"></img>
+    <div class="lynn" style="float:left; text-align:left;">
+    </br>
+  </br>
+</br>
+<p>Name: Member 1</p>
+<p>email: <a href="">member1@kth.se</a></p>
+<p>Role: Front-end Developer</p>
+</div>
+</div>
+</div>
+</div>
 </body>
+
+<!-- <script>
+$(document).ready(function(){
+// When page loads...:
+$("div.content div").hide(); // Hide all content
+$("nav li:first").addClass("current").show(); // Activate first page
+$("div.content div:first").show(); // Show first page content
+
+// On Click Event (within list-element!)
+$("nav li").click(function() {
+$("nav a").removeClass("current"); // Remove any active class
+$(this).addClass("current"); // Add "current" class to selected page
+console.log(this);
+
+$("div.content div").hide(); // Hide all content
+
+// Find the href attribute value to identify the active page+content:
+var activePage = $(this).find("a").attr("href");
+$(activePage).show(); // Fade in the active page content
+}); // end click method
+
+}); // end $(document).ready method
+</script> -->
 </html>
