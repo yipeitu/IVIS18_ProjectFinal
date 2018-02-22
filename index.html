@@ -3,7 +3,7 @@
   <title>Test Template</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
   <!-- FILES -->
   <script src="index.js"></script>
   <link rel="stylesheet" type="text/css" href="index.css">
@@ -13,12 +13,12 @@
   <div class="jumbotron">
     <div >
       <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
-      <img class="logo" src="images/infovis-logo.png"></img>
+      <img class="logo" src="images/infovis-logo4.png"></img>
     </div>
 
 <nav class="navbar navbar-default">
-    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
     <div><a class="btn btn-default" href="#page2" id="btn2">Visualization</a></div>
+    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
     <div><a class="btn btn-default" href="#page3" id="btn3">Something</a></div>
     <div><a class="btn btn-default" href="#page4" id="btn4">Contact</a></div>
 </nav>
@@ -26,13 +26,44 @@
 
 <!-- Seperate these pages into individual html files later. -->
   <div class="content">
+
+    <div id="page2" class="page">
+      <h1>This is the visualization page</h1>
+      <a class="btn btn-default" onclick="getTarget('13.1');">Get Target</a>
+      <a class="btn btn-default" onclick="getTarget('1.5');">Get Target2</a>
+      <div class="container">
+        <div id="ball">
+        </div>
+        <div class="border-dark text-left d-flex flex-row justify-content-end">
+          <div id="boxDescription" class="px-3 py-2">
+            <!-- <div>name:</div>
+            <div>description:</div>
+            <div>row sum:</div>
+            <div>column sum:</div>
+            <div> + positive influence</div>
+            <div>+3:</div>
+            <div>+2:</div>
+            <div>+1:</div>
+            <div> - negative influence</div>
+            <div>-1:</div>
+            <div>-2:</div>
+            <div>-3:</div>
+            <div>no obvious influence</div>
+            <div>0:</div> -->
+          </div>
+          <div id="boxHistory" class="px-3 py-2">
+            <div>history box</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="page1" class="page">
       <h1>This is the home page</h1>
     </div>
 
-    <div id="page2" class="page">
-      <h1>This is the visualization page</h1>
-    </div>
+
+
 
     <div id="page3" class="page">
       <h1>Don't remeber what should be here</h1>
