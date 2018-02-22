@@ -38,16 +38,16 @@ with open("db_data.json", "r") as rFile:
 		goal = key.split(".")[0]+"."
 		temp = {"name": goal+data[key]["Name"], "size": 0, "imports": [], "id": data[key]["AI"]}
 		for target in dict.keys(data[key]["affect"]):
-			if data[key]["affect"][target] > 0:
+			# if data[key]["affect"][target] > 0:
 				# temp["imports"].append(data[target]["Name"])
 				# --- This constructs the version with values for connections ---
-				d = {}
-				target_goal = target.split(".")[0]+"."
-				d["target"] = target_goal+data[target]["Name"]
-				d["value"] = data[key]["affect"][target]
-				temp["imports"].append(d)
+			d = {}
+			target_goal = target.split(".")[0]+"."
+			d["target"] = target_goal+data[target]["Name"]
+			d["value"] = data[key]["affect"][target]
+			temp["imports"].append(d)
 		result.append(temp)
 
 # with open("structure_data2.json", "w") as wFile:
-with open("structure_data4.json", "w") as wFile:
+with open("structure_data5.json", "w") as wFile:
 	json.dump(result, wFile)
