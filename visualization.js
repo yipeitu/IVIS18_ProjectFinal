@@ -60,11 +60,32 @@ function mouseovered(d) {
        d.source.data.imports.forEach(function(d) {
          if (d.target == t_name) {
          value = d.value;
+         console.log(value);
         }
        });
+       if (value == 3) {
+         color = "#62BF77";
+       } else if (value == 2) {
+         color = "#96CE7E";
+       } else if (value == 1) {
+         color = "#D4E578";
+       } else if (value == 0) {
+         color = "#FFEA84";
+       } else if (value == -1) {
+         console.log("HEEY");
+         color = "#F1A772";
+       } else if (value == -2) {
+         console.log("HEEY");
+         color = "#F0686A";
+       } else if (value == -3) {
+         console.log("HEEY");
+         color = "#A54A47";
+       }
+       console.log("Color: ", color);
          var str1 = "stroke-width: ";
          var str2 = 3**value;
-         return str1.concat(str2.toString());})
+         var tmp_str = "stroke: ";
+         return str1.concat(str2.toString(), ";", tmp_str, color);})
       .raise();
 
   node
