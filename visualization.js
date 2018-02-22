@@ -58,7 +58,7 @@ function mouseovered(d) {
 
 // Non-relevant links color change
 link._groups[0].forEach(function(d) {
-     d.style.stroke = "#e2e2e2";
+     d.style.stroke = "#f4f4f4";
      //d.style.opacity = 0.2;
      });
 
