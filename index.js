@@ -74,29 +74,45 @@ var getTarget = function(id){
       negList3.push(i);
       // console.log("Positive" + i);
     }
-  }
-  $("#boxDescription")[0].innerHTML = `<p><h4>${jsonList[id].AI} - ${jsonList[id].Name}</h4></p>
-              <p><text class="contentStyle">Description:</text> ${jsonList[id].Description}</p>
-              <p><text class="contentStyle">Total Net Influence:</text> ${jsonList[id].Sum}</p>
-              <h5>Affects on other targets</h5>
-              <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
-              <div id="positive" style="display:none;">
-                <li><text class="posToNeg">+3:</text> ${posList3}</li>
-                <li><text class="posToNeg">+2:</text> ${posList2} </li>
-                <li><text class="posToNeg">+1:</text> ${posList1}</li>
-              </div>
-              <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
-              <div id="neutral" style="display:none;">
-              <li><text class="posToNeg">0:</text> ${neuList}</li>
-              </div>
-              <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
-              <div id="negative" style="display:none;">
-                <li><text class="posToNeg">-3:</text> ${negList1}</li>
-                <li><text class="posToNeg">-2:</text> ${negList2}</li>
-                <li><text class="posToNeg">-1:</text> ${negList3}</li>
-              </div>
-              `
 
+
+  }
+  $("#boxDescription")[0].innerHTML = `
+  <div style="padding: 10px;">
+    <div class="row">
+      <div class="col-md-7" style="padding-right:0;">
+              <p><h4>${jsonList[id].AI} - ${jsonList[id].Name}</h4></p>
+              <p><text class="contentStyle">Description:</text> ${jsonList[id].Description}</p>
+      </div>
+      <div class="col">
+        <img src="images/UNpics/01.jpg" class="unImg">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p><text class="contentStyle">Total Net Influence:</text> ${jsonList[id].Sum}</p>
+        <h5>Affects on other targets</h5>
+        <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
+        <div id="positive" style="display:none;">
+          <li><text class="posToNeg">+3:</text> ${posList3}</li>
+          <li><text class="posToNeg">+2:</text> ${posList2} </li>
+          <li><text class="posToNeg">+1:</text> ${posList1}</li>
+        </div>
+        <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
+        <div id="neutral" style="display:none;">
+          <li><text class="posToNeg">0:</text> ${neuList}</li>
+        </div>
+        <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
+        <div id="negative" style="display:none;">
+          <li><text class="posToNeg">-3:</text> ${negList1}</li>
+          <li><text class="posToNeg">-2:</text> ${negList2}</li>
+          <li><text class="posToNeg">-1:</text> ${negList3}</li>
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+// $("#boxHistory")[0].innerHTML = ` <img src="images/UNpics/01.jpg" class="unImg">  `
 
 
   //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
