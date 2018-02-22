@@ -20,7 +20,7 @@ var svg = d3.select(".container-viz").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/structure_data4.json", function(error, classes) {
+d3.json("structure_data5.json", function(error, classes) {
   if (error) throw error;
 
   var root = packageHierarchy(classes)
@@ -49,7 +49,7 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/structure_data4.json", fu
 });
 
 function getData(d) {
-  getTarget(d.data.id);
+  getTarget(d.data.id);  
 }
 
 function mouseovered(d) {
@@ -59,7 +59,7 @@ function mouseovered(d) {
   link
       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
       .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
-    .filter(function(l) { return l.target === d || l.source === d; })
+    .filter(function(l) { return l.source === d; })
     .attr("style", function(d) {
        var t_name = d.target.data.name;
        var value;
