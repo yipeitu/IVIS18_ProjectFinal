@@ -35,14 +35,14 @@ result = []
 with open("db_data.json", "r") as rFile:
 	data = json.load(rFile)
 	for key in dict.keys(data):
-		goal = group[key.split(".")[0]]
+		goal = key.split(".")[0]+"."
 		temp = {"name": goal+data[key]["Name"], "size": 0, "imports": [], "id": data[key]["AI"]}
 		for target in dict.keys(data[key]["affect"]):
 			if data[key]["affect"][target] > 0:
 				# temp["imports"].append(data[target]["Name"])
 				# --- This constructs the version with values for connections ---
 				d = {}
-				target_goal = group[target.split(".")[0]]
+				target_goal = target.split(".")[0]+"."
 				d["target"] = target_goal+data[target]["Name"]
 				d["value"] = data[key]["affect"][target]
 				temp["imports"].append(d)
