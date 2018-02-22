@@ -100,7 +100,7 @@ var getTarget = function(id){
         </div>
         <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
         <div id="neutral" style="display:none;">
-          <li><text class="posToNeg">0:</text> <text style="max-width: 350px;">${neuList}</text></li>
+          <li><text class="posToNeg">0:</text>${neuList}</li>
         </div>
         <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
         <div id="negative" style="display:none;">
