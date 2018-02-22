@@ -27,9 +27,8 @@ $(document).ready(function(){
 var jsonList;
 
 var getTarget = function(id){
-  $.getJSON("https://35.198.97.17:5000/goal?goal="+id, function(json){
-  
-    jsonList = json
+  $.getJSON("https://yipeitu.github.io/IVIS18_ProjectFinal/db_data.json", function(json){
+    jsonList = json[id]
     // console.log(jsonList)
 
     var posList3 = [];
