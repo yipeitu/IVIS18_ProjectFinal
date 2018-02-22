@@ -9,6 +9,7 @@ body {
 }
 
 .jumbotron {
+  padding-top: 15px;
   padding-bottom: 5px;
   /* padding-top: 0; */
   text-align: center;
@@ -18,7 +19,7 @@ body {
 
 .jumbotron img {
   /* text-align: left; */
-  height: 172px;
+  height: 86px;
 }
 
 .memberContainer{
@@ -40,10 +41,6 @@ body {
   background-color: #F1F0F0
 }
 
-.lynn p {
-  font-weight: bold;
-}
-
 /* TEMPORARY */
 
 .btn {
@@ -62,16 +59,42 @@ a.btn {
   /* color: black; */
 }
 
+/* Page 2 */
+.contentStyle {
+  font-weight: 1000;
+}
+
+.pointer {
+  cursor: pointer;
+  margin: 0;
+  padding: 5px;
+  font-weight: 1000;
+}
+
+/* .active {
+  font-weight: 1000;
+} */
+li {
+  list-style-type: none;
+  padding-left: 17px;
+}
+
+.posToNeg {
+  font-weight: 1000;
+  font-size: 18px;
+}
+
 #boxDescription {
   background-color: #7A7A79;
   color: #FFFFFF;
   /* height: 500px;
   width: 500px; */
   height: auto;
+  /* display: inline-block; */
 }
 
 #boxDescription p{
-  font-weight: bold;
+  /* font-weight: bold; */
   /* font-size: 100px; */
 }
 

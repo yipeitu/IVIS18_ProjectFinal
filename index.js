@@ -75,27 +75,30 @@ var getTarget = function(id){
       // console.log("Positive" + i);
     }
   }
-  $("#boxDescription")[0].innerHTML = `<p>Name: ${jsonList[id].Name}</p>
-              <p>Description: ${jsonList[id].Description}</p>
-              <p>Row sum: ${jsonList[id].Sum}</p>
-              <h4>Affects on other targets</h4>
-              <p onclick="toggle('#positive')"> + Positive influence</p>
+  $("#boxDescription")[0].innerHTML = `<p><h4>${jsonList[id].AI} - ${jsonList[id].Name}</h4></p>
+              <p><text class="contentStyle">Description:</text> ${jsonList[id].Description}</p>
+              <p><text class="contentStyle">Total Net Influence:</text> ${jsonList[id].Sum}</p>
+              <h5>Affects on other targets</h5>
+              <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
               <div id="positive" style="display:none;">
-                <p>+3: ${posList3}</p>
-                <p>+2: ${posList2} </p>
-                <p>+1: ${posList1}</p>
+                <li><text class="posToNeg">+3:</text> ${posList3}</li>
+                <li><text class="posToNeg">+2:</text> ${posList2} </li>
+                <li><text class="posToNeg">+1:</text> ${posList1}</li>
               </div>
-              <p onclick="toggle('#neutral')">No obvious influence</p>
+              <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
               <div id="neutral" style="display:none;">
-              <p>0: ${neuList}</p>
+              <li><text class="posToNeg">0:</text> ${neuList}</li>
               </div>
-              <p onclick="toggle('#negative')"> - Negative influence</p>
+              <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
               <div id="negative" style="display:none;">
-                <p>-1: ${negList1}</p>
-                <p>-2: ${negList2}</p>
-                <p>-3: ${negList3}</p>
+                <li><text class="posToNeg">-3:</text> ${negList1}</li>
+                <li><text class="posToNeg">-2:</text> ${negList2}</li>
+                <li><text class="posToNeg">-1:</text> ${negList3}</li>
               </div>
               `
+
+
+
   //HÄMTA TARGET SOM AFFEKTAR ETT ANNAT TARGET POSITIVT/NEGATIVT/NEUTRALT
   // document.getElementById("name").innerHTML = "<h1>"+jsonList[id].Name+"</h1>" +;
   // document.getElementById("page1_container").innerHTML = "<h1>POSITIVE</h1>" + "</br>" + "<p>"+ posList + "</p>";
@@ -106,5 +109,5 @@ var getTarget = function(id){
 }
 
 var toggle = function(id) {
-  $(id).toggle();
+  $(id).slideToggle();
 }
