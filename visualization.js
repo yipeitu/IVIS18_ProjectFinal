@@ -19,15 +19,10 @@ var svg = d3.select("body").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("db_data.json", function(error, classes) {
+d3.json("structure_data.json", function(error, classes) {
   if (error) throw error;
 
-  var targetList = [];
-  for (targetName in classes) {
-    targetList.push(classes[targetName]);
-  }
-
-  var root = packageHierarchy(classes)  //Need to be adjusted for our purpose!
+  var root = packageHierarchy(classes)
       .sum(function(d) { return d.size; });
 
   cluster(root);
@@ -39,16 +34,14 @@ d3.json("db_data.json", function(error, classes) {
       .attr("class", "link")
       .attr("d", line);
 
-console.log(targetList);
-
   node = node
-    .data(targetList) // hierarchy thingy was here -----------------
+    .data(root.leaves())
     .enter().append("text")
       .attr("class", "node")
       .attr("dy", "0.31em")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .text(function(d) { return d["Name"]; })
+      .text(function(d) { return d.data.key; })
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted);
 });
@@ -79,10 +72,10 @@ function mouseouted(d) {
 }
 
 // Lazily construct the package hierarchy from class names.
-function packageHierarchy(goals) {
+function packageHierarchy(classes) {
   var map = {};
 
-  function find(name, data) { //ADJUST THIS TO OUR DATA!
+  function find(name, data) {
     var node = map[name], i;
     if (!node) {
       node = map[name] = data || {name: name, children: []};
@@ -95,9 +88,9 @@ function packageHierarchy(goals) {
     return node;
   }
 
-  for(p in goals) {
-    find(goals[p].Name, goals[p]);
-  }
+  classes.forEach(function(d) {
+    find(d.name, d);
+  });
 
   return d3.hierarchy(map[""]);
 }
