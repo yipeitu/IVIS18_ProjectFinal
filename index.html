@@ -9,10 +9,13 @@
   <meta charset="UTF-8">
   <!-- FILES -->
   <script src="index.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="visualization.css">
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
+  
   <div class="jumbotron">
     <div >
       <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
@@ -36,7 +39,8 @@
           <h1>This is the visualization page</h1>
           <a class="btn btn-default" onclick="getTarget('13.1');">Get Target</a>
           <a class="btn btn-default" onclick="getTarget('1.5');">Get Target2</a>
-          <div class="container">
+          <!-- VIZUALISATION SCRIPT -->
+          <div class="container-viz">
           </div>
         </div>
 
@@ -97,6 +101,7 @@
 </div>
 </div>
 </div>
+<script src="visualization.js"></script>
 </body>
 
 <!-- <script>
