@@ -64,13 +64,8 @@ link._groups[0].forEach(function(d) {
 
   link
       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
-<<<<<<< HEAD
       .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
     .filter(function(l) { return l.source === d; })
-=======
-      .classed("link--source", function(l) { console.log(l); if (l.source === d) return l.target.target = true; })
-    .filter(function(l) { return l.target === d || l.source === d; })
->>>>>>> visualization-example
     .attr("style", function(d) {
        var t_name = d.target.data.name;
        var value;
