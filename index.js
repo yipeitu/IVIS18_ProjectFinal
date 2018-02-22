@@ -27,7 +27,7 @@ $(document).ready(function(){
 var jsonList;
 
 var getTarget = function(id){
-  $.getJSON("http://35.198.97.17:5000/goal?goal="+id, function(json){
+  $.getJSON("https://35.198.97.17:5000/goal?goal="+id, function(json){
   
     jsonList = json
     // console.log(jsonList)
