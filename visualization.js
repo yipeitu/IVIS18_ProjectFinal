@@ -20,7 +20,7 @@ var svg = d3.select(".container-viz").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("structure_data3.json", function(error, classes) {
+d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/structure_data4.json", function(error, classes) {
   if (error) throw error;
 
   var root = packageHierarchy(classes)
