@@ -21,15 +21,15 @@ group = {
 	"6": "CleanWaterAndSanitation.",
 	"7": "AffordableAndCleanEnergy.",
 	"8": "DecentWorkAndEconomicGrowth",
-	"9": "IndustryInnovationAndInfrastructure",
-	"10": "ReducedInequalities",
-	"11": "SustainableCitiesAndCommuities",
-	"12": "ResponsibleConsumptionAndProduction",
-	"13": "ClimateAction",
-	"14": "LifeBelowWater",
-	"15": "LifeOnLand",
-	"16": "PeaseJusticeAndStrongInstitutions",
-	"17": "PartnershipsForTheGoals"
+	"9": "IndustryInnovationAndInfrastructure.",
+	"10": "ReducedInequalities.",
+	"11": "SustainableCitiesAndCommuities.",
+	"12": "ResponsibleConsumptionAndProduction.",
+	"13": "ClimateAction.",
+	"14": "LifeBelowWater.",
+	"15": "LifeOnLand.",
+	"16": "PeaseJusticeAndStrongInstitutions.",
+	"17": "PartnershipsForTheGoals."
 }
 result = []
 with open("db_data.json", "r") as rFile:
