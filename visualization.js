@@ -54,6 +54,17 @@ function mouseovered(d) {
       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
       .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
     .filter(function(l) { return l.target === d || l.source === d; })
+    .attr("style", function(d) {
+       var t_name = d.target.data.name;
+       var value;
+       d.source.data.imports.forEach(function(d) {
+         if (d.target == t_name) {
+         value = d.value;
+        }
+       });
+         var str1 = "stroke-width: ";
+         var str2 = 3**value;
+         return str1.concat(str2.toString());})
       .raise();
 
   node
@@ -64,7 +75,8 @@ function mouseovered(d) {
 function mouseouted(d) {
   link
       .classed("link--target", false)
-      .classed("link--source", false);
+      .classed("link--source", false)
+      .attr("style", "stroke-width: 1px; stroke-opacity: 0.4;")
 
   node
       .classed("node--target", false)
