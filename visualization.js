@@ -50,9 +50,15 @@ function mouseovered(d) {
   node
       .each(function(n) { n.target = n.source = false; });
 
+// Non-relevant links color change
+link._groups[0].forEach(function(d) {
+     d.style.stroke = "#e2e2e2";
+     //d.style.opacity = 0.2;
+     });
+
   link
       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
-      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+      .classed("link--source", function(l) { console.log(l); if (l.source === d) return l.target.target = true; })
     .filter(function(l) { return l.target === d || l.source === d; })
     .attr("style", function(d) {
        var t_name = d.target.data.name;
@@ -60,32 +66,40 @@ function mouseovered(d) {
        d.source.data.imports.forEach(function(d) {
          if (d.target == t_name) {
          value = d.value;
-         console.log(value);
         }
        });
        if (value == 3) {
          color = "#62BF77";
+         z = 1;
        } else if (value == 2) {
          color = "#96CE7E";
+         z = 2;
        } else if (value == 1) {
          color = "#D4E578";
+         z = 3;
        } else if (value == 0) {
          color = "#FFEA84";
+         z = 3;
        } else if (value == -1) {
          console.log("HEEY");
          color = "#F1A772";
+         z = 3;
        } else if (value == -2) {
          console.log("HEEY");
          color = "#F0686A";
+         z = 2;
        } else if (value == -3) {
          console.log("HEEY");
          color = "#A54A47";
+         z = 1;
        }
-       console.log("Color: ", color);
+       // console.log("Color: ", color);
          var str1 = "stroke-width: ";
-         var str2 = 3**value;
+         var str2 = 2.5**Math.abs(value);
          var tmp_str = "stroke: ";
-         return str1.concat(str2.toString(), ";", tmp_str, color);})
+         var z_index = "z-index: ".concat(z.toString(), ";");
+         var position = "position: absolute;";
+         return str1.concat(str2.toString(), ";", tmp_str, color, ";", z_index);})
       .raise();
 
   node

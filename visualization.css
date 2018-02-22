@@ -12,6 +12,7 @@
   stroke-opacity: 0.4;
   fill: none;
   pointer-events: none;
+  position: absolute;
 }
 
 .node:hover,
