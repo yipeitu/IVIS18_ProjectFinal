@@ -8,7 +8,7 @@
 }
 
 .link {
-  stroke: steelblue;
+  /* stroke: steelblue; */
   stroke-opacity: 0.4;
   fill: none;
   pointer-events: none;
