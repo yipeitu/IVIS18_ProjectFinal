@@ -79,6 +79,7 @@ var getTarget = function(id){
 
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
+    <span id='close' onclick=turnOffStickyLinks()>x</span>
     <div class="row">
       <div class="col-md-7" style="padding-right:0;">
               <p><h4>${jsonList.AI} - ${jsonList.Name}</h4></p>
