@@ -1,7 +1,6 @@
 var diameter = window.innerWidth*0.5,
     radius = diameter / 2,
-    innerRadius = radius - 120;
-console.log("--> ", diameter);
+    innerRadius = radius - 155;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
@@ -14,7 +13,7 @@ var line = d3.radialLine()
 var svg = d3.select(".container-viz").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
-  .append("g")
+    .append("g")
     .attr("transform", "translate(" + radius + "," + radius + ")");
 
 var link = svg.append("g").selectAll(".link"),
@@ -33,6 +32,9 @@ d3.json("structure_data5.json", function(error, classes) {
     .enter().append("path")
       .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
       .attr("class", "link")
+      .attr("style", function(d) {
+        return getStyle(d).concat("stroke-opacity: 0.2;")
+      })
       .attr("d", line);
 
   node = node
@@ -48,80 +50,95 @@ d3.json("structure_data5.json", function(error, classes) {
       .on("click", getData);
 });
 
+sticky_links = false;
+
+function turnOffStickyLinks() {
+  sticky_links = false;
+  document.getElementById("boxDescription").innerHTML = " ";
+}
+
 function getData(d) {
-  getTarget(d.data.id);  
+  if (!sticky_links) {
+    getTarget(d.data.id);
+    sticky_links = !sticky_links;
+  }
+}
+
+function getStyle(d) {
+  var t_name = d.target.data.name;
+  var value;
+  d.source.data.imports.forEach(function(d) {
+    if (d.target == t_name) {
+      value = d.value;
+    }
+  });
+  if (value == 3) {
+   color = "#62BF77"; z = 1;
+  } else if (value == 2) {
+   color = "#96CE7E"; z = 2;
+  } else if (value == 1) {
+   color = "#D4E578"; z = 3;
+  } else if (value == 0) {
+   color = "blue"; z = 0;
+  } else if (value == -1) {
+   color = "#F1A772"; z = 3;
+  } else if (value == -2) {
+   color = "#F0686A"; z = 2;
+  } else if (value == -3) {
+   color = "#A54A47";
+   z = 1;
+  }
+  var str1 = "stroke-width: ";
+  var str2 = 2.5**Math.abs(value);
+  var tmp_str = "stroke: ";
+  var z_index = "z-index: ".concat(z.toString(), ";");
+  var position = "position: absolute;";
+  if (value != 0) {
+    return str1.concat(str2.toString(), ";", tmp_str, color, ";", z_index);
+  } else {
+    return "display: none;";
+  }
 }
 
 function mouseovered(d) {
-  node
-      .each(function(n) { n.target = n.source = false; });
+  if (!sticky_links) {
+    node
+        .each(function(n) { n.target = n.source = false; });
 
-// Non-relevant links color change
-link._groups[0].forEach(function(d) {
-     d.style.stroke = "#f4f4f4";
-     //d.style.opacity = 0.2;
-     });
+    // Non-relevant links color change
+    link._groups[0].forEach(function(d) {
+         d.style.stroke = "#f4f4f4";
+         //d.style.opacity = 0.2;
+         });
 
-  link
+    link
       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
       .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
-    .filter(function(l) { return l.source === d; })
-    .attr("style", function(d) {
-       var t_name = d.target.data.name;
-       var value;
-       d.source.data.imports.forEach(function(d) {
-         if (d.target == t_name) {
-         value = d.value;
-        }
-       });
-       if (value == 3) {
-         color = "#62BF77";
-         z = 1;
-       } else if (value == 2) {
-         color = "#96CE7E";
-         z = 2;
-       } else if (value == 1) {
-         color = "#D4E578";
-         z = 3;
-       } else if (value == 0) {
-         color = "#FFEA84";
-         z = 3;
-       } else if (value == -1) {
-         console.log("HEEY");
-         color = "#F1A772";
-         z = 3;
-       } else if (value == -2) {
-         console.log("HEEY");
-         color = "#F0686A";
-         z = 2;
-       } else if (value == -3) {
-         console.log("HEEY");
-         color = "#A54A47";
-         z = 1;
-       }
-       // console.log("Color: ", color);
-         var str1 = "stroke-width: ";
-         var str2 = 2.5**Math.abs(value);
-         var tmp_str = "stroke: ";
-         var z_index = "z-index: ".concat(z.toString(), ";");
-         var position = "position: absolute;";
-         return str1.concat(str2.toString(), ";", tmp_str, color, ";", z_index);})
+      .filter(function(l) { return l.source === d; })
+      .attr("style", function(d) {
+        return getStyle(d);
+      })
       .raise();
 
-  node
-      .classed("node--target", function(n) { return n.target; })
-      .classed("node--source", function(n) { return n.source; });
+    node
+        .classed("node--target", function(n) { return n.target; })
+        .classed("node--source", function(n) { return n.source; });
+  }
 }
 
 function mouseouted(d) {
-  link
-      .classed("link--target", false)
-      .classed("link--source", false)
-      .attr("style", "stroke-width: 1px; stroke-opacity: 0.4;")
+  if (!sticky_links) {
+    link
+        .classed("link--target", false)
+        .classed("link--source", false)
+        .attr("style", function(d) {
+          return getStyle(d).concat("stroke-opacity: 0.2;");
+        })
 
-  node
-      .classed("node--target", false)
-      .classed("node--source", false);
+    node
+        .classed("node--target", false)
+        .classed("node--source", false);
+  }
 }
 
 // Lazily construct the package hierarchy from class names.
