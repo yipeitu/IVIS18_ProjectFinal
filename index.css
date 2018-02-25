@@ -62,6 +62,10 @@ body {
   background-color: transparent;
 }
 
+.btn-danger {
+  border-radius: 8px;
+}
+
 a.btn {
   color: #FFFFFF;
 }
