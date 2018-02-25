@@ -1,6 +1,6 @@
 var diameter = window.innerWidth*0.5,
     radius = diameter / 2,
-    innerRadius = radius - 155;
+    innerRadius = radius - 180;
 
 var cluster = d3.cluster()
     .size([360, innerRadius]);
@@ -55,6 +55,7 @@ sticky_links = false;
 function turnOffStickyLinks() {
   sticky_links = false;
   document.getElementById("boxDescription").innerHTML = " ";
+  trigger(mouseouted);
 }
 
 function getData(d) {
