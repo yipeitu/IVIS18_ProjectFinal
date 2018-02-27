@@ -88,7 +88,7 @@ var getTarget = function(id){
               <p><text class="contentStyle">Description:</text> ${jsonList.Description}</p>
       </div>
       <div class="col">
-        <img src="images/UNpics/${parseInt(id)>=10? parseInt(id):"0"+parseInt(id)}.jpg" class="unImg">
+        <img src="images/UNpics_targets/Goal_${id}_RGB_NG.svg" class="unImg">
       </div>
     </div>
     <div class="row">
