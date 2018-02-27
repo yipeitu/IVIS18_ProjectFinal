@@ -39,16 +39,49 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json
 
   node = node
     .data(root.leaves())
-    .enter().append("text")
-      .attr("class", "node")
-      .attr("dy", "0.31em")
-      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .text(function(d) { return d.data.key; })
-      .on("mouseover", mouseovered)
-      .on("mouseout", mouseouted)
-      .on("click", getData);
+      .enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { 
+            return "rotate(" + (d.x - 90) + ")translate(" 
+            + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+        .on("mouseover", mouseovered)
+        .on("mouseout", mouseouted)
+        .on("click", getData);
+
+    node.append("text")
+        .attr("dy", "0.31em")
+        .attr("float", "left")
+        .attr("x", function(d) { 
+          return (d.x < 180 ? Math.abs(sumOfChildren(d)) + 5
+          : -(Math.abs(sumOfChildren(d)) + 5));})
+        // .attr("y", barHeight / 2)
+        .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+        .text(function(d) { return d.data.key; });
+
+    node.append("rect")
+        .attr("width", function(d) { 
+          var net_sum = sumOfChildren(d);
+          return (net_sum > 0 ? net_sum : net_sum*(-1));})
+        .attr("height", 10)
+        .attr("x", function(d) {
+          return (d.x < 180 ? 0 
+          : - (Math.abs(sumOfChildren(d))));
+        })
+        .attr("y", -5)
+        // Comment this in to color the bars before hovering
+        // .attr("fill", function(d) {
+        //   return (sumOfChildren(d) > 0 ? "#62BF77"
+        //   : "#F1A772")
+        // });
 });
+
+function sumOfChildren(d) {
+  var sum = 0;
+  d.data.imports.forEach(function(t){
+    sum = sum + t.value;
+  })
+  return sum;
+}
 
 sticky_links = false;
 
