@@ -4,7 +4,8 @@
 }
 
 .node:hover {
-  fill: #000;
+  /*fill: #000;*/
+  fill: #1F97D5;
 }
 
 .link {
@@ -18,6 +19,11 @@
 .node:hover,
 .node--source,
 .node--target {
+  font-weight: 700;
+}
+
+.node--focus {
+  fill: #1F97D5;
   font-weight: 700;
 }
 
