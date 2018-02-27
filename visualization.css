@@ -16,29 +16,29 @@
 }
 
 .node:hover,
-.node--source,
-.node--target {
+.node--positive,
+.node--negative {
   font-weight: 700;
 }
 
-.node--source {
+.node--positive {
   fill: #2ca02c;
 }
 
-.node--target {
+.node--negative {
   fill: #d62728;
 }
 
-.link--source,
-.link--target {
+.link--positive,
+.link--negative {
   stroke-opacity: 1;
   stroke-width: 2px;
 }
 
-.link--source {
+.link--positive {
   stroke: #d62728;
 }
 
-.link--target {
+.link--negative {
   stroke: #2ca02c;
 }

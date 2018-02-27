@@ -21,7 +21,7 @@ var link = svg.append("g").selectAll(".link"),
 
 d3.json("structure_data5.json", function(error, classes) {
   if (error) throw error;
-  
+
   var root = packageHierarchy(classes)
       .sum(function(d) { return d.size; });
 
@@ -44,7 +44,7 @@ d3.json("structure_data5.json", function(error, classes) {
       .attr("dy", "0.31em")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .text(function(d) { return d.data.key; })
+      .text(function(d) { return d.data.id + " " + d.data.key; })
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted)
       .on("click", getData);
@@ -113,8 +113,8 @@ function mouseovered(d) {
          });
 
     link
-      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
-      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+      .classed("link--negative", function(l) { if (l.target === d) return l.source.source = true; })
+      .classed("link--positive", function(l) { if (l.source === d) return l.target.target = true; })
       .filter(function(l) { return l.source === d; })
       .attr("style", function(d) {
         return getStyle(d);
@@ -122,23 +122,23 @@ function mouseovered(d) {
       .raise();
 
     node
-        .classed("node--target", function(n) { return n.target; })
-        .classed("node--source", function(n) { return n.source; });
+        .classed("node--negative", function(n) { return n.target; })
+        .classed("node--positive", function(n) { return n.source; });
   }
 }
 
 function mouseouted(d) {
   if (!sticky_links) {
     link
-        .classed("link--target", false)
-        .classed("link--source", false)
+        .classed("link--negative", false)
+        .classed("link--positive", false)
         .attr("style", function(d) {
           return getStyle(d).concat("stroke-opacity: 0.2;");
         })
 
     node
-        .classed("node--target", false)
-        .classed("node--source", false);
+        .classed("node--negative", false)
+        .classed("node--positive", false);
   }
 }
 
@@ -183,5 +183,6 @@ function packageImports(nodes) {
     });
   });
 
+  console.log(imports);
   return imports;
 }
