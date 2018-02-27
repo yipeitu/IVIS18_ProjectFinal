@@ -51,15 +51,16 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json
 });
 
 sticky_links = false;
-
+current_node = null;
 function turnOffStickyLinks() {
   sticky_links = false;
-  document.getElementById("boxDescription").innerHTML = " ";
-  trigger(mouseouted);
+  $("#boxDescription").empty();
+  mouseouted(current_node);
 }
 
 function getData(d) {
   if (!sticky_links) {
+    current_node = d;
     getTarget(d.data.id);
     sticky_links = !sticky_links;
   }
@@ -121,11 +122,8 @@ function mouseovered(d) {
       })
       .raise();
 
-    // node
-    //     .classed("node--target", function(n) { return n.target; })
-    //     .classed("node--source", function(n) { return n.source; });
     // class
-    // node: neutral, grey
+    // node--focus: targeted, blue
     // node-source: positive, green
     // node-target: negative, red
     // var neuNodeList = []
@@ -143,11 +141,16 @@ function mouseovered(d) {
       // }
     })
     node
+        .classed("node--focus", function(n){
+          if(n.data.name == d.data.name){
+            return true;
+          }
+        })
         .classed("node--target", function(n) {
-          return negTargetList.indexOf(n.data.name) != -1
+          return negTargetList.indexOf(n.data.name) != -1;
         }) // negative
         .classed("node--source", function(n) {
-          return posSourceList.indexOf(n.data.name) != -1
+          return posSourceList.indexOf(n.data.name) != -1;
         }) // positive
   }
 }
@@ -162,6 +165,7 @@ function mouseouted(d) {
         })
 
     node
+        .classed("node--focus", false)
         .classed("node--target", false)
         .classed("node--source", false);
   }
