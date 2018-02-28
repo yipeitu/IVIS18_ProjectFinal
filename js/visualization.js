@@ -107,22 +107,42 @@ function getStyle(d) {
       value = d.value;
     }
   });
+  /*
+    Colors:
+
+  -6: #8F2A28
+  -5: #A54A47
+  -4: #D7201D
+  -3: #E54542
+  -2: #F0686A
+  -1: #F1A772
+
+  1: #CADF76
+  2: #9BD066
+  3: #89C96D
+  4: #62BF77
+  5: #349248
+  6: #277137
+  */
+
+
   if (value == 3) {
-   color = "#62BF77"; z = 1;
+   color = "#89C96D"; z = 1;
   } else if (value == 2) {
-   color = "#96CE7E"; z = 2;
+   color = "#AFD65B"; z = 2;
   } else if (value == 1) {
-   color = "#D4E578"; z = 3;
+   color = "#CADF76"; z = 3;
   } else if (value == 0) {
    color = "blue"; z = 0;
   } else if (value == -1) {
    color = "#F1A772"; z = 3;
   } else if (value == -2) {
-   color = "#F0686A"; z = 2;
+   color = "#E57B5B"; z = 2;
   } else if (value == -3) {
-   color = "#A54A47";
-   z = 1;
+   color = "#F0686A"; z = 1;
   }
+
+
   var str1 = "stroke-width: ";
   var str2 = 2.5**Math.abs(value);
   var tmp_str = "stroke: ";

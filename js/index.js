@@ -41,6 +41,8 @@ var getTarget = function(id){
     var negList2 = [];
     var negList3 = [];
 
+    fullList = 34;
+
     var tragetAffect = jsonList.affect
     // console.log(tragetAffect);
 
@@ -80,7 +82,8 @@ var getTarget = function(id){
 
     var giveMeList = function(list){
       console.log(list.length)
-      return list.length;
+      //0.022 = random number to neglate the padding
+      return list.length/(0.34+0.022);
     }
 
     // var test = function() {
@@ -111,27 +114,17 @@ var getTarget = function(id){
       <div class="col">
         <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
         <h5>Affects on other targets</h5>
-        <div>
-          <ul class="legend">
-            <li>-3</li>
-            <li>-2</li>
-            <li>-1</li>
-            <li>0</li>
-            <li>+1</li>
-            <li>+2</li>
-            <li>+3</li>
-          </ul>
-        </div>
+
         <div class="stacked-bar-graph" id="barChart">
-          <span style="width:${giveMeList(negList3)}%" class='bar-5'>${giveMeList(negList3)}</span>
-          <span style="width:${giveMeList(negList2)}%" class='bar-6'>${giveMeList(negList2)}</span>
-          <span style="width:${giveMeList(negList1)}%" class='bar-7'>${giveMeList(negList1)}</span>
+          <span style="width:${giveMeList(negList3)}%" class='bar-5'>-3</span>
+          <span style="width:${giveMeList(negList2)}%" class='bar-6'>-2</span>
+          <span style="width:${giveMeList(negList1)}%" class='bar-7'>-1</span>
 
-          <span style="width:${giveMeList(neuList)}%" class='bar-4'>${giveMeList(neuList)}</span>
+          <span style="width:${giveMeList(neuList)}%" class='bar-4'>0</span>
 
-          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>${giveMeList(posList1)}</span>
-          <span style="width:${giveMeList(posList2)}%" class='bar-2'>${giveMeList(posList2)}</span>
-          <span style="width:${giveMeList(posList3)}%" class='bar-3'>${giveMeList(posList3)}</span>
+          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>1</span>
+          <span style="width:${giveMeList(posList2)}%" class='bar-2'>2</span>
+          <span style="width:$({giveMeList(posList3)}%" class='bar-3'>3</span>
         </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
