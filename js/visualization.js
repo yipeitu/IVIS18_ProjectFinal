@@ -96,7 +96,13 @@ function getData(d) {
     current_node = d;
     getTarget(d.data.id);
     sticky_links = !sticky_links;
-  }
+  } else{
+    turnOffStickyLinks();
+    current_node = d;
+    mouseovered(d);
+    getTarget(d.data.id);
+    sticky_links = !sticky_links;
+  } // click to another target
 }
 
 function getStyle(d) {

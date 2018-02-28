@@ -114,15 +114,15 @@ var getTarget = function(id){
         <h5>Affects on other targets</h5>
 
         <div class="stacked-bar-graph" id="barChart">
-          <span style="width:${giveMeList(negList3)}%" class='bar-5'>-3</span>
-          <span style="width:${giveMeList(negList2)}%" class='bar-6'>-2</span>
-          <span style="width:${giveMeList(negList1)}%" class='bar-7'>-1</span>
+          <span style="width:${giveMeList(negList3)}%" class='bar-5'>${parseInt(giveMeList(negList3))}</span>
+          <span style="width:${giveMeList(negList2)}%" class='bar-6'>${parseInt(giveMeList(negList2))}</span>
+          <span style="width:${giveMeList(negList1)}%" class='bar-7'>${parseInt(giveMeList(negList1))}</span>
 
-          <span style="width:${giveMeList(neuList)}%" class='bar-4'>0</span>
+          <span style="width:${giveMeList(neuList)}%" class='bar-4'>${parseInt(giveMeList(neuList))}</span>
 
-          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>1</span>
-          <span style="width:${giveMeList(posList2)}%" class='bar-2'>2</span>
-          <span style="width:$({giveMeList(posList3)}%" class='bar-3'>3</span>
+          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>${parseInt(giveMeList(posList1))}</span>
+          <span style="width:${giveMeList(posList2)}%" class='bar-2'>${parseInt(giveMeList(posList2))}</span>
+          <span style="width:${giveMeList(posList3)}%" class='bar-3'>${parseInt(giveMeList(posList3))}</span>
         </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
