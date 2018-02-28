@@ -73,11 +73,26 @@ var getTarget = function(id){
         negList3.push(i);
         // console.log("Positive" + i);
       }
+      // console.log(posList3);
 
 
     }
+
+    var giveMeList = function(list){
+      console.log(list.length)
+      return list.length;
+    }
+
+    // var test = function() {
+    //   $('.bar-1').each(function() {
+	  //      var text = $(this).text();
+	  //       $(this).parent().css('width', text);
+    //       console.log(this);
+    //     });
+    // }
+
 //Change the close info button, perhaps move it to the upper right corner.
-//Add a stacked bar chart with positive/negative affected targets.
+
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
     <div class="container">
@@ -95,8 +110,28 @@ var getTarget = function(id){
     <div class="row">
       <div class="col">
         <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-        <h5 onclick="getPercentage(${posList3});">Affects on other targets</h5>
+        <h5>Affects on other targets</h5>
+        <div>
+          <ul class="legend">
+            <li>-3</li>
+            <li>-2</li>
+            <li>-1</li>
+            <li>0</li>
+            <li>+1</li>
+            <li>+2</li>
+            <li>+3</li>
+          </ul>
+        </div>
         <div class="stacked-bar-graph" id="barChart">
+          <span style="width:${giveMeList(negList3)}%" class='bar-5'>${giveMeList(negList3)}</span>
+          <span style="width:${giveMeList(negList2)}%" class='bar-6'>${giveMeList(negList2)}</span>
+          <span style="width:${giveMeList(negList1)}%" class='bar-7'>${giveMeList(negList1)}</span>
+
+          <span style="width:${giveMeList(neuList)}%" class='bar-4'>${giveMeList(neuList)}</span>
+
+          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>${giveMeList(posList1)}</span>
+          <span style="width:${giveMeList(posList2)}%" class='bar-2'>${giveMeList(posList2)}</span>
+          <span style="width:${giveMeList(posList3)}%" class='bar-3'>${giveMeList(posList3)}</span>
         </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
@@ -126,9 +161,14 @@ var toggle = function(id) {
 }
 
 //Function for stacked bar chart
-var label ="";
-var getPercentage = function(posList3){
-  label += Math.round(posList3*100)/100;
-  console.log(label);
-  document.getElementById("barChart").innerHTML = "<span style='width:" + label + "%'" + " class='bar-1'>Hey</span>"
-};
+// var label ="";
+// var label2 ="";
+// var getPercentage = function(list, list2){
+//     // console.log([list]);
+//   // label += Math.round(list*100)/100;
+//   // label2 += Math.round(list2*100)/100;
+//   console.log(label);
+//   console.log(label2);
+//   document.getElementById("barChart").innerHTML = "<span style='width:" + list + "%'" + " class='bar-1'>Hey</span>" +
+//    "<span style='width:" + list2 + "%'" + " class='bar-2'>Hey</span>"
+// };
