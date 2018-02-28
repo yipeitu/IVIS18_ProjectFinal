@@ -96,11 +96,17 @@ function getData(d) {
     current_node = d;
     getTarget(d.data.id);
     sticky_links = !sticky_links;
-  } else{
+  } // first click 
+  else if(current_node == d){
+    turnOffStickyLinks();
+    current_node = null;
+    sticky_links = false;
+  } // unclick the selected one
+  else {
     turnOffStickyLinks();
     current_node = d;
-    mouseovered(d);
-    getTarget(d.data.id);
+    mouseovered(current_node);
+    getTarget(current_node.data.id);
     sticky_links = !sticky_links;
   } // click to another target
 }

@@ -79,7 +79,7 @@ var getTarget = function(id){
     }
 
     var giveMeList = function(list){
-      console.log(list.length)
+      // console.log(list.length)
       //0.022 = random number to neglate the padding
       return list.length/(0.34);
     }
