@@ -202,7 +202,19 @@ function mouseouted(d) {
     node
         .classed("node--focus", false)
         .classed("node--target", false)
-        .classed("node--source", false);
+        .classed("node--source", false)
+        .classed("node6", false)
+        .classed("node5", false)
+        .classed("node4", false)
+        .classed("node3", false)
+        .classed("node2", false)
+        .classed("node1", false)
+        .classed("node-1", false)
+        .classed("node-2", false)
+        .classed("node-3", false)
+        .classed("node-4", false)
+        .classed("node-5", false)
+        .classed("node-6", false);
   }
 }
 
