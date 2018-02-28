@@ -107,24 +107,22 @@ function getStyle(d) {
       value = d.value;
     }
   });
-
   if (value == 3) {
-   color = "#89C96D"; z = 1;
+   color = "#62BF77"; z = 1;
   } else if (value == 2) {
-   color = "#AFD65B"; z = 2;
+   color = "#96CE7E"; z = 2;
   } else if (value == 1) {
-   color = "#CADF76"; z = 3;
+   color = "#D4E578"; z = 3;
   } else if (value == 0) {
    color = "blue"; z = 0;
   } else if (value == -1) {
    color = "#F1A772"; z = 3;
   } else if (value == -2) {
-   color = "#E57B5B"; z = 2;
+   color = "#F0686A"; z = 2;
   } else if (value == -3) {
-   color = "#F0686A"; z = 1;
+   color = "#A54A47";
+   z = 1;
   }
-
-
   var str1 = "stroke-width: ";
   var str2 = 2.5**Math.abs(value);
   var tmp_str = "stroke: ";
@@ -136,6 +134,7 @@ function getStyle(d) {
     return "display: none;";
   }
 }
+
 
 function mouseovered(d) {
   if (!sticky_links) {
@@ -187,7 +186,126 @@ function mouseovered(d) {
         .classed("node--source", function(n) {
           return posSourceList.indexOf(n.data.name) != -1;
         }) // positive
-  }
+  } // 
+  else {
+    node
+        .each(function(n) { n.target = n.source = false; });
+
+    // Non-relevant links color change
+    link._groups[0].forEach(function(d) {
+         d.style.stroke = "#f4f4f4";
+         //d.style.opacity = 0.2;
+         });
+    link
+      .classed("link--target", function(l) { if (l.target === d || l.target === current_node) return l.source.source = true; })
+      .classed("link--source", function(l) { if (l.source === d || l.source === current_node) return l.target.target = true; })
+      .filter(function(l) { return (l.source === d) || (l.source === current_node); })
+      .attr("style", function(d) {
+        return getStyle(d);
+      })
+      .raise();
+
+    var nodesValues = {};
+    current_node.data.imports.forEach(function(target){
+        nodesValues[target.target] = target.value;
+    })
+
+    d.data.imports.forEach(function(target){
+      if(Object.keys(nodesValues).indexOf(target.target) != -1){
+        nodesValues[target.target] += target.value; 
+      } else {
+        nodesValues[target.target] = target.value;
+      }
+    })
+    nodesValues[current_node.data.name] = 0;
+    nodesValues[d.data.name] = 0;
+    var valuesNodes = {"6": [], "5": [], "4": [], "3": [], "2": [], "1": [],
+                       "-6": [], "-5": [], "-4": [], "-3": [], "-2": [], "-1": []}
+    // convert the values as keys
+    Object.keys(nodesValues).forEach(function(node){
+      switch(nodesValues[node]){
+        case 6:
+          valuesNodes["6"].push(node);
+          break;
+        case 5:
+          valuesNodes["5"].push(node);
+          break;
+        case 4:
+          valuesNodes["4"].push(node);
+          break;
+        case 3:
+          valuesNodes["3"].push(node);
+          break;
+        case 2:
+          valuesNodes["2"].push(node);
+          break;
+        case 1:
+          valuesNodes["1"].push(node);
+          break;
+        case -1:
+          valuesNodes["-1"].push(node);
+          break;
+        case -2:
+          valuesNodes["-2"].push(node);
+          break;
+        case -3:
+          valuesNodes["-3"].push(node);
+          break;
+        case -4:
+          valuesNodes["-4"].push(node);
+          break;
+        case -5:
+          valuesNodes["-5"].push(node);
+          break;
+        case -6:
+          valuesNodes["-6"].push(node);
+          break;
+      }
+    })
+
+   node
+       .classed("node--focus", function(n){
+          if(n.data.name == d.data.name || n.data.name == current_node.data.name){
+            return true;
+          }
+        })
+        .classed("node6", function(n){
+          return valuesNodes["6"].indexOf(n.data.name) != -1;
+        })
+        .classed("node5", function(n){
+          return valuesNodes["5"].indexOf(n.data.name) != -1;
+        })
+        .classed("node4", function(n){
+          return valuesNodes["4"].indexOf(n.data.name) != -1;
+        })
+        .classed("node3", function(n){
+          return valuesNodes["3"].indexOf(n.data.name) != -1;
+        })
+        .classed("node2", function(n){
+          return valuesNodes["2"].indexOf(n.data.name) != -1;
+        })
+        .classed("node1", function(n){
+          return valuesNodes["1"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-6", function(n){
+          return valuesNodes["-6"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-5", function(n){
+          return valuesNodes["-5"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-4", function(n){
+          return valuesNodes["-4"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-3", function(n){
+          return valuesNodes["-3"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-2", function(n){
+          return valuesNodes["-2"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-1", function(n){
+          return valuesNodes["-1"].indexOf(n.data.name) != -1;
+        })
+  } // show the compared
 }
 
 function mouseouted(d) {
@@ -209,12 +327,13 @@ function mouseouted(d) {
         .classed("node3", false)
         .classed("node2", false)
         .classed("node1", false)
-        .classed("node-1", false)
-        .classed("node-2", false)
-        .classed("node-3", false)
-        .classed("node-4", false)
+        .classed("node-6", false)
         .classed("node-5", false)
-        .classed("node-6", false);
+        .classed("node-4", false)
+        .classed("node-3", false)
+        .classed("node-2", false)
+        .classed("node-1", false);
+
   }
 }
 
