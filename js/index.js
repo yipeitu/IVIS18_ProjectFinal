@@ -41,8 +41,6 @@ var getTarget = function(id){
     var negList2 = [];
     var negList3 = [];
 
-    fullList = 34;
-
     var tragetAffect = jsonList.affect
     // console.log(tragetAffect);
 
@@ -83,7 +81,7 @@ var getTarget = function(id){
     var giveMeList = function(list){
       console.log(list.length)
       //0.022 = random number to neglate the padding
-      return list.length/(0.34+0.022);
+      return list.length/(0.34);
     }
 
     // var test = function() {
