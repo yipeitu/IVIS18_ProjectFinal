@@ -51,6 +51,7 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json
     node.append("text")
         .attr("dy", "0.31em")
         .attr("float", "left")
+        .attr("class", "noselect")
         .attr("x", function(d) {
           return (d.x < 180 ? Math.abs(sumOfChildren(d)) + 5
           : -(Math.abs(sumOfChildren(d)) + 5));})
@@ -96,7 +97,7 @@ function getData(d) {
     current_node = d;
     getTarget(d.data.id);
     sticky_links = !sticky_links;
-  } // first click 
+  } // first click
   else if(current_node == d){
     turnOffStickyLinks();
     current_node = null;
@@ -198,7 +199,7 @@ function mouseovered(d) {
         .classed("node--source", function(n) {
           return posSourceList.indexOf(n.data.name) != -1;
         }) // positive
-  } // 
+  } //
   else {
     node
         .each(function(n) { n.target = n.source = false; });
@@ -224,7 +225,7 @@ function mouseovered(d) {
 
     d.data.imports.forEach(function(target){
       if(Object.keys(nodesValues).indexOf(target.target) != -1){
-        nodesValues[target.target] += target.value; 
+        nodesValues[target.target] += target.value;
       } else {
         nodesValues[target.target] = target.value;
       }
