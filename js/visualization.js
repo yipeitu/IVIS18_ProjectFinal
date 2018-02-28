@@ -107,24 +107,6 @@ function getStyle(d) {
       value = d.value;
     }
   });
-  /*
-    Colors:
-
-  -6: #8F2A28
-  -5: #A54A47
-  -4: #D7201D
-  -3: #E54542
-  -2: #F0686A
-  -1: #F1A772
-
-  1: #CADF76
-  2: #9BD066
-  3: #89C96D
-  4: #62BF77
-  5: #349248
-  6: #277137
-  */
-
 
   if (value == 3) {
    color = "#89C96D"; z = 1;
@@ -154,7 +136,6 @@ function getStyle(d) {
     return "display: none;";
   }
 }
-
 
 function mouseovered(d) {
   if (!sticky_links) {
@@ -206,126 +187,7 @@ function mouseovered(d) {
         .classed("node--source", function(n) {
           return posSourceList.indexOf(n.data.name) != -1;
         }) // positive
-  } // 
-  else {
-    node
-        .each(function(n) { n.target = n.source = false; });
-
-    // Non-relevant links color change
-    link._groups[0].forEach(function(d) {
-         d.style.stroke = "#f4f4f4";
-         //d.style.opacity = 0.2;
-         });
-    link
-      .classed("link--target", function(l) { if (l.target === d || l.target === current_node) return l.source.source = true; })
-      .classed("link--source", function(l) { if (l.source === d || l.source === current_node) return l.target.target = true; })
-      .filter(function(l) { return (l.source === d) || (l.source === current_node); })
-      .attr("style", function(d) {
-        return getStyle(d);
-      })
-      .raise();
-
-    var nodesValues = {};
-    current_node.data.imports.forEach(function(target){
-        nodesValues[target.target] = target.value;
-    })
-
-    d.data.imports.forEach(function(target){
-      if(Object.keys(nodesValues).indexOf(target.target) != -1){
-        nodesValues[target.target] += target.value; 
-      } else {
-        nodesValues[target.target] = target.value;
-      }
-    })
-    nodesValues[current_node.data.name] = 0;
-    nodesValues[d.data.name] = 0;
-    var valuesNodes = {"6": [], "5": [], "4": [], "3": [], "2": [], "1": [],
-                       "-6": [], "-5": [], "-4": [], "-3": [], "-2": [], "-1": []}
-    // convert the values as keys
-    Object.keys(nodesValues).forEach(function(node){
-      switch(nodesValues[node]){
-        case 6:
-          valuesNodes["6"].push(node);
-          break;
-        case 5:
-          valuesNodes["5"].push(node);
-          break;
-        case 4:
-          valuesNodes["4"].push(node);
-          break;
-        case 3:
-          valuesNodes["3"].push(node);
-          break;
-        case 2:
-          valuesNodes["2"].push(node);
-          break;
-        case 1:
-          valuesNodes["1"].push(node);
-          break;
-        case -1:
-          valuesNodes["-1"].push(node);
-          break;
-        case -2:
-          valuesNodes["-2"].push(node);
-          break;
-        case -3:
-          valuesNodes["-3"].push(node);
-          break;
-        case -4:
-          valuesNodes["-4"].push(node);
-          break;
-        case -5:
-          valuesNodes["-5"].push(node);
-          break;
-        case -6:
-          valuesNodes["-6"].push(node);
-          break;
-      }
-    })
-
-   node
-       .classed("node--focus", function(n){
-          if(n.data.name == d.data.name || n.data.name == current_node.data.name){
-            return true;
-          }
-        })
-        .classed("node6", function(n){
-          return valuesNodes["6"].indexOf(n.data.name) != -1;
-        })
-        .classed("node5", function(n){
-          return valuesNodes["5"].indexOf(n.data.name) != -1;
-        })
-        .classed("node4", function(n){
-          return valuesNodes["4"].indexOf(n.data.name) != -1;
-        })
-        .classed("node3", function(n){
-          return valuesNodes["3"].indexOf(n.data.name) != -1;
-        })
-        .classed("node2", function(n){
-          return valuesNodes["2"].indexOf(n.data.name) != -1;
-        })
-        .classed("node1", function(n){
-          return valuesNodes["1"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-6", function(n){
-          return valuesNodes["-6"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-5", function(n){
-          return valuesNodes["-5"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-4", function(n){
-          return valuesNodes["-4"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-3", function(n){
-          return valuesNodes["-3"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-2", function(n){
-          return valuesNodes["-2"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-1", function(n){
-          return valuesNodes["-1"].indexOf(n.data.name) != -1;
-        })
-  } // show the compared
+  }
 }
 
 function mouseouted(d) {
