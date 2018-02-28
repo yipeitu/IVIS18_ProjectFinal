@@ -37,6 +37,54 @@ font-size: 12px;
   fill: #d62728;
 }
 
+.node6 {
+  fill: #6CFF00;
+}
+
+.node5 {
+  fill: #51FF00;
+}
+
+.node4 {
+  fill: #3EFF00;
+}
+
+.node3 {
+  fill: #13FF00; 
+}
+
+.node2 {
+  fill: #00FF0F;
+}
+
+.node1 {
+  fill: #00FF3A;
+}
+
+.node-6 {
+  fill: #FF0000;
+}
+
+.node-5 {
+  fill: #FF2700;
+}
+
+.node-4 {
+  fill: #FF5100;
+}
+
+.node-3 {
+  fill: #FF6100;
+}
+
+.node-2 {
+  fill: #FF6800;
+}
+
+.node-1 {
+  fill: #FF8F00;
+}
+
 .link--source,
 .link--target {
   stroke-opacity: 1;
