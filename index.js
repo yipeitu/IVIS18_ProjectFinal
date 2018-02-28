@@ -76,7 +76,8 @@ var getTarget = function(id){
 
 
     }
-
+//Change the close info button, perhaps move it to the upper right corner.
+//Add a stacked bar chart with positive/negative affected targets.
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
     <div class="container">
@@ -94,7 +95,9 @@ var getTarget = function(id){
     <div class="row">
       <div class="col">
         <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-        <h5>Affects on other targets</h5>
+        <h5 onclick="getPercentage(${posList3});">Affects on other targets</h5>
+        <div class="stacked-bar-graph" id="barChart">
+        </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
           <li><text class="posToNeg">+3:</text> ${posList3}</li>
@@ -121,3 +124,11 @@ var getTarget = function(id){
 var toggle = function(id) {
   $(id).slideToggle();
 }
+
+//Function for stacked bar chart
+var label ="";
+var getPercentage = function(posList3){
+  label += Math.round(posList3*100)/100;
+  console.log(label);
+  document.getElementById("barChart").innerHTML = "<span style='width:" + label + "%'" + " class='bar-1'>Hey</span>"
+};
