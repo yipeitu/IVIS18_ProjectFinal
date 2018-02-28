@@ -136,11 +136,19 @@ li {
 
 /* For bar chart*/
 
+@keyframes expand {
+  from {width: 0%;}
+  to {width: 100%;}
+}
+
 .stacked-bar-graph {
+  overflow: hidden;
   width: 100%;
   height: 38px;
  /* // background: #eee; */
   color:#414042;
+  animation-delay: .1s;
+  animation: expand 1.5s ease forwards;
 }
   span {
     display: inline-block;
@@ -155,39 +163,44 @@ li {
 
   }
 
-
-
-  .bar-1:empty, .bar-2:empty, .bar-3:empty, .bar-4:empty, .bar-5:empty, .bar-6:empty, .bar-7:empty {
+  .pos-bar-1:empty, .pos-bar-2:empty, .pos-bar-3:empty, .neu-bar:empty, .neg-bar-1:empty, .neg-bar-2:empty, .neg-bar-3:empty {
     display: none;
   }
 
-  .bar-1 {
+  .pos-bar-1,
+  .legend li:nth-of-type(5):before {
     overflow: hidden;
-    /* background-color: #D4E578; */
+    background: #D4E578;
     }
 
 
-  .bar-2 {
+  .pos-bar-2,
+  .legend li:nth-of-type(6):before {
     background: #96CE7E;
   }
 
-  .bar-3 {
+  .pos-bar-3,
+  .legend li:nth-of-type(7):before {
     background: #62BF77;
   }
 
-  .bar-4 {
+  .neu-bar,
+  .legend li:nth-of-type(4):before {
     background: yellow;
   }
 
-  .bar-5 {
+  .neg-bar-1,
+  .legend li:nth-of-type(3):before {
     background: #F1A772;
   }
 
-  .bar-6 {
+  .neg-bar-2,
+  .legend li:nth-of-type(2):before {
     background: #F0686A;
   }
 
-  .bar-7 {
+  .neg-bar-3,
+  .legend li:nth-of-type(1):before {
     background: #A54A47;
     /* overflow: hidden; */
   }
@@ -197,6 +210,10 @@ li {
     padding: 0;
 	   font-size: 1em;
      vertical-align: middle;
+}
+
+.legendInfo {
+  padding-top: 10px;
 }
 
   .legend li {
