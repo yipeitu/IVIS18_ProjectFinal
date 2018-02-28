@@ -21,7 +21,7 @@ var link = svg.append("g").selectAll(".link"),
 
 d3.json("structure_data5.json", function(error, classes) {
   if (error) throw error;
-  
+
   var root = packageHierarchy(classes)
       .sum(function(d) { return d.size; });
 
@@ -44,7 +44,7 @@ d3.json("structure_data5.json", function(error, classes) {
       .attr("dy", "0.31em")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .text(function(d) { return d.data.key; })
+      .text(function(d) { return d.data.id + " " + d.data.key; })
       .on("mouseover", mouseovered)
       .on("mouseout", mouseouted)
       .on("click", getData);
