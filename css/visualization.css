@@ -5,6 +5,16 @@ font-size: 12px;
   fill: #bbb;
 }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 .node:hover {
   /*fill: #000;*/
   fill: #1F97D5;
@@ -35,6 +45,54 @@ font-size: 12px;
 
 .node--target {
   fill: #d62728;
+}
+
+.node6 {
+  fill: #277137;
+}
+
+.node5 {
+  fill: #349248;
+}
+
+.node4 {
+  fill: #62BF77;
+}
+
+.node3 {
+  fill: #89C96D;
+}
+
+.node2 {
+  fill: #9BD066;
+}
+
+.node1 {
+  fill: #CADF76;
+}
+
+.node-6 {
+  fill: #8F2A28;
+}
+
+.node-5 {
+  fill: #A54A47;
+}
+
+.node-4 {
+  fill: #D7201D;
+}
+
+.node-3 {
+  fill: #E54542;
+}
+
+.node-2 {
+  fill: #F0686A;
+}
+
+.node-1 {
+  fill: #F1A772;
 }
 
 .link--source,

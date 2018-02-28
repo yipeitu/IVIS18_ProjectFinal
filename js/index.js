@@ -89,8 +89,6 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      return list.length;
-    }
 
 //Change the close info button, perhaps move it to the upper right corner.
 
