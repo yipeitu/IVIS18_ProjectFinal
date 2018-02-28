@@ -139,31 +139,78 @@ li {
 .stacked-bar-graph {
   width: 100%;
   height: 38px;
- // background: #eee;
+ /* // background: #eee; */
   color:#414042;
-
+}
   span {
     display: inline-block;
     height:100%;
     box-sizing: border-box;
     float: left;
-  //  color: #fff;
+  /* //  color: #fff; */
     font-weight: bold;
     font-family: arial, sans-serif;
     padding: 10px;
+    text-align: center;
 
+  }
+
+
+
+  .bar-1:empty, .bar-2:empty, .bar-3:empty, .bar-4:empty, .bar-5:empty, .bar-6:empty, .bar-7:empty {
+    display: none;
   }
 
   .bar-1 {
-    background: #F7B334;
-  }
+    overflow: hidden;
+    /* background-color: #D4E578; */
+    }
+
 
   .bar-2 {
-    background: #A7A9AC;
+    background: #96CE7E;
   }
 
   .bar-3 {
-    background: #D57E00;
+    background: #62BF77;
   }
 
+  .bar-4 {
+    background: yellow;
+  }
+
+  .bar-5 {
+    background: #F1A772;
+  }
+
+  .bar-6 {
+    background: #F0686A;
+  }
+
+  .bar-7 {
+    background: #A54A47;
+    /* overflow: hidden; */
+  }
+
+  .legend {
+    margin: 0 auto;
+    padding: 0;
+	   font-size: 1em;
+     vertical-align: middle;
+}
+
+  .legend li {
+    /* list-style-type: circle; */
+    display: inline-block;
+    padding: .25em 1em;
+    line-height: 1em;
+}
+
+.legend li:before {
+    content: "";
+    margin-right: .5em;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+	background-color: #334D5C;
 }
