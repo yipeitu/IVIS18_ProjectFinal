@@ -78,18 +78,19 @@ var getTarget = function(id){
 
     }
 
+// Not really pretty, but it works.
+    var barChartText = "";
     var giveMeList = function(list){
       console.log(list.length)
+      if (list.length === 0) {
+        barChartText = "";
+      }
+      else {
+
+        barChartText = list.length;
+      }
       return list.length;
     }
-
-    // var test = function() {
-    //   $('.bar-1').each(function() {
-	  //      var text = $(this).text();
-	  //       $(this).parent().css('width', text);
-    //       console.log(this);
-    //     });
-    // }
 
 //Change the close info button, perhaps move it to the upper right corner.
 
@@ -111,7 +112,18 @@ var getTarget = function(id){
       <div class="col">
         <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
         <h5>Affects on other targets</h5>
-        <div>
+        <div class="stacked-bar-graph" id="barChart">
+          <span style="width:${giveMeList(negList3)}%" class='neg-bar-3'>${barChartText}</span>
+          <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
+          <span style="width:${giveMeList(negList1)}%" class='neg-bar-1'>${barChartText}</span>
+
+          <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
+
+          <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
+          <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
+          <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
+        </div>
+        <div class="legendInfo">
           <ul class="legend">
             <li>-3</li>
             <li>-2</li>
@@ -121,17 +133,6 @@ var getTarget = function(id){
             <li>+2</li>
             <li>+3</li>
           </ul>
-        </div>
-        <div class="stacked-bar-graph" id="barChart">
-          <span style="width:${giveMeList(negList3)}%" class='bar-5'>${giveMeList(negList3)}</span>
-          <span style="width:${giveMeList(negList2)}%" class='bar-6'>${giveMeList(negList2)}</span>
-          <span style="width:${giveMeList(negList1)}%" class='bar-7'>${giveMeList(negList1)}</span>
-
-          <span style="width:${giveMeList(neuList)}%" class='bar-4'>${giveMeList(neuList)}</span>
-
-          <span style="background:#D4E578; width:${giveMeList(posList1)}%" class='bar-1'>${giveMeList(posList1)}</span>
-          <span style="width:${giveMeList(posList2)}%" class='bar-2'>${giveMeList(posList2)}</span>
-          <span style="width:${giveMeList(posList3)}%" class='bar-3'>${giveMeList(posList3)}</span>
         </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
