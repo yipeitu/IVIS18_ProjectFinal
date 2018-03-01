@@ -104,6 +104,22 @@ a.btn {
 
 }
 
+.image-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 900;
+  display: none;
+  color: black;  
+}
+
 .btn:hover {
   border-bottom: 2px solid #007bff;
   /* color: black; */
