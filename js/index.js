@@ -106,7 +106,21 @@ var getTarget = function(id){
               <p><text class="contentStyle">Description:</text> ${jsonList.Description}</p>
       </div>
       <div class="col">
-        <img src="images/UNpics_targets/Goal_${id}_RGB_NG.svg" class="unImg">
+        <div class="image-container"
+          onmouseover=hoverInfo(${parseInt(id)})
+          onmouseout=unHover("images/UNpics_targets/Goal_${id}_RGB_NG.svg")
+          onclick=moreInfo(${parseInt(id)})
+        >
+          <img 
+            src="images/UNpics_targets/Goal_${id}_RGB_NG.svg" 
+            class="unImg" 
+            id="unImg" )
+          >
+          <div class="image-text" id="image-text">
+            <h4>Display info in new tab</h4>
+          </div>
+        </div>
+        <div style="padding-top:.5em;text-align:center;"><i>Click image for more information</i></div>
       </div>
     </div>
     <div class="row">
@@ -185,6 +199,57 @@ var getMemberInfo = function() {
 
 var toggle = function(id) {
   $(id).slideToggle();
+}
+
+var goal_web_dict = {
+  1: "1-no-poverty",
+  2: "2-zero-hunger",
+  3: "3-good-health-and-well-being",
+  4: "4-quality-education",
+  5: "5-gender-equality",
+  6: "6-clean-water-and-sanitation",
+  7: "7-affordable-and-clean-energy",
+  8: "8-decent-work-and-economic-growth",
+  9: "9-industry-innovation-and-infrastructure",
+  10: "10-reduced-inequalities",
+  11: "11-sustainable-cities-and-communities",
+  12: "12-responsible-consumption-and-production",
+  13: "13-climate-action",
+  14: "14-life-below-water",
+  15: "15-life-on-land",
+  16: "16-peace-justice-and-strong-institutions",
+  17: "17-partnerships-for-the-goals"
+};
+
+function getTargetWebsite(goal_num) {
+  console.log(goal_web_dict[id]);
+  return "https://www.globalgoals.org/" + goal_web_dict[id];
+}
+
+function hoverInfo(id) {
+  var element = document.getElementById("unImg")
+  if (id > 9) {
+    var image = "images/UNpics_goals/" + id + ".jpg";
+  } else {
+    var image = "images/UNpics_goals/0" + id + ".jpg";
+  }
+  element.setAttribute('src', image);
+  element.style.opacity = "0.4";
+  var x = document.getElementById("image-text");
+  x.style.display = "block";
+}
+
+function unHover(image) {
+  var element = document.getElementById("unImg")
+  element.setAttribute('src', image);
+  element.style.opacity = "1.0";
+  var x = document.getElementById("image-text");
+  x.style.display = "none";
+}
+
+function moreInfo(id) {
+  var url = "https://www.globalgoals.org/" + goal_web_dict[id];
+  window.open(url,"_blank")
 }
 
 //Function for stacked bar chart
