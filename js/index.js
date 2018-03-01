@@ -93,15 +93,16 @@ var getTarget = function(id){
     }
 
 //Change the close info button, perhaps move it to the upper right corner.
+//I hade made some changes to the button, but can't get the "pressing effect" to disapear.
 
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
-    <div class="container">
-      <button type="button" id="close-info" onclick="turnOffStickyLinks()" class="btn-danger">Close</button>
+    <div class="buttonContainer">
+      <button type="button" id="close-info" onclick="turnOffStickyLinks()" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
     </div>
     <div class="row">
       <div class="col-md-7" style="padding-right:0;">
-              <p><h4>${jsonList.AI} - ${jsonList.Name}</h4></p>
+              <p><h4 class="targetTitel">${jsonList.AI} - ${jsonList.Name}</h4></p>
               <p><text class="contentStyle">Description:</text> ${jsonList.Description}</p>
       </div>
       <div class="col">
@@ -155,6 +156,31 @@ var getTarget = function(id){
       </div>
       `
   });
+}
+
+var member_info_list = [];
+var getMemberInfo = function() {
+  $.getJSON("data/member_info.json", function(json_m){
+    var text = "";
+    console.log(json_m)
+    for (var i in json_m) {
+      member_info_list = json_m[i];
+
+      text += `<div class="memberInfoBox">
+      <img src="${member_info_list.image}"></img>
+      <div class="lynn" style="float:left; text-align:left;">
+      <br>
+      <p>${member_info_list.name}</p>
+      <p>email: <a href="">${member_info_list.email}</a></p>
+      <p>Role:${member_info_list.role}</p>
+      </div></div>`
+
+      $(".memberContainer")[0].innerHTML = text;
+
+      console.log(member_info_list);
+    }
+
+});
 }
 
 var toggle = function(id) {
