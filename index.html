@@ -28,7 +28,7 @@
       <div><a class="btn btn-default" href="#page2" id="btn2">Visualization</a></div>
       <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
       <div><a class="btn btn-default" href="#page3" id="btn3">Something</a></div>
-      <div><a class="btn btn-default" href="#page4" id="btn4">Contact</a></div>
+      <div><a class="btn btn-default" href="#page4" onclick="getMemberInfo();" id="btn4">Contact</a></div>
     </nav>
   </div>
 
@@ -92,17 +92,7 @@
 <div id="page4" class="page">
   <h1>This is the contact page</h1>
   <!-- Team Member Template -->
-  <div class="memberContainer">
-    <img src="images/profile-icon.png"></img>
-    <div class="lynn" style="float:left; text-align:left;">
-    </br>
-  </br>
-</br>
-<p>Name: Member 1</p>
-<p>email: <a href="">member1@kth.se</a></p>
-<p>Role: Front-end Developer</p>
-</div>
-</div>
+  <div class="memberContainer" id="memberContainer">
 </div>
 </div>
 <script src="js/visualization.js"></script>
