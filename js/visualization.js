@@ -1,52 +1,62 @@
-var diameter = window.innerWidth*0.5,
+var diameter = null,
+    radius = null,
+    innerRadius = null,
+    cluster = null,
+    line = null,
+    svg = null,
+    link = null,
+    node = null;
+
+var drawBall = function(dataFileName="structure_data5.json"){
+  diameter = window.innerWidth*0.5,
     radius = diameter / 2,
     innerRadius = radius - 180;
 
-var cluster = d3.cluster()
-    .size([360, innerRadius]);
+   cluster = d3.cluster()
+      .size([360, innerRadius]);
 
-var line = d3.radialLine()
-    .curve(d3.curveBundle.beta(0.5))
-    .radius(function(d) { return d.y; })
-    .angle(function(d) { return d.x / 180 * Math.PI; });
+   line = d3.radialLine()
+      .curve(d3.curveBundle.beta(0.5))
+      .radius(function(d) { return d.y; })
+      .angle(function(d) { return d.x / 180 * Math.PI; });
 
-var svg = d3.select(".container-viz").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
-    .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
+   svg = d3.select(".container-viz").append("svg")
+      .attr("width", diameter)
+      .attr("height", diameter)
+      .append("g")
+      .attr("transform", "translate(" + radius + "," + radius + ")");
 
-var link = svg.append("g").selectAll(".link"),
-    node = svg.append("g").selectAll(".node");
+   link = svg.append("g").selectAll(".link"),
+      node = svg.append("g").selectAll(".node");
 
-d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json", function(error, classes) {
-  if (error) throw error;
+  d3.json("data/"+dataFileName, function(error, classes) {
+    if (error) throw error;
 
-  var root = packageHierarchy(classes)
-      .sum(function(d) { return d.size; });
+    var root = packageHierarchy(classes)
+        .sum(function(d) { return d.size; });
 
-  cluster(root);
+    cluster(root);
 
-  link = link
-    .data(packageImports(root.leaves()))
-    .enter().append("path")
-      .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-      .attr("class", "link")
-      .attr("style", function(d) {
-        return getStyle(d).concat("stroke-opacity: 0.2;")
-      })
-      .attr("d", line);
+    link = link
+      .data(packageImports(root.leaves()))
+      .enter().append("path")
+        .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+        .attr("class", "link")
+        .attr("style", function(d) {
+          return getStyle(d).concat("stroke-opacity: 0.2;")
+        })
+        .attr("d", line);
 
-  node = node
-    .data(root.leaves())
-      .enter().append("g")
-        .attr("class", "node")
-        .attr("transform", function(d) {
-            return "rotate(" + (d.x - 90) + ")translate("
-            + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-        .on("mouseover", mouseovered)
-        .on("mouseout", mouseouted)
-        .on("click", getData);
+    node = node
+      .data(root.leaves())
+        .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) {
+              return "rotate(" + (d.x - 90) + ")translate("
+              + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+          .on("mouseover", mouseovered)
+          .on("mouseout", mouseouted)
+          .on("click", getData);
 
     node.append("text")
         .attr("dy", "0.31em")
@@ -74,7 +84,10 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json
         //   return (sumOfChildren(d) > 0 ? "#62BF77"
         //   : "#F1A772")
         // });
-});
+  });
+}
+
+
 
 function sumOfChildren(d) {
   var sum = 0;
@@ -93,6 +106,7 @@ function turnOffStickyLinks() {
 }
 
 function getData(d) {
+  console.log(d.data)
   if (!sticky_links) {
     current_node = d;
     getTarget(d.data.id);

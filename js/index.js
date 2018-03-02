@@ -1,11 +1,12 @@
 // LYNNS CODE
+var jsonFile = "db_data.json";
 $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
   $("div.page").hide();
   $("nav li:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
-
+  drawBall("structure_data5.json");
   // On Click Event (within list-element!)
   $("nav div").click(function() {
     $("nav a").removeClass("current"); // Remove any active class
@@ -19,7 +20,21 @@ $(document).ready(function(){
 
     // Find the href attribute value to identify the active page+content:
     var activePage = $(this).find("a").attr("href");
-    $(activePage).show(); // Fade in the active page content
+    $(activePage.split("/")[0]).show(); // Fade in the active page content
+    switch(activePage.split("/")[1]){
+      case "sweden":
+        $(".container-viz").empty();
+        drawBall("structure_data5.json");
+        jsonFile = "db_data.json";
+        break;
+      case "mongolia":
+        $(".container-viz").empty();
+        drawBall("structure_mongolia.json");
+        jsonFile = "data_mongolia.json";
+        break;
+      default:
+        break;
+    }
   }); // end click method
 
 }); // end $(document).ready method
@@ -27,7 +42,7 @@ $(document).ready(function(){
 var jsonList;
 
 var getTarget = function(id){
-  $.getJSON("https://yipeitu.github.io/IVIS18_ProjectFinal/data/db_data.json", function(json){
+  $.getJSON("data/"+jsonFile, function(json){
     jsonList = json[id]
     // console.log(jsonList)
 
@@ -41,6 +56,7 @@ var getTarget = function(id){
     var negList2 = [];
     var negList3 = [];
 
+    console.log(json, id);
     var tragetAffect = jsonList.affect
     // console.log(tragetAffect);
 
@@ -108,11 +124,11 @@ var getTarget = function(id){
       <div class="col">
         <div class="image-container"
           onmouseover=hoverInfo(${parseInt(id)})
-          onmouseout=unHover("images/UNpics_targets/Goal_${id}_RGB_NG.svg")
+          onmouseout=unHover("images/UNpics_targets_png/Goal_${parseInt(id)}_TARGET_${id}.png")
           onclick=moreInfo(${parseInt(id)})
         >
           <img 
-            src="images/UNpics_targets/Goal_${id}_RGB_NG.svg" 
+            src="images/UNpics_targets_png/Goal_${parseInt(id)}_TARGET_${id}.png" 
             class="unImg" 
             id="unImg" )
           >
