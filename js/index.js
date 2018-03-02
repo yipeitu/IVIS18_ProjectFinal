@@ -126,11 +126,11 @@ var getTarget = function(id){
       <div class="col">
         <div class="image-container"
           onmouseover=hoverInfo(${parseInt(id)})
-          onmouseout=unHover("images/UNpics_targets_png/Goal_${parseInt(id)}_TARGET_${id}.png")
+          onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
           onclick=moreInfo(${parseInt(id)})
         >
           <img 
-            src="images/UNpics_targets_png/Goal_${parseInt(id)}_TARGET_${id}.png" 
+            src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png" 
             class="unImg" 
             id="unImg" )
           >
