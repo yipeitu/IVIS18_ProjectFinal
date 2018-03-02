@@ -47,44 +47,24 @@ font-size: 12px;
   fill: #d62728;
 }
 
-.node6 {
-  fill: #277137;
-}
-
-.node5 {
-  fill: #349248;
-}
-
-.node4 {
-  fill: #62BF77;
+.node-conflict {
+  fill: #BD69FF;
 }
 
 .node3 {
-  fill: #89C96D;
+  fill: #62BF77;
 }
 
 .node2 {
-  fill: #9BD066;
+  fill: #96CE7E;
 }
 
 .node1 {
-  fill: #CADF76;
-}
-
-.node-6 {
-  fill: #8F2A28;
-}
-
-.node-5 {
-  fill: #A54A47;
-}
-
-.node-4 {
-  fill: #D7201D;
+  fill: #D4E578;
 }
 
 .node-3 {
-  fill: #E54542;
+  fill: #A54A47;
 }
 
 .node-2 {
