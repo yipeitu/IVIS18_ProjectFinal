@@ -25,11 +25,13 @@ $(document).ready(function(){
       case "sweden":
         $(".container-viz").empty();
         drawBall("structure_data5.json");
+        $("#boxDescription").empty();
         jsonFile = "db_data.json";
         break;
       case "mongolia":
         $(".container-viz").empty();
         drawBall("structure_mongolia.json");
+        $("#boxDescription").empty();
         jsonFile = "data_mongolia.json";
         break;
       default:
