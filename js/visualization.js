@@ -245,8 +245,8 @@ function mouseovered(d) {
     var valuesNodes = {"3": [], "2": [], "1": [],
                        "-3": [], "-2": [], "-1": []}
     d.data.imports.forEach(function(target){
-      hoverTargets.push(target.target);
       if(target.value !== 0){
+        hoverTargets.push(target.target);
         valuesNodes[target.value.toString()].push(target.target)
       }
     })
@@ -260,6 +260,7 @@ function mouseovered(d) {
     var conflictTargets = clickTargets.filter(function(n) {
         return hoverTargets.indexOf(n) !== -1;
     });
+    console.log(conflictTargets, clickTargets, hoverTargets)
 
    node
        .classed("node--focus", function(n){
