@@ -17,76 +17,41 @@
 
 <body>
 
-  <div class="jumbotron">
-    <div>
-      <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
-      <img class="logo" src="images/infovis-logo4.png"></img>
-    </div>
-
-    <nav class="navbar navbar-default">
-      <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
-      <div><a class="btn btn-default" href="#page2/sweden" id="btn2"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/se.svg">Sweden</a></div>
-      <div><a class="btn btn-default" href="#page2/mongolia" id="btn3"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg">Mongolia</a></div>
-      <div><a class="btn btn-default" href="#page4" onclick="getMemberInfo();" id="btn4">Contact</a></div>
-    </nav>
+<div class="jumbotron">
+  <div>
+    <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
+    <img class="logo" src="images/infovis-logo4.png"></img>
   </div>
+
+  <nav class="navbar navbar-default">
+    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
+    <div><a class="btn btn-default" href="#page2/sweden" id="btn2"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/se.svg">Sweden</a></div>
+    <div><a class="btn btn-default" href="#page2/mongolia" id="btn3"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg">Mongolia</a></div>
+    <div><a class="btn btn-default" href="#page4" onclick="getMemberInfo();" id="btn4">Contact</a></div>
+  </nav>
+</div>
 
   <!-- Seperate these pages into individual html files later. -->
-  <div class="content">
-
-    <div id="page2" class="page">
-      <div class="row" style="align:center;">
-        <div class="col">
-          <h1>This is the visualization page</h1>
-        </div>
-        <br><br><br><br>
-      </div>
-      <div class="row parent">
-        <div class="col-md-7 container-viz">
-        </div>
-
-
-        <div class="col">
-          <div class="legend border-dark text-left d-flex flex-row justify-content-start vertical-padding">
-            <div class="row" id="legend" style="float:left;">
-              <script src="js/legend.js"></script>
-              <!-- LEGEND GRAPH GOES HERE -->
-            </div>
-          </div>
-          <div class="border-dark text-left d-flex flex-row justify-content-end vertical-padding">
-
-            <div id="boxDescription">
-              
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
+<div class="content" id="viewVis">
+</div>
 
 
 <div id="page1" class="page">
-  <h1>This is the home page</h1>
 </div>
 
-
-
-
-<div id="page3" class="page">
+<!-- <div id="page3" class="page">
   <h1>Don't remeber what should be here</h1>
-</div>
+</div> -->
 
 <div id="page4" class="page">
-  <h1>This is the contact page</h1>
-  <!-- Team Member Template -->
-  <div class="memberContainer" id="memberContainer">
 </div>
-</div>
+
 <script src="js/index.js"></script>
 <script src="js/visualization.js"></script>
 <script src="js/targetInfo.js"></script>
 <script src="js/memberInfo.js"></script>
+<script src="view/viewHome.js"></script>
+<script src="view/viewVisualization.js"></script>
+<script src="view/viewContact.js"></script>
 </body>
 </html>
