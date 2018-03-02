@@ -13,7 +13,6 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
       <div class="col">
         <div class="legend border-dark text-left d-flex flex-row justify-content-start vertical-padding">
           <div class="row" id="legend" style="float:left;">
-            <script src="js/legend.js"></script>
             <!-- LEGEND GRAPH GOES HERE -->
           </div>
         </div>
