@@ -89,7 +89,7 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      return list.length;
+      return list.length/0.34;
     }
 
 //Change the close info button, perhaps move it to the upper right corner.
@@ -111,9 +111,9 @@ var getTarget = function(id){
           onmouseout=unHover("images/UNpics_targets/Goal_${id}_RGB_NG.svg")
           onclick=moreInfo(${parseInt(id)})
         >
-          <img 
-            src="images/UNpics_targets/Goal_${id}_RGB_NG.svg" 
-            class="unImg" 
+          <img
+            src="images/UNpics_targets/Goal_${id}_RGB_NG.svg"
+            class="unImg"
             id="unImg" )
           >
           <div class="image-text" id="image-text">
@@ -128,9 +128,9 @@ var getTarget = function(id){
         <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
         <h5>Affects on other targets</h5>
         <div class="stacked-bar-graph" id="barChart">
-          <span style="width:${giveMeList(negList3)}%" class='neg-bar-3'>${barChartText}</span>
-          <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
           <span style="width:${giveMeList(negList1)}%" class='neg-bar-1'>${barChartText}</span>
+          <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
+          <span style="width:${giveMeList(negList3)}%" class='neg-bar-3'>${barChartText}</span>
 
           <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
 
