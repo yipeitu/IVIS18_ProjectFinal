@@ -245,14 +245,14 @@ function mouseovered(d) {
     var valuesNodes = {"3": [], "2": [], "1": [],
                        "-3": [], "-2": [], "-1": []}
     d.data.imports.forEach(function(target){
-      if(target.value !== 0){
+      if(target.value !== 0 && target.target != current_node.data.name){
         hoverTargets.push(target.target);
         valuesNodes[target.value.toString()].push(target.target)
       }
     })
 
     current_node.data.imports.forEach(function(target){
-        if(target.value !== 0){
+        if(target.value !== 0 && target.target != d.data.name){
           clickTargets.push(target.target);
         }
     })
@@ -260,7 +260,6 @@ function mouseovered(d) {
     var conflictTargets = clickTargets.filter(function(n) {
         return hoverTargets.indexOf(n) !== -1;
     });
-    console.log(conflictTargets, clickTargets, hoverTargets)
 
    node
        .classed("node--focus", function(n){
