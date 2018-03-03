@@ -106,9 +106,10 @@ function turnOffStickyLinks() {
 }
 
 function getData(d) {
-  console.log(d.data)
-  if (!sticky_links) {
+  console.log(current_node)
+  if (!sticky_links || current_node === null) {
     current_node = d;
+    mouseovered(d);
     getTarget(d.data.id);
     sticky_links = !sticky_links;
   } // first click
