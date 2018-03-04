@@ -2,6 +2,7 @@ var getTarget = function(id){
   $.getJSON("data/"+jsonFile, function(json){
     jsonList = json[id]
     // console.log(jsonList)
+    // console.log(jsonFile)
 
     var posList3 = [];
     var posList2 = [];
@@ -52,7 +53,7 @@ var getTarget = function(id){
 
 
     }
-    
+
     var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
     "0": neuList, "1": posList1, "2": posList2, "3": posList3};
     dragDropTable(dragDropList);
@@ -68,14 +69,23 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      return list.length/0.34;
+      if (jsonFile === "data_mongolia.json" ){
+        return list.length/0.17;
+      }
+      else if (jsonFile === "db_data.json"){
+        return list.length/0.34;
+      }
+      else {
+        return list.length;
+      }
+
     }
 
 //Change the close info button, perhaps move it to the upper right corner.
 //I hade made some changes to the button, but can't get the "pressing effect" to disapear.
 
   $("#boxDescription")[0].innerHTML = `
-  <div style="padding: 10px;">
+  <div style="padding: 10px; border-radius: 25px;">
     <div class="row">
     <div class="col-md-3">
     <div class="image-container"
@@ -131,30 +141,31 @@ var getTarget = function(id){
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
-        <div id="positive" style="display:none;">
-          <li><text class="posToNeg">+3:</text> ${posList3}</li>
-          <li><text class="posToNeg">+2:</text> ${posList2} </li>
-          <li><text class="posToNeg">+1:</text> ${posList1}</li>
-        </div>
-        <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
-        <div id="neutral" style="display:none;">
-          <li><text class="posToNeg">0:</text>${neuList}</li>
-            </div>
-            <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
-            <div id="negative" style="display:none;">
-              <li><text class="posToNeg">-3:</text> ${negList3}</li>
-              <li><text class="posToNeg">-2:</text> ${negList2}</li>
-              <li><text class="posToNeg">-1:</text> ${negList1}</li>
-            </div>
-          </div>
-        </div>
       </div>
       `
   });
 }
+
+// <div class="row">
+//   <div class="col">
+//     <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
+//     <div id="positive" style="display:none;">
+//       <li><text class="posToNeg">+3:</text> ${posList3}</li>
+//       <li><text class="posToNeg">+2:</text> ${posList2} </li>
+//       <li><text class="posToNeg">+1:</text> ${posList1}</li>
+//     </div>
+//     <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
+//     <div id="neutral" style="display:none;">
+//       <li><text class="posToNeg">0:</text>${neuList}</li>
+//         </div>
+//         <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
+//         <div id="negative" style="display:none;">
+//           <li><text class="posToNeg">-3:</text> ${negList3}</li>
+//           <li><text class="posToNeg">-2:</text> ${negList2}</li>
+//           <li><text class="posToNeg">-1:</text> ${negList1}</li>
+//         </div>
+//       </div>
+//     </div>
 
 var toggle = function(id) {
   $(id).slideToggle();
