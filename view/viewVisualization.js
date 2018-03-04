@@ -1,12 +1,6 @@
 $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
-    <div class="row" style="align:center;">
-      <div class="col">
-        <h1>This is the visualization page</h1>
-      </div>
-      <br><br><br><br>
-    </div>
-    <div class="row parent">
-      <div class="col-md-7 container-viz">
+    <div class="container" id="container">
+      <div class="container-viz">
       </div>
 
 
