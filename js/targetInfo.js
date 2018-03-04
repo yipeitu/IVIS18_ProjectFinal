@@ -50,6 +50,10 @@ var getTarget = function(id){
 
 
     }
+    
+    var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
+    "0": neuList, "1": posList1, "2": posList2, "3": posList3};
+    dragDropTable(dragDropList);
 
 // Not really pretty, but it works.
     var barChartText = "";
