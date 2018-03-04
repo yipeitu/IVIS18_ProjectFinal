@@ -43,8 +43,8 @@ var treeData =
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 0, right: 5, bottom: 80, left: 110},
-    width = window.innerWidth*0.3 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    width = window.innerWidth*0.25 - margin.left - margin.right,
+    height = 250 -margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
@@ -57,6 +57,19 @@ var svg1 = d3.select("#legend").append("svg")
           + margin.left + "," + margin.top + ")");
 
 // Add title
+
+
+var exp_text = svg1.append("text")
+.attr("class", "influece-exp")
+.attr("x", -margin.left + 20)
+.attr("y", height+10+16)
+.attr("width", 260)
+.style("text-anchor", "start")
+.text("Indivisible (+3): Inextricably linked to the achivement of another goal")
+.attr("font-family", "Pontano Sans") //, sans-serif;
+.attr("font-size", "14px")
+.attr("fill", "#bbb");
+
 svg1.append("text")
     .attr("x", -margin.left + 10)
     .attr("y", 40)
@@ -71,24 +84,14 @@ var left_box = svg1.append("rect")
     .attr("height", 24)
     .attr("fill", "#62BF77");
 
-var exp_text = svg1.append("text")
-    .attr("class", "influece-exp")
-    .attr("x", -margin.left + 20)
-    .attr("y", height+10+16)
-    .attr("width", 260)
-    .style("text-anchor", "start")
-    .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
-    .attr("font-family", "Pontano Sans") //, sans-serif;
-    .attr("font-size", "14px")
-    .attr("fill", "#bbb");
 
-var right_box = svg1.append("rect")
-    .attr("class", "side-rect")
-    .attr("x", width)
-    .attr("y", height+10)
-    .attr("width", 10)
-    .attr("height", 24)
-    .attr("fill", "#62BF77");
+// var right_box = svg1.append("rect")
+//     .attr("class", "side-rect")
+//     .attr("x", width)
+//     .attr("y", -30)
+//     .attr("width", 10)
+//     .attr("height", 24)
+//     .attr("fill", "#62BF77");
 
 var i = 0,
     duration = 750,
