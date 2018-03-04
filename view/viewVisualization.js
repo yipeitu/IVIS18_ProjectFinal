@@ -25,6 +25,6 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
 
       </div>
     </div>
-    <div id="columns">
+    <div id="columns" style="display: none">
     </div>
   </div>`;

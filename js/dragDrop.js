@@ -68,18 +68,35 @@ function handleDrop(e) {
 
 function handleDragEnd(e) {
   // this/e.target is the source node.
-
+  var cols = document.querySelectorAll('#columns .column');
   [].forEach.call(cols, function (col) {
     col.classList.remove('over');
   });
 }
 
-var cols = document.querySelectorAll('#columns .column');
-[].forEach.call(cols, function(col) {
-  col.addEventListener('dragstart', handleDragStart, false);
-  col.addEventListener('dragenter', handleDragEnter, false);
-  col.addEventListener('dragover', handleDragOver, false);
-  col.addEventListener('dragleave', handleDragLeave, false);
-  // col.addEventListener('drop', handleDrop, false);
-  col.addEventListener('dragend', handleDragEnd, false);
-});
+var dragDropTarget = function(targetInfo){
+	// need to put reason
+	return `<div class="column m-1" draggable="true">${targetInfo}</div>`
+}
+
+var dragDropTable = function(influencedTargetsInfo){
+
+	Object.keys(influencedTargetsInfo).forEach(function(value){
+		$("td.value"+value+" > .container").empty();
+		influencedTargetsInfo[value].forEach(function(target){
+			$("td.value"+value+" > .container").append(dragDropTarget(target));
+		})
+	})
+	// add listener
+	var cols = document.querySelectorAll('#columns .column');
+	[].forEach.call(cols, function(col) {
+	  col.addEventListener('dragstart', handleDragStart, false);
+	  col.addEventListener('dragenter', handleDragEnter, false);
+	  col.addEventListener('dragover', handleDragOver, false);
+	  col.addEventListener('dragleave', handleDragLeave, false);
+	  // col.addEventListener('drop', handleDrop, false);
+	  col.addEventListener('dragend', handleDragEnd, false);
+	});
+
+	$("#columns").show();
+}
