@@ -99,8 +99,9 @@ a.btn {
 }
 
 .unImg {
-  width: 100%;
-  border-radius: 25px;
+  width: 11.1em;
+  height: 20em;
+  border-radius: 0.5em;
 
 }
 
@@ -158,12 +159,6 @@ li {
 .posToNeg {
   font-weight: 1000;
   font-size: 18px;
-}
-
-
-
-.vertical-padding {
-  padding-top: 120px;
 }
 
 #boxDescription {
@@ -290,4 +285,9 @@ li {
     width: 15px;
     height: 15px;
 	background-color: #334D5C;
+}
+
+.icon {
+  width: 2.6em;
+  height: 2em !important;
 }

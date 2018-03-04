@@ -1,52 +1,62 @@
-var diameter = window.innerWidth*0.5,
+var diameter = null,
+    radius = null,
+    innerRadius = null,
+    cluster = null,
+    line = null,
+    svg = null,
+    link = null,
+    node = null;
+
+var drawBall = function(dataFileName){
+  diameter = window.innerWidth*0.5,
     radius = diameter / 2,
     innerRadius = radius - 180;
 
-var cluster = d3.cluster()
-    .size([360, innerRadius]);
+   cluster = d3.cluster()
+      .size([360, innerRadius]);
 
-var line = d3.radialLine()
-    .curve(d3.curveBundle.beta(0.5))
-    .radius(function(d) { return d.y; })
-    .angle(function(d) { return d.x / 180 * Math.PI; });
+   line = d3.radialLine()
+      .curve(d3.curveBundle.beta(0.5))
+      .radius(function(d) { return d.y; })
+      .angle(function(d) { return d.x / 180 * Math.PI; });
 
-var svg = d3.select(".container-viz").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
-    .append("g")
-    .attr("transform", "translate(" + radius + "," + radius + ")");
+   svg = d3.select(".container-viz").append("svg")
+      .attr("width", diameter)
+      .attr("height", diameter)
+      .append("g")
+      .attr("transform", "translate(" + radius + "," + radius + ")");
 
-var link = svg.append("g").selectAll(".link"),
-    node = svg.append("g").selectAll(".node");
+   link = svg.append("g").selectAll(".link"),
+      node = svg.append("g").selectAll(".node");
 
-d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json", function(error, classes) {
-  if (error) throw error;
+  d3.json("data/"+dataFileName, function(error, classes) {
+    if (error) throw error;
 
-  var root = packageHierarchy(classes)
-      .sum(function(d) { return d.size; });
+    var root = packageHierarchy(classes)
+        .sum(function(d) { return d.size; });
 
-  cluster(root);
+    cluster(root);
 
-  link = link
-    .data(packageImports(root.leaves()))
-    .enter().append("path")
-      .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
-      .attr("class", "link")
-      .attr("style", function(d) {
-        return getStyle(d).concat("stroke-opacity: 0.2;")
-      })
-      .attr("d", line);
+    link = link
+      .data(packageImports(root.leaves()))
+      .enter().append("path")
+        .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+        .attr("class", "link")
+        .attr("style", function(d) {
+          return getStyle(d).concat("stroke-opacity: 0.2;")
+        })
+        .attr("d", line);
 
-  node = node
-    .data(root.leaves())
-      .enter().append("g")
-        .attr("class", "node")
-        .attr("transform", function(d) {
-            return "rotate(" + (d.x - 90) + ")translate("
-            + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-        .on("mouseover", mouseovered)
-        .on("mouseout", mouseouted)
-        .on("click", getData);
+    node = node
+      .data(root.leaves())
+        .enter().append("g")
+          .attr("class", "node")
+          .attr("transform", function(d) {
+              return "rotate(" + (d.x - 90) + ")translate("
+              + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+          .on("mouseover", mouseovered)
+          .on("mouseout", mouseouted)
+          .on("click", getData);
 
     node.append("text")
         .attr("dy", "0.31em")
@@ -74,7 +84,10 @@ d3.json("https://yipeitu.github.io/IVIS18_ProjectFinal/data/structure_data5.json
         //   return (sumOfChildren(d) > 0 ? "#62BF77"
         //   : "#F1A772")
         // });
-});
+  });
+}
+
+
 
 function sumOfChildren(d) {
   var sum = 0;
@@ -93,8 +106,10 @@ function turnOffStickyLinks() {
 }
 
 function getData(d) {
-  if (!sticky_links) {
+  console.log(current_node)
+  if (!sticky_links || current_node === null) {
     current_node = d;
+    mouseovered(d);
     getTarget(d.data.id);
     sticky_links = !sticky_links;
   } // first click
@@ -150,7 +165,7 @@ function getStyle(d) {
 
 
 function mouseovered(d) {
-  if (!sticky_links) {
+  if (d === current_node || !sticky_links) {
     node
         .each(function(n) { n.target = n.source = false; });
 
@@ -174,32 +189,39 @@ function mouseovered(d) {
     // node-source: positive, green
     // node-target: negative, red
     // var neuNodeList = []
-    var posSourceList = []
-    var negTargetList = []
+    var valuesNodes = {"3": [], "2": [], "1": [],
+                       "-3": [], "-2": [], "-1": []}
     d.data.imports.forEach(function(target){
-      if(target.value > 0){
-        posSourceList.push(target.target);
+      if(target.value !== 0){
+        valuesNodes[target.value.toString()].push(target.target)
       }
-      else if(target.value < 0){
-        negTargetList.push(target.target);
-      }
-      // else{
-      //   neuNodeList.push(target.target);
-      // }
     })
     node
         .classed("node--focus", function(n){
-          if(n.data.name == d.data.name){
-            return true;
-          }
+          return n.data.name === d.data.name;
         })
-        .classed("node--target", function(n) {
-          return negTargetList.indexOf(n.data.name) != -1;
-        }) // negative
-        .classed("node--source", function(n) {
-          return posSourceList.indexOf(n.data.name) != -1;
-        }) // positive
-  } //
+        .classed("node3", function(n){
+          return valuesNodes["3"].indexOf(n.data.name) != -1;
+        })
+        .classed("node2", function(n){
+          return valuesNodes["2"].indexOf(n.data.name) != -1;
+        })
+        .classed("node1", function(n){
+          return valuesNodes["1"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-3", function(n){
+          return valuesNodes["-3"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-2", function(n){
+          return valuesNodes["-2"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-1", function(n){
+          return valuesNodes["-1"].indexOf(n.data.name) != -1;
+        })
+        .classed("node-conflict", function(n){
+          return false;
+        })
+  } // hover/click
   else {
     node
         .each(function(n) { n.target = n.source = false; });
@@ -218,63 +240,27 @@ function mouseovered(d) {
       })
       .raise();
 
-    var nodesValues = {};
-    current_node.data.imports.forEach(function(target){
-        nodesValues[target.target] = target.value;
+    var clickTargets = [];
+    var hoverTargets = [];
+
+    var valuesNodes = {"3": [], "2": [], "1": [],
+                       "-3": [], "-2": [], "-1": []}
+    d.data.imports.forEach(function(target){
+      if(target.value !== 0 && target.target != current_node.data.name){
+        hoverTargets.push(target.target);
+        valuesNodes[target.value.toString()].push(target.target)
+      }
     })
 
-    d.data.imports.forEach(function(target){
-      if(Object.keys(nodesValues).indexOf(target.target) != -1){
-        nodesValues[target.target] += target.value;
-      } else {
-        nodesValues[target.target] = target.value;
-      }
+    current_node.data.imports.forEach(function(target){
+        if(target.value !== 0 && target.target != d.data.name){
+          clickTargets.push(target.target);
+        }
     })
-    nodesValues[current_node.data.name] = 0;
-    nodesValues[d.data.name] = 0;
-    var valuesNodes = {"6": [], "5": [], "4": [], "3": [], "2": [], "1": [],
-                       "-6": [], "-5": [], "-4": [], "-3": [], "-2": [], "-1": []}
-    // convert the values as keys
-    Object.keys(nodesValues).forEach(function(node){
-      switch(nodesValues[node]){
-        case 6:
-          valuesNodes["6"].push(node);
-          break;
-        case 5:
-          valuesNodes["5"].push(node);
-          break;
-        case 4:
-          valuesNodes["4"].push(node);
-          break;
-        case 3:
-          valuesNodes["3"].push(node);
-          break;
-        case 2:
-          valuesNodes["2"].push(node);
-          break;
-        case 1:
-          valuesNodes["1"].push(node);
-          break;
-        case -1:
-          valuesNodes["-1"].push(node);
-          break;
-        case -2:
-          valuesNodes["-2"].push(node);
-          break;
-        case -3:
-          valuesNodes["-3"].push(node);
-          break;
-        case -4:
-          valuesNodes["-4"].push(node);
-          break;
-        case -5:
-          valuesNodes["-5"].push(node);
-          break;
-        case -6:
-          valuesNodes["-6"].push(node);
-          break;
-      }
-    })
+
+    var conflictTargets = clickTargets.filter(function(n) {
+        return hoverTargets.indexOf(n) !== -1;
+    });
 
    node
        .classed("node--focus", function(n){
@@ -282,41 +268,26 @@ function mouseovered(d) {
             return true;
           }
         })
-        .classed("node6", function(n){
-          return valuesNodes["6"].indexOf(n.data.name) != -1;
-        })
-        .classed("node5", function(n){
-          return valuesNodes["5"].indexOf(n.data.name) != -1;
-        })
-        .classed("node4", function(n){
-          return valuesNodes["4"].indexOf(n.data.name) != -1;
-        })
         .classed("node3", function(n){
-          return valuesNodes["3"].indexOf(n.data.name) != -1;
+          return valuesNodes["3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
         })
         .classed("node2", function(n){
-          return valuesNodes["2"].indexOf(n.data.name) != -1;
+          return valuesNodes["2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
         })
         .classed("node1", function(n){
-          return valuesNodes["1"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-6", function(n){
-          return valuesNodes["-6"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-5", function(n){
-          return valuesNodes["-5"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-4", function(n){
-          return valuesNodes["-4"].indexOf(n.data.name) != -1;
+          return valuesNodes["1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
         })
         .classed("node-3", function(n){
-          return valuesNodes["-3"].indexOf(n.data.name) != -1;
+          return valuesNodes["-3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
         })
         .classed("node-2", function(n){
-          return valuesNodes["-2"].indexOf(n.data.name) != -1;
+          return valuesNodes["-2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
         })
         .classed("node-1", function(n){
-          return valuesNodes["-1"].indexOf(n.data.name) != -1;
+          return valuesNodes["-1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+        })
+        .classed("node-conflict", function(n){
+          return conflictTargets.indexOf(n.data.name) != -1;
         })
   } // show the compared
 }
@@ -332,20 +303,21 @@ function mouseouted(d) {
 
     node
         .classed("node--focus", false)
-        .classed("node--target", false)
-        .classed("node--source", false)
-        .classed("node6", false)
-        .classed("node5", false)
-        .classed("node4", false)
+        // .classed("node--target", false)
+        // .classed("node--source", false)
+        // .classed("node6", false)
+        // .classed("node5", false)
+        // .classed("node4", false)
         .classed("node3", false)
         .classed("node2", false)
         .classed("node1", false)
-        .classed("node-6", false)
-        .classed("node-5", false)
-        .classed("node-4", false)
+        // .classed("node-6", false)
+        // .classed("node-5", false)
+        // .classed("node-4", false)
         .classed("node-3", false)
         .classed("node-2", false)
-        .classed("node-1", false);
+        .classed("node-1", false)
+        .classed("node-conflict", false)
 
   }
 }
