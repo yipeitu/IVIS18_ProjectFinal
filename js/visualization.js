@@ -13,7 +13,7 @@ const MAX_CLICKS = 2;
 
 
 var drawBall = function(dataFileName){
-  diameter = window.innerWidth*0.5,
+  diameter = window.innerWidth*0.45,
     radius = diameter / 2,
     innerRadius = radius - 180;
 
@@ -314,7 +314,7 @@ function getStyle(d) {
 //         .classed("node-2", false)
 //         .classed("node-1", false)
 //         .classed("node-conflict", false)
-//   } // non clicked targets 
+//   } // non clicked targets
 //   else {
 //     mouseovered(current_node);
 //   } // after clicked targets
@@ -405,10 +405,10 @@ function targetHover(hoverTarget){
   if(clickedNodes.length == MAX_CLICKS){
     link
     .classed("link--target", function(l) {
-      if (clickedNodes.indexOf(l.source) > -1) return l.source.source = true; 
+      if (clickedNodes.indexOf(l.source) > -1) return l.source.source = true;
     })
-    .classed("link--source", function(l) { 
-      if (clickedNodes.indexOf(l.source) > -1) return l.target.target = true; 
+    .classed("link--source", function(l) {
+      if (clickedNodes.indexOf(l.source) > -1) return l.target.target = true;
     })
     .filter(function(l) { return clickedNodes.indexOf(l.source) > -1; })
     .attr("style", function(targets) {
@@ -441,10 +441,10 @@ function targetHover(hoverTarget){
     // console.log("targetHover: click 1 or click none")
     link
     .classed("link--target", function(l) {
-      if (l.target === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.source.source = true; 
+      if (l.target === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.source.source = true;
     })
-    .classed("link--source", function(l) { 
-      if (l.source === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.target.target = true; 
+    .classed("link--source", function(l) {
+      if (l.source === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.target.target = true;
     })
     .filter(function(l) { return (l.source === hoverTarget) || (clickedNodes.indexOf(l.source) > -1); })
     .attr("style", function(hoverTarget) {
@@ -462,7 +462,7 @@ function targetHover(hoverTarget){
         }
       })
     }
-    
+
     if(hoverTarget !== clickedNodes[0]){
       // hover target
       hoverTarget.data.imports.forEach(function(target){
@@ -532,7 +532,7 @@ function targetOut(d){
         .classed("node-2", false)
         .classed("node-1", false)
         .classed("node-conflict", false)
-  } // non clicked targets 
+  } // non clicked targets
   else {
     // console.log("targetOut: after click")
     targetHover(clickedNodes[0]);
@@ -548,6 +548,7 @@ function targetClick(d){
   if(actionClickNodes(d)){
     // console.log("targetClick: add target");
     getTarget(d.data.id);
+    hideInfobox();
   }
   targetHover(d);
 }
