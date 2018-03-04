@@ -6,8 +6,8 @@ var diameter = null,
     svg = null,
     link = null,
     node = null;
-    sticky_links = false;
-    current_node = null;
+    // sticky_links = false;
+    // current_node = null;
     clickedNodes = [];
 const MAX_CLICKS = 2;
 
@@ -93,6 +93,7 @@ var drawBall = function(dataFileName){
         //   : "#F1A772")
         // });
   });
+  clickedNodes.length = 0;
 }
 
 
@@ -545,7 +546,7 @@ function targetClick(d){
   // no: clicked -> remove target
   // call targetHover
   if(actionClickNodes(d)){
-    console.log("targetClick: add target");
+    // console.log("targetClick: add target");
     getTarget(d.data.id);
   }
   targetHover(d);
