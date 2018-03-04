@@ -514,7 +514,7 @@ function targetHover(hoverTarget){
 
 function targetOut(d){
   // keep selected targets and make other targets back to original status
-  if (clickedNodes.length == 0) {
+  if (clickedNodes.length == 0 || d == null) {
     // console.log("targetOut: non-click")
     link
         .classed("link--target", false)
