@@ -31,7 +31,13 @@ var treeData =
       { "name": "Influenced -3",
         "color": "#A54A47",
         "value": "-3",
-        "why": "Cancelling (-3): Makes it impossible to reach another goal"}
+        "why": "Cancelling (-3): Makes it impossible to reach another goal"},
+      {
+        "name": "Colliding Targets",
+        "color": "#BD69FF",
+        "value": "2",
+        "why": "Two selected targets that influence the same targets"
+      }
     ]
   };
 
@@ -83,7 +89,7 @@ var right_box = svg1.append("rect")
     .attr("width", 10)
     .attr("height", 24)
     .attr("fill", "#62BF77");
-    
+
 var i = 0,
     duration = 750,
     root;
@@ -144,8 +150,8 @@ function update(source) {
         return 2.5**Math.abs(parseInt(d.data.value));
       })
       .attr('y', function(d) {
-        return  (d.data.value > 0 
-                ? 2.5**(parseInt(d.data.value))/2 * -1 
+        return  (d.data.value > 0
+                ? 2.5**(parseInt(d.data.value))/2 * -1
                 : 2.5**Math.abs(parseInt(d.data.value))/2 * -1);
       })
       .attr('x', 0)
@@ -170,10 +176,10 @@ nodeEnter.append('text')
       })
       .on("mouseover", function(d) {
         d3.select(this).attr("font-size", 14).style("fill", d.data.color);
-      })      
+      })
       .on("mouseout", function(d) {
         d3.select(this).attr("font-size", 12).style("fill", "#bbb");
-      })      
+      })
       .on("click", labelClick);
 
   // UPDATE
@@ -182,7 +188,7 @@ nodeEnter.append('text')
   // Transition to the proper position for the node
   nodeUpdate.transition()
     .duration(duration)
-    .attr("transform", function(d) { 
+    .attr("transform", function(d) {
         return "translate(" + d.y + "," + d.x + ")";
      });
 
