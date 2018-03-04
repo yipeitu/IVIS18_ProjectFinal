@@ -27,8 +27,17 @@ function handleDragLeave(e) {
 }
 
 function handleDrop(e) {
-  // console.log(dragSrcParent);
-	// console.log(e.target);
+	var srcTargetName = dragSrcEl.classList.value
+	srcTargetName = srcTargetName.slice(srcTargetName.match("classtable").index, srcTargetName.length);
+
+	var dropTargetName = e.target.classList.value;
+	dropTargetName = dropTargetName.slice(dropTargetName.match("classtable").index, dropTargetName.length);
+
+	// can not drop into different target table
+	if(srcTargetName != dropTargetName){
+		return;
+	}
+
 	if(e.target === dragSrcParent || e.target.parentNode.parentNode === dragSrcParent){
 		// drop in the same column
 		return;
