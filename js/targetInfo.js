@@ -52,7 +52,7 @@ var getTarget = function(id){
 
 
     }
-    
+
     var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
     "0": neuList, "1": posList1, "2": posList2, "3": posList3};
     dragDropTable(dragDropList);
@@ -127,7 +127,7 @@ var getTarget = function(id){
     </div>
       <div class="col-md-1">
         <div class="buttonContainer">
-          <button type="button" id="close-info" onclick="turnOffStickyLinks()" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+          <button type="button" id="close-info" onclick="turnOffStickyLinks(), hideInfobox('close');" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
         </div>
       </div>
     </div>
@@ -158,6 +158,21 @@ var getTarget = function(id){
 
 var toggle = function(id) {
   $(id).slideToggle();
+}
+
+var hideInfobox = function(close) {
+  console.log("This fuction is running");
+  $("#container").addClass("row parent");
+  $(".container-viz").addClass("col-md-7");
+  $("#boxDescription").show();
+
+  if ($('#container').hasClass('container')){
+    $("#container").removeClass("container");
+  }
+  if (close === 'close'){
+    $("#container").removeClass("row parent");
+    $("#container").addClass("container");
+  }
 }
 
 var goal_web_dict = {
