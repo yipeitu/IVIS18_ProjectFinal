@@ -9,6 +9,8 @@ var diameter = null,
     sticky_links = false;
     current_node = null;
     clickedNodes = [];
+const MAX_CLICKS = 2;
+
 
 var drawBall = function(dataFileName){
   diameter = window.innerWidth*0.5,
@@ -57,9 +59,12 @@ var drawBall = function(dataFileName){
           .attr("transform", function(d) {
               return "rotate(" + (d.x - 90) + ")translate("
               + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-          .on("mouseover", mouseovered)
-          .on("mouseout", mouseouted)
-          .on("click", getData);
+          // .on("mouseover", mouseovered)
+          // .on("mouseout", mouseouted)
+          // .on("click", getData);
+          .on("mouseover", targetHover)
+          .on("mouseout", targetOut)
+          .on("click", targetClick);
 
     node.append("text")
         .attr("dy", "0.31em")
@@ -91,7 +96,6 @@ var drawBall = function(dataFileName){
 }
 
 
-
 function sumOfChildren(d) {
   var sum = 0;
   d.data.imports.forEach(function(t){
@@ -100,47 +104,32 @@ function sumOfChildren(d) {
   return sum;
 }
 
-function addClickNodes(d){
-  if(clickedNodes.length < 2){
-    clickedNodes.push(d);
-  } else{
-    alert("at most two targets")
-  }
-}
+// function turnOffStickyLinks() {
+//   sticky_links = false;
+//   $("#boxDescription").empty();
+//   mouseouted(current_node);
+// }
 
-function removeClickNodes(d){
-  if(clickedNodes.indexOf(d) > -1){
-    clickedNodes.splice(clickedNodes.indexOf(d), 1);
-  }
-}
-
-function turnOffStickyLinks() {
-  sticky_links = false;
-  $("#boxDescription").empty();
-  mouseouted(current_node);
-}
-
-function getData(d) {
-  console.log(current_node)
-  if (!sticky_links || current_node === null) {
-    current_node = d;
-    mouseovered(d);
-    getTarget(d.data.id);
-    sticky_links = !sticky_links;
-  } // first click
-  else if(current_node == d){
-    turnOffStickyLinks();
-    current_node = null;
-    sticky_links = false;
-  } // unclick the selected one
-  else {
-    turnOffStickyLinks();
-    current_node = d;
-    mouseovered(current_node);
-    getTarget(current_node.data.id);
-    sticky_links = !sticky_links;
-  } // click to another target
-}
+// function getData(d) {
+//   if (!sticky_links || current_node === null) {
+//     current_node = d;
+//     mouseovered(d);
+//     getTarget(d.data.id);
+//     sticky_links = !sticky_links;
+//   } // first click
+//   else if(current_node == d){
+//     turnOffStickyLinks();
+//     current_node = null;
+//     sticky_links = false;
+//   } // unclick the selected one
+//   else {
+//     turnOffStickyLinks();
+//     current_node = d;
+//     mouseovered(current_node);
+//     getTarget(current_node.data.id);
+//     sticky_links = !sticky_links;
+//   } // click to another target
+// }
 
 function getStyle(d) {
   var t_name = d.target.data.name;
@@ -178,158 +167,157 @@ function getStyle(d) {
   }
 }
 
+// function mouseovered(d) {
+//   if (d === current_node || !sticky_links) {
+//     node
+//         .each(function(n) { n.target = n.source = false; });
 
-function mouseovered(d) {
-  if (d === current_node || !sticky_links) {
-    node
-        .each(function(n) { n.target = n.source = false; });
+//     // Non-relevant links color change
+//     link._groups[0].forEach(function(d) {
+//          d.style.stroke = "#f4f4f4";
+//          //d.style.opacity = 0.2;
+//          });
 
-    // Non-relevant links color change
-    link._groups[0].forEach(function(d) {
-         d.style.stroke = "#f4f4f4";
-         //d.style.opacity = 0.2;
-         });
+//     link
+//       .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
+//       .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+//       .filter(function(l) { return l.source === d; })
+//       .attr("style", function(d) {
+//         return getStyle(d);
+//       })
+//       .raise();
 
-    link
-      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
-      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
-      .filter(function(l) { return l.source === d; })
-      .attr("style", function(d) {
-        return getStyle(d);
-      })
-      .raise();
+//     // class
+//     // node--focus: targeted, blue
+//     // node-source: positive, green
+//     // node-target: negative, red
+//     // var neuNodeList = []
+//     var valuesNodes = {"3": [], "2": [], "1": [],
+//                        "-3": [], "-2": [], "-1": []}
+//     d.data.imports.forEach(function(target){
+//       if(target.value !== 0){
+//         valuesNodes[target.value.toString()].push(target.target)
+//       }
+//     })
+//     node
+//         .classed("node--focus", function(n){
+//           return n.data.name === d.data.name;
+//         })
+//         .classed("node3", function(n){
+//           return valuesNodes["3"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node2", function(n){
+//           return valuesNodes["2"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node1", function(n){
+//           return valuesNodes["1"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node-3", function(n){
+//           return valuesNodes["-3"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node-2", function(n){
+//           return valuesNodes["-2"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node-1", function(n){
+//           return valuesNodes["-1"].indexOf(n.data.name) != -1;
+//         })
+//         .classed("node-conflict", function(n){
+//           return false;
+//         })
+//   } // hover/click
+//   else {
+//     node
+//         .each(function(n) { n.target = n.source = false; });
 
-    // class
-    // node--focus: targeted, blue
-    // node-source: positive, green
-    // node-target: negative, red
-    // var neuNodeList = []
-    var valuesNodes = {"3": [], "2": [], "1": [],
-                       "-3": [], "-2": [], "-1": []}
-    d.data.imports.forEach(function(target){
-      if(target.value !== 0){
-        valuesNodes[target.value.toString()].push(target.target)
-      }
-    })
-    node
-        .classed("node--focus", function(n){
-          return n.data.name === d.data.name;
-        })
-        .classed("node3", function(n){
-          return valuesNodes["3"].indexOf(n.data.name) != -1;
-        })
-        .classed("node2", function(n){
-          return valuesNodes["2"].indexOf(n.data.name) != -1;
-        })
-        .classed("node1", function(n){
-          return valuesNodes["1"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-3", function(n){
-          return valuesNodes["-3"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-2", function(n){
-          return valuesNodes["-2"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-1", function(n){
-          return valuesNodes["-1"].indexOf(n.data.name) != -1;
-        })
-        .classed("node-conflict", function(n){
-          return false;
-        })
-  } // hover/click
-  else {
-    node
-        .each(function(n) { n.target = n.source = false; });
+//     // Non-relevant links color change
+//     link._groups[0].forEach(function(d) {
+//          d.style.stroke = "#f4f4f4";
+//          //d.style.opacity = 0.2;
+//          });
+//     link
+//       .classed("link--target", function(l) { if (l.target === d || l.target === current_node) return l.source.source = true; })
+//       .classed("link--source", function(l) { if (l.source === d || l.source === current_node) return l.target.target = true; })
+//       .filter(function(l) { return (l.source === d) || (l.source === current_node); })
+//       .attr("style", function(d) {
+//         return getStyle(d);
+//       })
+//       .raise();
 
-    // Non-relevant links color change
-    link._groups[0].forEach(function(d) {
-         d.style.stroke = "#f4f4f4";
-         //d.style.opacity = 0.2;
-         });
-    link
-      .classed("link--target", function(l) { if (l.target === d || l.target === current_node) return l.source.source = true; })
-      .classed("link--source", function(l) { if (l.source === d || l.source === current_node) return l.target.target = true; })
-      .filter(function(l) { return (l.source === d) || (l.source === current_node); })
-      .attr("style", function(d) {
-        return getStyle(d);
-      })
-      .raise();
+//     var clickTargets = [];
+//     var hoverTargets = [];
 
-    var clickTargets = [];
-    var hoverTargets = [];
+//     var valuesNodes = {"3": [], "2": [], "1": [],
+//                        "-3": [], "-2": [], "-1": []}
+//     d.data.imports.forEach(function(target){
+//       if(target.value !== 0 && target.target != current_node.data.name){
+//         hoverTargets.push(target.target);
+//         valuesNodes[target.value.toString()].push(target.target)
+//       }
+//     })
 
-    var valuesNodes = {"3": [], "2": [], "1": [],
-                       "-3": [], "-2": [], "-1": []}
-    d.data.imports.forEach(function(target){
-      if(target.value !== 0 && target.target != current_node.data.name){
-        hoverTargets.push(target.target);
-        valuesNodes[target.value.toString()].push(target.target)
-      }
-    })
+//     current_node.data.imports.forEach(function(target){
+//         if(target.value !== 0 && target.target != d.data.name){
+//           clickTargets.push(target.target);
+//         }
+//     })
 
-    current_node.data.imports.forEach(function(target){
-        if(target.value !== 0 && target.target != d.data.name){
-          clickTargets.push(target.target);
-        }
-    })
+//     var conflictTargets = clickTargets.filter(function(n) {
+//         return hoverTargets.indexOf(n) !== -1;
+//     });
 
-    var conflictTargets = clickTargets.filter(function(n) {
-        return hoverTargets.indexOf(n) !== -1;
-    });
+//    node
+//        .classed("node--focus", function(n){
+//           if(n.data.name == d.data.name || n.data.name == current_node.data.name){
+//             return true;
+//           }
+//         })
+//         .classed("node3", function(n){
+//           return valuesNodes["3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node2", function(n){
+//           return valuesNodes["2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node1", function(n){
+//           return valuesNodes["1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node-3", function(n){
+//           return valuesNodes["-3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node-2", function(n){
+//           return valuesNodes["-2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node-1", function(n){
+//           return valuesNodes["-1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
+//         })
+//         .classed("node-conflict", function(n){
+//           return conflictTargets.indexOf(n.data.name) != -1;
+//         })
+//   } // show the compared
+// }
 
-   node
-       .classed("node--focus", function(n){
-          if(n.data.name == d.data.name || n.data.name == current_node.data.name){
-            return true;
-          }
-        })
-        .classed("node3", function(n){
-          return valuesNodes["3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node2", function(n){
-          return valuesNodes["2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node1", function(n){
-          return valuesNodes["1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node-3", function(n){
-          return valuesNodes["-3"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node-2", function(n){
-          return valuesNodes["-2"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node-1", function(n){
-          return valuesNodes["-1"].indexOf(n.data.name) != -1 && conflictTargets.indexOf(n.data.name) == -1;
-        })
-        .classed("node-conflict", function(n){
-          return conflictTargets.indexOf(n.data.name) != -1;
-        })
-  } // show the compared
-}
+// function mouseouted(d) {
+//   if (!sticky_links) {
+//     link
+//         .classed("link--target", false)
+//         .classed("link--source", false)
+//         .attr("style", function(d) {
+//           return getStyle(d).concat("stroke-opacity: 0.2;");
+//         })
 
-function mouseouted(d) {
-  if (!sticky_links) {
-    link
-        .classed("link--target", false)
-        .classed("link--source", false)
-        .attr("style", function(d) {
-          return getStyle(d).concat("stroke-opacity: 0.2;");
-        })
-
-    node
-        .classed("node--focus", false)
-        .classed("node3", false)
-        .classed("node2", false)
-        .classed("node1", false)
-        .classed("node-3", false)
-        .classed("node-2", false)
-        .classed("node-1", false)
-        .classed("node-conflict", false)
-  } // non clicked targets 
-  else {
-    mouseovered(current_node);
-  } // after clicked targets
-}
+//     node
+//         .classed("node--focus", false)
+//         .classed("node3", false)
+//         .classed("node2", false)
+//         .classed("node1", false)
+//         .classed("node-3", false)
+//         .classed("node-2", false)
+//         .classed("node-1", false)
+//         .classed("node-conflict", false)
+//   } // non clicked targets 
+//   else {
+//     mouseovered(current_node);
+//   } // after clicked targets
+// }
 
 // Lazily construct the package hierarchy from class names.
 function packageHierarchy(classes) {
@@ -373,4 +361,192 @@ function packageImports(nodes) {
   });
 
   return imports;
+}
+
+
+function actionClickNodes(d){
+  if(clickedNodes.indexOf(d) > -1){
+    // unclick
+    clickedNodes.splice(clickedNodes.indexOf(d), 1);
+    return false;
+  }
+  else if(clickedNodes.length < MAX_CLICKS){
+    clickedNodes.push(d);
+    return true;
+  } else{
+    alert("at most two targets");
+    return false;
+  }
+}
+
+
+function targetHover(hoverTarget){
+  /////////////////////////////////////////
+  // hover function: for one target click, or not target click
+  // otherwise: hover function can't work, when two target are selected
+  /////////////////////////////////////////
+  node
+        .each(function(n) { n.target = n.source = false; });
+
+  // Non-relevant links color change
+  link._groups[0].forEach(function(d) {
+       d.style.stroke = "#f4f4f4";
+       //d.style.opacity = 0.2;
+       });
+
+  var namesClick = [];
+  var inTargetsClick = [];
+  var inTargetsConflict = [];
+  var inTargetsHover = [];
+  var valuesNodes = {"3": [], "2": [], "1": [],
+                     "-3": [], "-2": [], "-1": []}
+
+  if(clickedNodes.length == MAX_CLICKS){
+    link
+    .classed("link--target", function(l) {
+      if (clickedNodes.indexOf(l.source) > -1) return l.source.source = true; 
+    })
+    .classed("link--source", function(l) { 
+      if (clickedNodes.indexOf(l.source) > -1) return l.target.target = true; 
+    })
+    .filter(function(l) { return clickedNodes.indexOf(l.source) > -1; })
+    .attr("style", function(targets) {
+      return getStyle(targets);
+    })
+    .raise();
+
+    clickedNodes.forEach(function(clickTarget){
+      var tempInTargets = [];
+      namesClick.push(clickTarget.data.name);
+      clickTarget.data.imports.forEach(function(target){
+        if(target.value !== 0){
+          inTargetsClick.push(target.target);
+          tempInTargets.push(target.target);
+          valuesNodes[target.value.toString()].push(target.target)
+        }
+      })
+      // check two clicked targets conflict
+      if(inTargetsConflict.length === 0){
+        inTargetsConflict = tempInTargets.slice();
+      } else {
+        inTargetsConflict = inTargetsConflict.filter(function(n) {
+          return tempInTargets.indexOf(n) !== -1;
+         });
+      }
+    })
+
+  } // hover function can't work, when two targets clicked
+  else {
+    // console.log("targetHover: click 1 or click none")
+    link
+    .classed("link--target", function(l) {
+      if (l.target === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.source.source = true; 
+    })
+    .classed("link--source", function(l) { 
+      if (l.source === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.target.target = true; 
+    })
+    .filter(function(l) { return (l.source === hoverTarget) || (clickedNodes.indexOf(l.source) > -1); })
+    .attr("style", function(hoverTarget) {
+      return getStyle(hoverTarget);
+    })
+    .raise();
+
+    // click target
+    if(clickedNodes.length > 0){
+      namesClick.push(clickedNodes[0].data.name);
+      clickedNodes[0].data.imports.forEach(function(target){
+        if(target.value !== 0 && target.target != hoverTarget.data.name){
+          inTargetsClick.push(target.target);
+          valuesNodes[target.value.toString()].push(target.target)
+        }
+      })
+    }
+    
+    if(hoverTarget !== clickedNodes[0]){
+      // hover target
+      hoverTarget.data.imports.forEach(function(target){
+        if(target.value !== 0 && namesClick.indexOf(target.target) < 0){
+          inTargetsHover.push(target.target);
+          valuesNodes[target.value.toString()].push(target.target)
+        }
+      })
+    }
+
+    inTargetsConflict = inTargetsClick.filter(function(n) {
+        return inTargetsHover.indexOf(n) !== -1;
+    });
+  } // hover function can work
+  // console.log(namesClick);
+  // console.log("click: ", inTargetsClick);
+  // console.log("hover: ", inTargetsHover);
+  // console.log("conflict: ", inTargetsConflict);
+
+  node
+     .classed("node--focus", function(n){
+        if(n.data.name == hoverTarget.data.name || namesClick.indexOf(n.data.name) != -1){
+          return true;
+        }
+      })
+      .classed("node3", function(n){
+        return valuesNodes["3"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node2", function(n){
+        return valuesNodes["2"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node1", function(n){
+        return valuesNodes["1"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node-3", function(n){
+        return valuesNodes["-3"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node-2", function(n){
+        return valuesNodes["-2"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node-1", function(n){
+        return valuesNodes["-1"].indexOf(n.data.name) != -1 && inTargetsConflict.indexOf(n.data.name) == -1 && namesClick.indexOf(n.data.name) == -1;
+      })
+      .classed("node-conflict", function(n){
+        return inTargetsConflict.indexOf(n.data.name) != -1;
+      })
+}
+
+
+function targetOut(d){
+  // keep selected targets and make other targets back to original status
+  if (clickedNodes.length == 0) {
+    // console.log("targetOut: non-click")
+    link
+        .classed("link--target", false)
+        .classed("link--source", false)
+        .attr("style", function(d) {
+          return getStyle(d).concat("stroke-opacity: 0.2;");
+        })
+
+    node
+        .classed("node--focus", false)
+        .classed("node3", false)
+        .classed("node2", false)
+        .classed("node1", false)
+        .classed("node-3", false)
+        .classed("node-2", false)
+        .classed("node-1", false)
+        .classed("node-conflict", false)
+  } // non clicked targets 
+  else {
+    // console.log("targetOut: after click")
+    targetHover(clickedNodes[0]);
+  } // after clicked targets
+}
+
+
+function targetClick(d){
+  // check the target has been clicked or not
+  // yes: unclicked -> add target, getData
+  // no: clicked -> remove target
+  // call targetHover
+  if(actionClickNodes(d)){
+    console.log("targetClick: add target");
+    getTarget(d.data.id);
+  }
+  targetHover(d);
 }
