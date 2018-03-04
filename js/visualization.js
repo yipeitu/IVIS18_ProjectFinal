@@ -6,6 +6,9 @@ var diameter = null,
     svg = null,
     link = null,
     node = null;
+    sticky_links = false;
+    current_node = null;
+    clickedNodes = [];
 
 var drawBall = function(dataFileName){
   diameter = window.innerWidth*0.5,
@@ -97,8 +100,20 @@ function sumOfChildren(d) {
   return sum;
 }
 
-sticky_links = false;
-current_node = null;
+function addClickNodes(d){
+  if(clickedNodes.length < 2){
+    clickedNodes.push(d);
+  } else{
+    alert("at most two targets")
+  }
+}
+
+function removeClickNodes(d){
+  if(clickedNodes.indexOf(d) > -1){
+    clickedNodes.splice(clickedNodes.indexOf(d), 1);
+  }
+}
+
 function turnOffStickyLinks() {
   sticky_links = false;
   $("#boxDescription").empty();
@@ -303,23 +318,17 @@ function mouseouted(d) {
 
     node
         .classed("node--focus", false)
-        // .classed("node--target", false)
-        // .classed("node--source", false)
-        // .classed("node6", false)
-        // .classed("node5", false)
-        // .classed("node4", false)
         .classed("node3", false)
         .classed("node2", false)
         .classed("node1", false)
-        // .classed("node-6", false)
-        // .classed("node-5", false)
-        // .classed("node-4", false)
         .classed("node-3", false)
         .classed("node-2", false)
         .classed("node-1", false)
         .classed("node-conflict", false)
-
-  }
+  } // non clicked targets 
+  else {
+    mouseovered(current_node);
+  } // after clicked targets
 }
 
 // Lazily construct the package hierarchy from class names.
