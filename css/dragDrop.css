@@ -1,0 +1,95 @@
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.column {
+  height: 2em;
+  width: 3em;
+  float: left;
+  border: 2px solid #555555;
+  /*background-color: #8FD9FF;*/
+  font-size: 1em;
+  font-weight: 700;
+  color: #000000;
+  margin: 5px;
+  padding: 0.38em;
+  -webkit-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  /*-webkit-box-shadow: inset 0 0 3px #000;*/
+  /*-ms-box-shadow: inset 0 0 3px #000;*/
+  /*box-shadow: inset 0 0 3px #000;*/
+  text-align: center;
+  cursor: move;
+}
+
+.value3 {
+  background-color: #62BF77;
+  opacity: 0.85;
+}
+
+.value2 {
+  background-color: #96CE7E;
+  opacity: 0.85;
+}
+
+.value1 {
+  background-color: #D4E578;
+  opacity: 0.85;
+}
+
+.value0 {
+  background-color: yellow;
+  opacity: 0.85;
+}
+.value-3 {
+  background-color: #A54A47;
+  opacity: 0.85;
+}
+
+.value-2 {
+  background-color: #F0686A;
+  opacity: 0.85;
+}
+
+.value-1 {
+  background-color: #F1A772;
+  opacity: 0.85;
+}
+
+.customisze {
+  background-color: white;
+}
+/*.column header {
+  color: #fff;
+  text-shadow: #000 0 1px;
+  box-shadow: 5px;
+  padding: 5px;
+  background: -moz-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -webkit-gradient(linear, left top, right top,
+                               color-stop(0, rgb(0,0,0)),
+                               color-stop(0.50, rgb(79,79,79)),
+                               color-stop(1, rgb(21,21,21)));
+  background: -webkit-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  background: -ms-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
+  border-bottom: 1px solid #ddd;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  -ms-border-radius-topleft: 10px;
+  border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -ms-border-top-right-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  border-top-right-radius: 10px;
+}*/
+
+.dropPlace.over{
+/*.column.over {*/
+  border: 2px dashed #000;
+}
