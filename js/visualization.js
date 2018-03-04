@@ -8,7 +8,7 @@ var diameter = null,
     node = null;
 
 var drawBall = function(dataFileName){
-  diameter = window.innerWidth*0.5,
+  diameter = window.innerWidth*0.45,
     radius = diameter / 2,
     innerRadius = radius - 180;
 
@@ -87,8 +87,6 @@ var drawBall = function(dataFileName){
   });
 }
 
-
-
 function sumOfChildren(d) {
   var sum = 0;
   d.data.imports.forEach(function(t){
@@ -111,6 +109,7 @@ function getData(d) {
     current_node = d;
     mouseovered(d);
     getTarget(d.data.id);
+    hideInfobox();
     sticky_links = !sticky_links;
   } // first click
   else if(current_node == d){
@@ -123,6 +122,7 @@ function getData(d) {
     current_node = d;
     mouseovered(current_node);
     getTarget(current_node.data.id);
+    hideInfobox();
     sticky_links = !sticky_links;
   } // click to another target
 }
