@@ -137,7 +137,7 @@ var getTarget = function(id){
     </div>
       <div class="col-md-1">
         <div class="buttonContainer">
-          <button type="button" id="close-info" onclick="targetOut(null), hideInfobox('close');" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+          <button type="button" id="close-info" onclick="hideInfobox('close');" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
         </div>
       </div>
     </div>
@@ -183,6 +183,9 @@ var hideInfobox = function(close) {
   if (close === 'close'){
     $("#container").removeClass("row parent");
     $("#container").addClass("container");
+    $("#boxDescription").empty();
+    $("#columns").empty();
+    targetOut(null);
   }
 }
 
@@ -214,9 +217,9 @@ function getTargetWebsite(goal_num) {
 function hoverInfo(id) {
   var element = document.getElementById("unImg")
   if (id > 9) {
-    var image = "images/UNpics_goals/" + id + ".jpg";
+    var image = "images/UNpics_goals/transparent" + id + ".png";
   } else {
-    var image = "images/UNpics_goals/0" + id + ".jpg";
+    var image = "images/UNpics_goals/transparent0" + id + ".png";
   }
   element.setAttribute('src', image);
   element.style.opacity = "0.4";
