@@ -13,6 +13,7 @@ body {
 
 .container-viz {
   width: 50%;
+  text-align: center;
 }
 
 .navbar {
@@ -107,15 +108,17 @@ a.btn {
 
 .image-container {
     position: relative;
-    text-align: center;
+    /* text-align: center; */
     color: white;
 }
 
 .image-text {
   position: absolute;
+  text-align: center;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  transform: translate(0%, -50%);
+  max-width: 11.1em;
   font-weight: 900;
   display: none;
   color: black;
@@ -168,6 +171,7 @@ li {
   color: #FFFFFF;
   /* height: 500px;
   width: 500px; */
+  width: 100%;
   height: auto;
   /* display: inline-block; */
 }
@@ -265,16 +269,18 @@ li {
     padding: 0;
 	   font-size: 1em;
      vertical-align: middle;
+     width: 100%;
 }
 
 .legendInfo {
   padding-top: 10px;
+  text-align: center;
 }
 
   .legend li {
     /* list-style-type: circle; */
     display: inline-block;
-    padding: .25em 1em;
+    /* padding: .25em 1em; */
     line-height: 1em;
 }
 
@@ -282,8 +288,8 @@ li {
     content: "";
     margin-right: .5em;
     display: inline-block;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
 	background-color: #334D5C;
 }
 

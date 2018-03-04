@@ -36,6 +36,7 @@ var getTarget = function(id){
       }
       else if (tragetAffect[i] === -1){
         negList1.push(i);
+        // console.log("HERE -->" + negList1);
         // console.log("Positive" + i);
       }
       else if (tragetAffect[i] === -2){
@@ -44,6 +45,7 @@ var getTarget = function(id){
       }
       else if (tragetAffect[i] === -3){
         negList3.push(i);
+        console.log("HERE -->" + negList3);
         // console.log("Positive" + i);
       }
       // console.log(posList3);
@@ -66,7 +68,7 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      return list.length;
+      return list.length/0.34;
     }
 
 //Change the close info button, perhaps move it to the upper right corner.
@@ -74,58 +76,63 @@ var getTarget = function(id){
 
   $("#boxDescription")[0].innerHTML = `
   <div style="padding: 10px;">
-    <div class="buttonContainer">
-      <button type="button" id="close-info" onclick="turnOffStickyLinks()" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+    <div class="row">
+    <div class="col-md-3">
+    <div class="image-container"
+    onmouseover=hoverInfo(${parseInt(id)})
+    onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
+    onclick=moreInfo(${parseInt(id)})
+    >
+    <img
+    src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
+    class="unImg"
+    id="unImg" )
+    >
+    <div class="image-text" id="image-text">
+    <h4>Display info in new tab</h4>
+    </div>
+    </div>
+    <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
+    </div>
+    <div class="col-md-8" style="padding-right:0;">
+
+      <h5>Affects on other targets</h5>
+      <div class="stacked-bar-graph" id="barChart">
+        <span style="width:${giveMeList(negList3)}%" class='neg-bar-1'>${barChartText}</span>
+        <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
+        <span style="width:${giveMeList(negList1)}%" class='neg-bar-3'>${barChartText}</span>
+
+        <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
+
+        <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
+        <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
+        <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
+      </div>
+
+      <div class="legendInfo">
+        <ul class="legend">
+          <li>-3</li>
+          <li>-2</li>
+          <li>-1</li>
+          <li>0</li>
+          <li>+1</li>
+          <li>+2</li>
+          <li>+3</li>
+        </ul>
+      </div>
+
+    <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
+    <p onclick="toggle('#description')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+    <div id="description" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
+    </div>
+      <div class="col-md-1">
+        <div class="buttonContainer">
+          <button type="button" id="close-info" onclick="turnOffStickyLinks()" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+        </div>
+      </div>
     </div>
     <div class="row">
-      <div class="col-md-7" style="padding-right:0;">
-              <p><h4 class="targetTitel">${jsonList.AI} - ${jsonList.Name}</h4></p>
-              <p><text class="contentStyle">Description:</text> ${jsonList.Description}</p>
-      </div>
       <div class="col">
-        <div class="image-container"
-          onmouseover=hoverInfo(${parseInt(id)})
-          onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
-          onclick=moreInfo(${parseInt(id)})
-        >
-          <img 
-            src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png" 
-            class="unImg" 
-            id="unImg" )
-          >
-          <div class="image-text" id="image-text">
-            <h4>Display info in new tab</h4>
-          </div>
-        </div>
-        <div style="padding-top:.5em;text-align:center;"><i>Click image for more information</i></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-        <h5>Affects on other targets</h5>
-        <div class="stacked-bar-graph" id="barChart">
-          <span style="width:${giveMeList(negList3)}%" class='neg-bar-3'>${barChartText}</span>
-          <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
-          <span style="width:${giveMeList(negList1)}%" class='neg-bar-1'>${barChartText}</span>
-
-          <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
-
-          <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
-          <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
-          <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
-        </div>
-        <div class="legendInfo">
-          <ul class="legend">
-            <li>-3</li>
-            <li>-2</li>
-            <li>-1</li>
-            <li>0</li>
-            <li>+1</li>
-            <li>+2</li>
-            <li>+3</li>
-          </ul>
-        </div>
         <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
         <div id="positive" style="display:none;">
           <li><text class="posToNeg">+3:</text> ${posList3}</li>
@@ -138,9 +145,9 @@ var getTarget = function(id){
             </div>
             <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
             <div id="negative" style="display:none;">
-              <li><text class="posToNeg">-3:</text> ${negList1}</li>
+              <li><text class="posToNeg">-3:</text> ${negList3}</li>
               <li><text class="posToNeg">-2:</text> ${negList2}</li>
-              <li><text class="posToNeg">-1:</text> ${negList3}</li>
+              <li><text class="posToNeg">-1:</text> ${negList1}</li>
             </div>
           </div>
         </div>

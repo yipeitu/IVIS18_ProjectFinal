@@ -16,10 +16,10 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
             <!-- LEGEND GRAPH GOES HERE -->
           </div>
         </div>
-        <div class="border-dark text-left d-flex flex-row justify-content-end vertical-padding">
+        <div class="border-dark text-left d-flex vertical-padding">
 
           <div id="boxDescription">
-            
+
           </div>
         </div>
 
