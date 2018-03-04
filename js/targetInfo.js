@@ -56,7 +56,7 @@ var getTarget = function(id){
 
     var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
     "0": neuList, "1": posList1, "2": posList2, "3": posList3};
-    dragDropTable(dragDropList);
+    createDragDropTable(id.toString().replace(".", ""), dragDropList);
 
 // Not really pretty, but it works.
     var barChartText = "";
@@ -84,95 +84,135 @@ var getTarget = function(id){
 //Change the close info button, perhaps move it to the upper right corner.
 //I hade made some changes to the button, but can't get the "pressing effect" to disapear.
 
-  $("#boxDescription")[0].innerHTML = `
-  <div style="padding: 10px; border-radius: 25px;">
-    <div class="row">
-    <div class="col-md-3">
-    <div class="image-container"
-    onmouseover=hoverInfo(${parseInt(id)})
-    onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
-    onclick=moreInfo(${parseInt(id)})
-    >
-    <img
-    src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
-    class="unImg"
-    id="unImg" )
-    >
-    <div class="image-text" id="image-text">
-    <h4>Display info in new tab</h4>
-    </div>
-    </div>
-    <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
-    </div>
-    <div class="col-md-8" style="padding-right:0;">
+  // $("#boxDescription")[0].innerHTML = `
+  // <div style="padding: 10px; border-radius: 25px;">
+  //   <div class="row">
+  //   <div class="col-md-3">
+  //   <div class="image-container"
+  //   onmouseover=hoverInfo(${parseInt(id)})
+  //   onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
+  //   onclick=moreInfo(${parseInt(id)})
+  //   >
+  //   <img
+  //   src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
+  //   class="unImg"
+  //   id="unImg" )
+  //   >
+  //   <div class="image-text" id="image-text">
+  //   <h4>Display info in new tab</h4>
+  //   </div>
+  //   </div>
+  //   <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
+  //   </div>
+  //   <div class="col-md-8" style="padding-right:0;">
 
-      <h5>Affects on other targets</h5>
-      <div class="stacked-bar-graph" id="barChart">
-        <span style="width:${giveMeList(negList3)}%" class='neg-bar-1'>${barChartText}</span>
-        <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
-        <span style="width:${giveMeList(negList1)}%" class='neg-bar-3'>${barChartText}</span>
+  //     <h5>Affects on other targets</h5>
+  //     <div class="stacked-bar-graph" id="barChart">
+  //       <span style="width:${giveMeList(negList3)}%" class='neg-bar-1'>${barChartText}</span>
+  //       <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
+  //       <span style="width:${giveMeList(negList1)}%" class='neg-bar-3'>${barChartText}</span>
 
-        <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
+  //       <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
 
-        <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
-        <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
-        <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
+  //       <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
+  //       <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
+  //       <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
+  //     </div>
+
+  //     <div class="legendInfo">
+  //       <ul class="legend">
+  //         <li>-3</li>
+  //         <li>-2</li>
+  //         <li>-1</li>
+  //         <li>0</li>
+  //         <li>+1</li>
+  //         <li>+2</li>
+  //         <li>+3</li>
+  //       </ul>
+  //     </div>
+
+  //   <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
+  //   <p onclick="toggle('#description')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+  //   <div id="description" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
+  //   </div>
+  //     <div class="col-md-1">
+  //       <div class="buttonContainer">
+  //         <button type="button" id="close-info" onclick="hideInfobox('close');" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+  //       </div>
+  //     </div>
+  //   </div>
+  //     </div>
+  //     `;
+  var idName = id.toString().replace(".", "");
+  $("#boxDescription").append(`
+  <div id="box${idName}">
+    <div style="padding: 10px; border-radius: 25px;">
+      <div class="row">
+      <div class="col-md-3">
+      <div class="image-container"
+      onmouseover=hoverInfo(${id})
+      onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
+      onclick=moreInfo(${parseInt(id)})
+      >
+      <img
+      src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
+      class="unImg"
+      id="unImg${idName}" )
+      >
+      <div class="image-text" id="image-text${idName}">
+      <h4>Display info in new tab</h4>
       </div>
-
-      <div class="legendInfo">
-        <ul class="legend">
-          <li>-3</li>
-          <li>-2</li>
-          <li>-1</li>
-          <li>0</li>
-          <li>+1</li>
-          <li>+2</li>
-          <li>+3</li>
-        </ul>
       </div>
+      <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
+      </div>
+      <div class="col-md-8" style="padding-right:0;">
 
-    <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-    <p onclick="toggle('#description')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
-    <div id="description" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
-    </div>
-      <div class="col-md-1">
-        <div class="buttonContainer">
-          <button type="button" id="close-info" onclick="hideInfobox('close');" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+        <h5>Affects on other targets</h5>
+        <div class="stacked-bar-graph" id="barChart">
+          <span style="width:${giveMeList(negList3)}%" class='neg-bar-1'>${barChartText}</span>
+          <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
+          <span style="width:${giveMeList(negList1)}%" class='neg-bar-3'>${barChartText}</span>
+
+          <span style="width:${giveMeList(neuList)}%" class='neu-bar'>${barChartText}</span>
+
+          <span style="width:${giveMeList(posList1)}%" class='pos-bar-1'>${barChartText}</span>
+          <span style="width:${giveMeList(posList2)}%" class='pos-bar-2'>${barChartText}</span>
+          <span style="width:${giveMeList(posList3)}%" class='pos-bar-3'>${barChartText}</span>
+        </div>
+
+        <div class="legendInfo">
+          <ul class="legend">
+            <li>-3</li>
+            <li>-2</li>
+            <li>-1</li>
+            <li>0</li>
+            <li>+1</li>
+            <li>+2</li>
+            <li>+3</li>
+          </ul>
+        </div>
+
+      <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
+      <p onclick="toggle('#description')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+      <div id="description" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
+      </div>
+        <div class="col-md-1">
+          <div class="buttonContainer">
+            <button type="button" onclick="targetUnClick(${id})" id="close-info${idName}" class="btn-secondary"><i class="fa fa-close" style="font-size:30px"></i></button>
+          </div>
         </div>
       </div>
-    </div>
-      </div>
-      `
+  </div>
+      `);
   });
 }
 
-// <div class="row">
-//   <div class="col">
-//     <p onclick="toggle('#positive')" class="pointer"><i class="fa fa-angle-down"></i> Positive influence</p>
-//     <div id="positive" style="display:none;">
-//       <li><text class="posToNeg">+3:</text> ${posList3}</li>
-//       <li><text class="posToNeg">+2:</text> ${posList2} </li>
-//       <li><text class="posToNeg">+1:</text> ${posList1}</li>
-//     </div>
-//     <p onclick="toggle('#neutral')" class="pointer"><i class="fa fa-angle-down"></i> No obvious influence</p>
-//     <div id="neutral" style="display:none;">
-//       <li><text class="posToNeg">0:</text>${neuList}</li>
-//         </div>
-//         <p onclick="toggle('#negative')" class="pointer"><i class="fa fa-angle-down"></i> Negative influence</p>
-//         <div id="negative" style="display:none;">
-//           <li><text class="posToNeg">-3:</text> ${negList3}</li>
-//           <li><text class="posToNeg">-2:</text> ${negList2}</li>
-//           <li><text class="posToNeg">-1:</text> ${negList1}</li>
-//         </div>
-//       </div>
-//     </div>
 
 var toggle = function(id) {
   $(id).slideToggle();
 }
 
-var hideInfobox = function(close) {
-  console.log("This fuction is running");
+var hideInfobox = function(close="show") {
   $("#container").addClass("row parent");
   $(".container-viz").addClass("col-md-7");
   $("#boxDescription").show();
@@ -215,7 +255,9 @@ function getTargetWebsite(goal_num) {
 }
 
 function hoverInfo(id) {
-  var element = document.getElementById("unImg")
+  var idName = id.toString().replace(".", "");
+  var element = document.getElementById("unImg"+idName);
+  id = parseInt(id);
   if (id > 9) {
     var image = "images/UNpics_goals/transparent" + id + ".png";
   } else {
@@ -223,15 +265,16 @@ function hoverInfo(id) {
   }
   element.setAttribute('src', image);
   element.style.opacity = "0.4";
-  var x = document.getElementById("image-text");
+  var x = document.getElementById("image-text"+idName);
   x.style.display = "block";
 }
 
 function unHover(image) {
-  var element = document.getElementById("unImg")
+  var id = image.split("_").slice(-1)[0].replace(".png", "").replace(".", "");
+  var element = document.getElementById("unImg"+id)
   element.setAttribute('src', image);
   element.style.opacity = "1.0";
-  var x = document.getElementById("image-text");
+  var x = document.getElementById("image-text"+id);
   x.style.display = "none";
 }
 

@@ -74,21 +74,10 @@ function handleDragEnd(e) {
   });
 }
 
-var dragDropTarget = function(targetInfo){
-	// need to put reason
-	return `<div class="column m-1" draggable="true">${targetInfo}</div>`
-}
 
-var dragDropTable = function(influencedTargetsInfo){
-
-	Object.keys(influencedTargetsInfo).forEach(function(value){
-		$("td.value"+value+" > .container").empty();
-		influencedTargetsInfo[value].forEach(function(target){
-			$("td.value"+value+" > .container").append(dragDropTarget(target));
-		})
-	})
+var dragDropAddListeners = function(id){
 	// add listener
-	var cols = document.querySelectorAll('#columns .column');
+	var cols = document.querySelectorAll('#'+id+' .column');
 	[].forEach.call(cols, function(col) {
 	  col.addEventListener('dragstart', handleDragStart, false);
 	  col.addEventListener('dragenter', handleDragEnter, false);
