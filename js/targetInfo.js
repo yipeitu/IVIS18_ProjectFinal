@@ -146,7 +146,7 @@ var getTarget = function(id){
   var idName = id.toString().replace(".", "");
   $("#boxDescription").append(`
   <div id="box${idName}">
-    <div style="padding: 10px; border-radius: 25px;">
+    <div class="m-1 p-2 border-1 rounded" style="background-color: #7A7A79;">
       <div class="row">
       <div class="col-md-3">
       <div class="image-container"
@@ -193,8 +193,8 @@ var getTarget = function(id){
         </div>
 
       <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-      <p onclick="toggle('#description')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
-      <div id="description" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
+      <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+      <div id="description${idName}" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
       </div>
         <div class="col-md-1">
           <div class="buttonContainer">
