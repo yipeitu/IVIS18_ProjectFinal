@@ -104,9 +104,10 @@ a.btn {
 }
 
 .unImg {
-  width: 11.1em;
-  height: 20em;
-  border-radius: 0.5em;
+  /*width: 11.1em;
+  height: 20em;*/
+  height: 75%;
+  /*border-radius: 0.5em;*/
 
 }
 

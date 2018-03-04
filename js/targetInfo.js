@@ -199,9 +199,9 @@ function getTargetWebsite(goal_num) {
 function hoverInfo(id) {
   var element = document.getElementById("unImg")
   if (id > 9) {
-    var image = "images/UNpics_goals/" + id + ".jpg";
+    var image = "images/UNpics_goals/transparent" + id + ".png";
   } else {
-    var image = "images/UNpics_goals/0" + id + ".jpg";
+    var image = "images/UNpics_goals/transparent0" + id + ".png";
   }
   element.setAttribute('src', image);
   element.style.opacity = "0.4";
