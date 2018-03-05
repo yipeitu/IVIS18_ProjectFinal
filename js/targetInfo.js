@@ -70,10 +70,10 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      if (jsonFile === "data_mongolia.json" ){
+      if (jsonFile === MONGOLIA ){
         return list.length/0.17;
       }
-      else if (jsonFile === "db_data.json"){
+      else if (jsonFile === SWEDEN){
         return list.length/0.34;
       }
       else {
@@ -152,11 +152,13 @@ var getTarget = function(id){
       <div class="col-md-3">
       <div class="image-container"
       onmouseover=hoverInfo(${id})
-      onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
+      onmouseout=unHover("${idName}")
       onclick=moreInfo(${parseInt(id)})
       >
       <img
-      src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
+      src="${jsonList.Icon}"
+      hover="${jsonList.IconHover}"
+      icon="${jsonList.Icon}"
       class="unImg"
       id="unImg${idName}" )
       >
@@ -260,19 +262,20 @@ function hoverInfo(id) {
   var idName = id.toString().replace(".", "");
   var element = document.getElementById("unImg"+idName);
   id = parseInt(id);
-  if (id > 9) {
-    var image = "images/UNpics_goals/transparent" + id + ".png";
-  } else {
-    var image = "images/UNpics_goals/transparent0" + id + ".png";
-  }
+  var image = $("#unImg"+idName).attr("hover");
+  // if (id > 9) {
+  //   var image = "images/UNpics_goals/transparent" + id + ".png";
+  // } else {
+  //   var image = "images/UNpics_goals/transparent0" + id + ".png";
+  // }
   element.setAttribute('src', image);
   element.style.opacity = "0.4";
   var x = document.getElementById("image-text"+idName);
   x.style.display = "block";
 }
 
-function unHover(image) {
-  var id = image.split("_").slice(-1)[0].replace(".png", "").replace(".", "");
+function unHover(id) {
+  var image = $("#unImg"+id).attr("icon");
   var element = document.getElementById("unImg"+id)
   element.setAttribute('src', image);
   element.style.opacity = "1.0";
