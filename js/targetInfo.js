@@ -215,7 +215,9 @@ var toggle = function(id) {
   if(id ==='#legend'){
     $(id).animate({height:'toggle'},'inherit');
     // $("i").removeClass('fa fa-chevron-down');
+    // $("#legendColor").toggleClass("legendColor");
     $(".legendButton").toggleClass('fa fa-chevron-right fa fa-chevron-down');
+
   }
   else {
 

@@ -1,5 +1,5 @@
 $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
-<div style="position:absolute;">
+<div id="legendColor" style="position:absolute;">
 <p class="showLegend pointer" onclick="toggle('#legend')" style="text-align:left;"><i class="legendButton fa fa-chevron-down" style="font-size:1.25em"></i> Legend</p>
 <div class="legend border-dark text-left d-flex flex-row justify-content-start vertical-padding">
 <div class="row" id="legend" style="float:left;bottom:10%;left:1;padding-left:20px;">
