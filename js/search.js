@@ -10,7 +10,7 @@ function searchFunction() {
   filter = input.value.toUpperCase();
 
   input.value = '';
-  
+
   for (i = 0; i < node._parents[0].childElementCount; i++) {
     targetObj = node._parents[0].children[i].__data__;
     targetKey = targetObj.data.key;
@@ -18,11 +18,12 @@ function searchFunction() {
     if(filter == targetKey.toUpperCase()){
       targetClick(targetObj);
     }
-  } 
+  }
 }
 
 function getOptions(){
   $("#browsers").empty()
+  console.log("SEARCH");
   $.getJSON("data/"+jsonFile, function(json){
     Object.keys(json).forEach(function(key){
       $("#browsers").append(`<option value="${json[key].Name}">`)

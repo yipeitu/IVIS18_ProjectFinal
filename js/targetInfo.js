@@ -212,7 +212,17 @@ var getTarget = function(id){
 
 
 var toggle = function(id) {
-  $(id).slideToggle();
+  if(id ==='#legend'){
+    $(id).animate({height:'toggle'},'inherit');
+    // $("i").removeClass('fa fa-chevron-down');
+    // $("#legendColor").toggleClass("legendColor");
+    $(".legendButton").toggleClass('fa fa-chevron-right fa fa-chevron-down');
+
+  }
+  else {
+
+    $(id).slideToggle();
+  }
 }
 
 var hideInfobox = function(close="show") {
@@ -234,7 +244,7 @@ var hideInfobox = function(close="show") {
   }
 
   if (!$('#container').hasClass('container')){
-    $("#legend").hide(15);
+    // $("#legend").hide(15);
     // toggle("#legend")
   }
 
@@ -244,7 +254,7 @@ var hideInfobox = function(close="show") {
     $("#container").addClass("container");
     $("#boxDescription").empty();
     $("#columns").empty();
-    $("#legend").show(500);
+    // $("#legend").show(500);
     targetOut(null);
   }
 }

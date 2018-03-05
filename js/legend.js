@@ -43,8 +43,10 @@ var treeData =
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 0, right: 5, bottom: 80, left: 110},
-    width = window.innerWidth*0.25 - margin.left - margin.right,
+    width = window.innerWidth*0.27 - margin.left - margin.right,
     height = 250 -margin.top - margin.bottom;
+
+    console.log(window.innerWidth);
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
@@ -67,14 +69,14 @@ var exp_text = svg1.append("text")
 .style("text-anchor", "start")
 .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
 .attr("font-family", "Pontano Sans") //, sans-serif;
-.attr("font-size", "14px")
+.attr("font-size", "0.6875em")
 .attr("fill", "#bbb");
 
-svg1.append("text")
-    .attr("x", -margin.left + 10)
-    .attr("y", 40)
-    .style("text-anchor", "start")
-    .text("Legend");
+// svg1.append("text")
+//     .attr("x", -margin.left + 10)
+//     .attr("y", 40)
+//     .style("text-anchor", "start")
+//     .text("Legend");
 
 var left_box = svg1.append("rect")
     .attr("class", "side-rect")
@@ -129,7 +131,7 @@ function update(source) {
       links = treeData.descendants().slice(1);
 
   // Normalize for fixed-depth.
-  nodes.forEach(function(d){ d.y = d.depth * 180});
+  nodes.forEach(function(d){ d.y = d.depth * 100});
 
   // ****************** Nodes section ***************************
 

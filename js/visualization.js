@@ -95,6 +95,7 @@ var drawBall = function(dataFileName){
         // });
   });
   clickedNodes.length = 0;
+  getOptions();
 }
 
 
@@ -392,7 +393,7 @@ function actionClickNodes(d){
     clickedNodes.push(d);
     getTarget(d.data.id);
     hideInfobox();
-    
+
     return true;
   } // click
 }
