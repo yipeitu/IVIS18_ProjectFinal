@@ -369,10 +369,15 @@ function actionClickNodes(d){
   if(clickedNodes.indexOf(d) > -1){
     // unclick
     clickedNodes.splice(clickedNodes.indexOf(d), 1);
+    if(clickedNodes.length == 0){
+      // close
+      hideInfobox("close");
+    }
     return false;
   }
   else if(clickedNodes.length < MAX_CLICKS){
     clickedNodes.push(d);
+    hideInfobox();
     return true;
   } else{
     alert("at most two targets");
@@ -512,9 +517,9 @@ function targetHover(hoverTarget){
 }
 
 
-function targetOut(d){
+function targetOut(){
   // keep selected targets and make other targets back to original status
-  if (clickedNodes.length == 0 || d == null) {
+  if (clickedNodes.length == 0) {
     // console.log("targetOut: non-click")
     link
         .classed("link--target", false)
@@ -547,8 +552,27 @@ function targetClick(d){
   // call targetHover
   if(actionClickNodes(d)){
     // console.log("targetClick: add target");
-    getTarget(d.data.id);
-    hideInfobox();
+    getTarget(d.data.id); 
   }
   targetHover(d);
+}
+
+// only for close button
+function targetUnClick(id){
+  var index = -1;
+  clickedNodes.forEach(function(clickedNode){
+    console.log(clickedNode.data.id, clickedNode.data.id === id)
+    if(clickedNode.data.id === id){
+      index = clickedNodes.indexOf(clickedNode);
+    }
+  })
+  if(index < 0){
+    return;
+  }
+  id = id.toString().replace(".", "");
+  // remove
+  if(!actionClickNodes(clickedNodes[index])){
+    $("#box"+id).empty();
+    $("#table"+id).empty(); 
+  }
 }

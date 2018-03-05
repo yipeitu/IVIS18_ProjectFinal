@@ -27,8 +27,24 @@ function handleDragLeave(e) {
 }
 
 function handleDrop(e) {
-  // console.log(dragSrcParent);
-	// console.log(e.target);
+	var srcTargetName = "";
+	dragSrcEl.classList.value.split(" ").forEach(function(className){
+		if(className.match("classtable") != null){
+			srcTargetName = className;
+		}
+	})
+	var dropTargetName = "";
+	e.target.classList.value.split(" ").forEach(function(className){
+		if(className.match("classtable") != null){
+			dropTargetName = className;
+		}
+	})
+	
+	// can not drop into different target table
+	if(srcTargetName != dropTargetName){
+		return;
+	}
+
 	if(e.target === dragSrcParent || e.target.parentNode.parentNode === dragSrcParent){
 		// drop in the same column
 		return;
@@ -46,6 +62,50 @@ function handleDrop(e) {
     		$(e.target.parentNode).append(dragSrcEl);
     		break;
     }
+
+    var targetNum = srcTargetName.replace("classtable", "");
+    var targetsNum = ($(".column.m-1."+srcTargetName).length)/100;
+    [-3, -2, -1, 0, 1, 2, 3].forEach(function(value){
+    	var childrenElement = $(".value"+value.toString()+"."+srcTargetName).children();
+   		var valueList = childrenElement
+				    		.contents()
+							.filter(function(){
+								console.log();
+								return $(this).text();
+							})
+		if(valueList.length == 0) return;
+		switch(value){
+			case -3:
+				$("#barChart"+targetNum+" > .neg-bar-3").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .neg-bar-3").text(valueList.length);
+				break;
+			case -2:
+				$("#barChart"+targetNum+" > .neg-bar-2").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .neg-bar-2").text(valueList.length);
+				break;
+			case -1:
+				$("#barChart"+targetNum+" > .neg-bar-1").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .neg-bar-1").text(valueList.length);
+				break;
+			case 0:
+				$("#barChart"+targetNum+" > .neu-bar").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .neu-bar").text(valueList.length);
+				break;
+			case 1:
+				$("#barChart"+targetNum+" > .pos-bar-1").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .pos-bar-1").text(valueList.length);
+				break;
+			case 2:
+				$("#barChart"+targetNum+" > .pos-bar-2").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .pos-bar-2").text(valueList.length);
+				break;
+			case 3:
+				$("#barChart"+targetNum+" > .pos-bar-3").css("width", valueList.length/targetsNum+"%");
+				$("#barChart"+targetNum+" > .pos-bar-3").text(valueList.length);
+				break;
+		}
+
+    })
     // $("td.value-3 > .container").append(dragSrcEl);
     // ev.target.appendChild(document.getElementById(data));
     // ev.target.children[0].appendChild(`<div class="column m-1" draggable="true">${data}</div>`);
@@ -74,21 +134,10 @@ function handleDragEnd(e) {
   });
 }
 
-var dragDropTarget = function(targetInfo){
-	// need to put reason
-	return `<div class="column m-1" draggable="true">${targetInfo}</div>`
-}
 
-var dragDropTable = function(influencedTargetsInfo){
-
-	Object.keys(influencedTargetsInfo).forEach(function(value){
-		$("td.value"+value+" > .container").empty();
-		influencedTargetsInfo[value].forEach(function(target){
-			$("td.value"+value+" > .container").append(dragDropTarget(target));
-		})
-	})
+var dragDropAddListeners = function(id){
 	// add listener
-	var cols = document.querySelectorAll('#columns .column');
+	var cols = document.querySelectorAll('#'+id+' .column');
 	[].forEach.call(cols, function(col) {
 	  col.addEventListener('dragstart', handleDragStart, false);
 	  col.addEventListener('dragenter', handleDragEnter, false);
