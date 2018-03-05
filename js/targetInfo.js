@@ -182,6 +182,7 @@ var hideInfobox = function(close) {
   }
   if (close === 'close'){
     $("#container").removeClass("row parent");
+    $(".container-viz").removeClass("col-md-7");
     $("#container").addClass("container");
     $("#boxDescription").empty();
     $("#columns").empty();
