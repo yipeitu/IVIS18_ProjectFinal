@@ -561,7 +561,6 @@ function targetClick(d){
 function targetUnClick(id){
   var index = -1;
   clickedNodes.forEach(function(clickedNode){
-    console.log(clickedNode.data.id, clickedNode.data.id === id)
     if(clickedNode.data.id === id){
       index = clickedNodes.indexOf(clickedNode);
     }
