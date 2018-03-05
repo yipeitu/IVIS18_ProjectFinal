@@ -70,14 +70,14 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      if (jsonFile === MONGOLIA ){
+      if (jsonFile === MONGOLIA){
         return list.length/(0.17+0.022);
       }
       else if (jsonFile === SWEDEN){
         return list.length/(0.34+0.022);
       }
       else {
-        return list.length;
+        return list.length/0.22;
       }
 
     }
@@ -168,7 +168,7 @@ var getTarget = function(id){
       </div>
       <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
       </div>
-      <div class="col-md-8" style="padding-right:0;">
+      <div class="col-md-8" style="padding:0;">
 
         <h5>Affects on other targets</h5>
         <div class="stacked-bar-graph" id="barChart${idName}">
