@@ -13,18 +13,23 @@ body {
 
 .container-viz {
   text-aligns: center;
+  /* margin-left: 5%; */
 
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.col-md-7 {
+  margin-left: 6%;
 }
 
 #container {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .container {
@@ -331,11 +336,17 @@ li {
   }
 
   .legend {
+    /* transform: translate(0%, 50%); */
     margin: 0 auto;
     padding: 0;
 	   font-size: 0.9rem;
      vertical-align: middle;
      width: 100%;
+
+     -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+     -o-transition: all 0.5s ease;
+     transition: all 0.5s ease;
 }
 
 .legendInfo {

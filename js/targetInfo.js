@@ -219,16 +219,32 @@ var hideInfobox = function(close="show") {
   $("#container").addClass("row parent");
   $(".container-viz").addClass("col-md-7");
   $("#boxDescription").show();
+//   if ( $("#boxDescription").css('display') === 'block' ){
+//     console.log("This function is running");
+//     $("#legend").hide();
+//     // toggle('#legend');
+// }
+// else {
+//   $("#legend").show();
+// }
 
   if ($('#container').hasClass('container')){
     $("#container").removeClass("container");
+    // $("#legend").show();
   }
+
+  if (!$('#container').hasClass('container')){
+    $("#legend").hide(15);
+    // toggle("#legend")
+  }
+
   if (close === 'close'){
     $("#container").removeClass("row parent");
     $(".container-viz").removeClass("col-md-7");
     $("#container").addClass("container");
     $("#boxDescription").empty();
     $("#columns").empty();
+    $("#legend").show(500);
     targetOut(null);
   }
 }
