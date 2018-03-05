@@ -366,25 +366,35 @@ function packageImports(nodes) {
 
 
 function actionClickNodes(d){
-  if(clickedNodes.indexOf(d) > -1){
-    // unclick
+  // two targets replace the last one
+  if(clickedNodes.length == MAX_CLICKS && clickedNodes.indexOf(d) == -1){
+    var id = (clickedNodes[MAX_CLICKS-1].data.id).toString().replace(".", "");
+    $("#box"+id).remove();
+    $("#table"+id).remove();
+    clickedNodes[1] = d;
+    getTarget(d.data.id);
+    return true;
+  }
+  // unclick
+  else if(clickedNodes.indexOf(d) > -1){
+    var id = (clickedNodes[clickedNodes.indexOf(d)].data.id).toString().replace(".", "");
+    $("#box"+id).remove();
+    $("#table"+id).remove();
     clickedNodes.splice(clickedNodes.indexOf(d), 1);
     if(clickedNodes.length == 0){
-      // close
       hideInfobox("close");
-      // toggle('#legend');
+      targetOut();
     }
     return false;
   }
-  else if(clickedNodes.length < MAX_CLICKS){
+  // click
+  else if(clickedNodes.length < MAX_CLICKS && clickedNodes.indexOf(d) < 0){
     clickedNodes.push(d);
+    getTarget(d.data.id);
     hideInfobox();
-    // toggle('#legend');
+    
     return true;
-  } else{
-    alert("at most two targets");
-    return false;
-  }
+  } // click
 }
 
 
@@ -562,10 +572,7 @@ function targetClick(d){
   // yes: unclicked -> add target, getData
   // no: clicked -> remove target
   // call targetHover
-  if(actionClickNodes(d)){
-    // console.log("targetClick: add target");
-    getTarget(d.data.id);
-  }
+  actionClickNodes(d)
   targetHover(d);
 }
 
@@ -583,7 +590,8 @@ function targetUnClick(id){
   id = id.toString().replace(".", "");
   // remove
   if(!actionClickNodes(clickedNodes[index])){
-    $("#box"+id).empty();
-    $("#table"+id).empty();
+    $("#box"+id).remove();
+    $("#table"+id).remove();
+    targetOut();
   }
 }
