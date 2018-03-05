@@ -17,9 +17,9 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			  	<tr>
 			  		<th colspan="7">
 			  	  	<div class="stacked-bar-graph" id="barChart${idName}">
-			        	<span class='neg-bar-3'></span>
+			        	<span class='neg-bar-1'></span>
 				        <span class='neg-bar-2'></span>
-				        <span class='neg-bar-1'></span>
+				        <span class='neg-bar-3'></span>
 
 				        <span class='neu-bar'></span>
 
@@ -101,16 +101,16 @@ var colorBar = function(idName, colorValue, value, targetsNum){
 	if(value == 0) return;
 		switch(colorValue.toString()){
 			case "-3":
-				$("#barChart"+idName+" > .neg-bar-3").css("width", value/targetsNum+"%");
-				$("#barChart"+idName+" > .neg-bar-3").text(value);
+				$("#barChart"+idName+" > .neg-bar-1").css("width", value/targetsNum+"%");
+				$("#barChart"+idName+" > .neg-bar-1").text(value);
 				break;
 			case "-2":
 				$("#barChart"+idName+" > .neg-bar-2").css("width", value/targetsNum+"%");
 				$("#barChart"+idName+" > .neg-bar-2").text(value);
 				break;
 			case "-1":
-				$("#barChart"+idName+" > .neg-bar-1").css("width", value/targetsNum+"%");
-				$("#barChart"+idName+" > .neg-bar-1").text(value);
+				$("#barChart"+idName+" > .neg-bar-3").css("width", value/targetsNum+"%");
+				$("#barChart"+idName+" > .neg-bar-3").text(value);
 				break;
 			case "0":
 				$("#barChart"+idName+" > .neu-bar").css("width", value/targetsNum+"%");
