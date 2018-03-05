@@ -57,11 +57,13 @@ body {
 #mytabs a {
     position: absolute;
     left: -5rem;
-    transition: 0.3s;
+    transition: 0.2s;
     padding: 1rem;
     width: 6.25rem;
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
+    font-weight: 1000;
+    text-shadow: 0.2rem 0.2rem 0.2rem black;
     color: white;
     border-radius: 0 0.3125rem 0.3125rem 0;
 }
@@ -78,13 +80,13 @@ body {
 #Sweden {
     top: 7rem;
     background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/se.svg");
-    background-size: 6.875rem 3.125rem;
+    background-size: 6.25rem 4.125rem;
 }
 
 #Mongolia {
     top: 11rem;
     background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg");
-    background-size: 8.125rem 3.125rem;
+    background-size: 6.25rem 3.5rem;
 }
 
 #contact {
@@ -359,5 +361,5 @@ li {
 
 .icon {
   width: 2.6rem;
-  height: 2rem !important;
+  height: 2em !important;
 }
