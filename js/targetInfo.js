@@ -46,7 +46,7 @@ var getTarget = function(id){
       }
       else if (tragetAffect[i] === -3){
         negList3.push(i);
-        console.log("HERE -->" + negList3);
+        // console.log("HERE -->" + negList3);
         // console.log("Positive" + i);
       }
       // console.log(posList3);
@@ -56,7 +56,8 @@ var getTarget = function(id){
 
     var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
     "0": neuList, "1": posList1, "2": posList2, "3": posList3};
-    createDragDropTable(id, dragDropList);
+    createDragDropTable(id, dragDropList, negList3.length+negList2.length+
+      negList1.length+neuList.length+posList1.length+posList2.length+posList3.length);
 
 // Not really pretty, but it works.
     var barChartText = "";
