@@ -168,7 +168,7 @@ var getTarget = function(id){
       <div class="col-md-8" style="padding-right:0;">
 
         <h5>Affects on other targets</h5>
-        <div class="stacked-bar-graph" id="barChart">
+        <div class="stacked-bar-graph" id="barChart${idName}">
           <span style="width:${giveMeList(negList3)}%" class='neg-bar-1'>${barChartText}</span>
           <span style="width:${giveMeList(negList2)}%" class='neg-bar-2'>${barChartText}</span>
           <span style="width:${giveMeList(negList1)}%" class='neg-bar-3'>${barChartText}</span>
