@@ -9,13 +9,13 @@ $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
   $("div.page").hide();
-  $(".tabs div:first").addClass("current").show(); // Activate first page
+  $("nav li:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
   drawBall("structure_data5.json");
-  getOptions();
+
   // On Click Event (within list-element!)
-  $(".tabs div").click(function() {
-    $(".tabs a").removeClass("current"); // Remove any active class
+  $("nav li").click(function() {
+    $("nav a").removeClass("current"); // Remove any active class
     $(this).addClass("current"); // Add "current" class to selected page
     // console.log(this);
 
@@ -26,28 +26,32 @@ $(document).ready(function(){
 
     // Find the href attribute value to identify the active page+content:
     var activePage = $(this).find("a").attr("href");
+    // if(!$(this).hasClass("search-container")){
+    // }
     $(activePage.split("/")[0]).show(); // Fade in the active page content
     switch(activePage.split("/")[1]){
       case "sweden":
-        $(".container-viz").empty();
-        // $(".container-viz").append("div");
-        drawBall("structure_data5.json");
-        getOptions();
-        $("#boxDescription").empty();
-        $("#columns").empty();
-        jsonFile = SWEDEN;
-        break;
+      $(".container-viz").empty();
+      // $(".container-viz").append("div");
+      drawBall("structure_data5.json");
+
+      $("#boxDescription").empty();
+      $("#columns").empty();
+      jsonFile = SWEDEN;
+      break;
       case "mongolia":
-        $(".container-viz").empty();
-        drawBall("structure_mongolia.json");
-        getOptions();
-        $("#boxDescription").empty();
-        $("#columns").empty();
-        jsonFile = MONGOLIA;
-        break;
+      $(".container-viz").empty();
+      drawBall("structure_mongolia.json");
+
+      $("#boxDescription").empty();
+      $("#columns").empty();
+      jsonFile = MONGOLIA;
+      break;
       default:
-        break;
+      break;
     }
+    // console.log(activePage, activePage.split("/")[0]);
+
   }); // end click method
 
 }); // end $(document).ready method
