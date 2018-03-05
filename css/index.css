@@ -16,8 +16,7 @@ border-bottom-right-radius: 100%30px;
 }
 
 .container-viz {
-  width: 50%;
-  text-align: center;
+  text-aligns: center;
 
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -32,6 +31,13 @@ border-bottom-right-radius: 100%30px;
   transition: all 0.5s ease;
 }
 
+.container {
+  /* width: 100%; */
+  /* max-width: inherit; */
+  text-align: center;
+}
+
+/* HEADER */
 .navbar {
   justify-content: center;
   /* color: green; */
@@ -51,6 +57,46 @@ border-bottom-right-radius: 100%30px;
   /* text-align: left; */
   height: 86px;
 }
+
+#mytabs a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#mytabs a:hover {
+    left: 0;
+}
+
+#Home {
+    top: 20px;
+    background-color: #007399;
+}
+
+#Sweden {
+    top: 80px;
+    background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/se.svg");
+    background-size: 110px 50px;
+}
+
+#Mongolia {
+    top: 140px;
+    background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg");
+    background-size: 130px 50px;
+}
+
+#contact {
+    top: 200px;
+    background-color: #00394d;
+}
+
+/*  */
 
 .memberContainer{
   display: inline-block;
