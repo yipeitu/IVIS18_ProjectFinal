@@ -290,5 +290,5 @@ function labelClick(d) {
   if (d.children || d._children) {return;}
   exp_text.text(d.data.why);
   left_box.attr("fill", d.data.color);
-  right_box.attr("fill", d.data.color);
+  // right_box.attr("fill", d.data.color);
 }
