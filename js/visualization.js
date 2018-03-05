@@ -372,12 +372,14 @@ function actionClickNodes(d){
     if(clickedNodes.length == 0){
       // close
       hideInfobox("close");
+      // toggle('#legend');
     }
     return false;
   }
   else if(clickedNodes.length < MAX_CLICKS){
     clickedNodes.push(d);
     hideInfobox();
+    // toggle('#legend');
     return true;
   } else{
     alert("at most two targets");
@@ -552,7 +554,7 @@ function targetClick(d){
   // call targetHover
   if(actionClickNodes(d)){
     // console.log("targetClick: add target");
-    getTarget(d.data.id); 
+    getTarget(d.data.id);
   }
   targetHover(d);
 }
@@ -573,6 +575,6 @@ function targetUnClick(id){
   // remove
   if(!actionClickNodes(clickedNodes[index])){
     $("#box"+id).empty();
-    $("#table"+id).empty(); 
+    $("#table"+id).empty();
   }
 }
