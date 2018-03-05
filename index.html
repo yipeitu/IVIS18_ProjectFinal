@@ -1,131 +1,62 @@
 <html>
 <head>
-  <title>Test Template</title>
+  <title>SEI</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100" rel="stylesheet">
+  <!-- Similar to SDG font-->
+  <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
   <meta charset="UTF-8">
   <!-- FILES -->
-  <script src="index.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="visualization.css">
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="icon" href="images/infovis-logo4.png">
+  <link rel="stylesheet" type="text/css" href="css/visualization.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/dragDrop.css">
 </head>
 
 <body>
 
-  <div class="jumbotron">
-    <div >
-      <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
-      <img class="logo" src="images/infovis-logo4.png"></img>
-    </div>
-
-    <nav class="navbar navbar-default">
-      <div><a class="btn btn-default" href="#page2" id="btn2">Visualization</a></div>
-      <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
-      <div><a class="btn btn-default" href="#page3" id="btn3">Something</a></div>
-      <div><a class="btn btn-default" href="#page4" id="btn4">Contact</a></div>
-    </nav>
+<div class="jumbotron">
+  <div>
+    <h1>UN GOAL INTERACTIVE VISUALIZATION</h1>
+    <img class="logo" src="images/infovis-logo4.png"></img>
   </div>
+
+  <nav class="navbar navbar-default">
+    <div><a class="btn btn-default" href="#page1" id="btn1">Home</a></div>
+    <div><a class="btn btn-default" href="#page2/sweden" id="btn2"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/se.svg">Sweden</a></div>
+    <div><a class="btn btn-default" href="#page2/mongolia" id="btn3"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg">Mongolia</a></div>
+    <div><a class="btn btn-default" href="#page4" onclick="getMemberInfo();" id="btn4">Contact</a></div>
+  </nav>
+</div>
 
   <!-- Seperate these pages into individual html files later. -->
-  <div class="content">
-
-    <div id="page2" class="page">
-      <div class="row" style="align:center;">
-        <div class="col">
-          <h1>This is the visualization page</h1>
-        </div> 
-        <br><br><br><br>    
-      </div>
-      <div class="row parent">
-        <div class="col-md-7 container-viz">
-        </div>
-
-
-        <div class="col">
-
-          <div class="border-dark text-left d-flex flex-row justify-content-end vertical-padding">
-            <div id="boxDescription">
-              <!-- <div>name:</div>
-              <div>description:</div>
-              <div>row sum:</div>
-              <div>column sum:</div>
-              <div> + positive influence</div>
-              <div>+3:</div>
-              <div>+2:</div>
-              <div>+1:</div>
-              <div> - negative influence</div>
-              <div>-1:</div>
-              <div>-2:</div>
-              <div>-3:</div>
-              <div>no obvious influence</div>
-              <div>0:</div> -->
-            </div>
-            <div id="boxHistory">
-              <!-- <img src="images/UNpics/01.jpg" class="unImg"> -->
-            </div>
-            </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
+<div class="content" id="viewVis">
 </div>
+
 
 <div id="page1" class="page">
-  <h1>This is the home page</h1>
 </div>
 
-
-
-
-<div id="page3" class="page">
+<!-- <div id="page3" class="page">
   <h1>Don't remeber what should be here</h1>
-</div>
+</div> -->
 
 <div id="page4" class="page">
-  <h1>This is the contact page</h1>
-  <!-- Team Member Template -->
-  <div class="memberContainer">
-    <img src="images/profile-icon.png"></img>
-    <div class="lynn" style="float:left; text-align:left;">
-    </br>
-  </br>
-</br>
-<p>Name: Member 1</p>
-<p>email: <a href="">member1@kth.se</a></p>
-<p>Role: Front-end Developer</p>
 </div>
-</div>
-</div>
-</div>
-<script src="visualization.js"></script>
+
+<script src="view/viewHome.js"></script>
+<script src="view/viewVisualization.js"></script>
+<script src="view/viewContact.js"></script>
+<script src="view/viewDragDrop.js"></script>
+<script src="js/index.js"></script>
+<script src="js/visualization.js"></script>
+<script src="js/legend.js"></script>
+<script src="js/targetInfo.js"></script>
+<script src="js/memberInfo.js"></script>
+<script src="js/dragDrop.js"></script>
 </body>
-
-<!-- <script>
-$(document).ready(function(){
-// When page loads...:
-$("div.content div").hide(); // Hide all content
-$("nav li:first").addClass("current").show(); // Activate first page
-$("div.content div:first").show(); // Show first page content
-
-// On Click Event (within list-element!)
-$("nav li").click(function() {
-$("nav a").removeClass("current"); // Remove any active class
-$(this).addClass("current"); // Add "current" class to selected page
-console.log(this);
-
-$("div.content div").hide(); // Hide all content
-
-// Find the href attribute value to identify the active page+content:
-var activePage = $(this).find("a").attr("href");
-$(activePage).show(); // Fade in the active page content
-}); // end click method
-
-}); // end $(document).ready method
-</script> -->
 </html>

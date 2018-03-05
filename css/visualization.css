@@ -1,0 +1,90 @@
+.node {
+/*  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+font-family: 'Pontano Sans', sans-serif;
+font-size: 12px;
+  fill: #bbb;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.node:hover {
+  /*fill: #000;*/
+  fill: #1F97D5;
+}
+
+.link {
+  /* stroke: steelblue; */
+  stroke-opacity: 0.4;
+  fill: none;
+  pointer-events: none;
+  position: absolute;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 700;
+}
+
+.node--focus {
+  fill: #1F97D5;
+  font-weight: 700;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #d62728;
+}
+
+.node-conflict {
+  fill: #BD69FF;
+}
+
+.node3 {
+  fill: #62BF77;
+}
+
+.node2 {
+  fill: #96CE7E;
+}
+
+.node1 {
+  fill: #D4E578;
+}
+
+.node-3 {
+  fill: #A54A47;
+}
+
+.node-2 {
+  fill: #F0686A;
+}
+
+.node-1 {
+  fill: #F1A772;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #d62728;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}
