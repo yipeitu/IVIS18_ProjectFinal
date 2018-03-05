@@ -17,9 +17,9 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			  	<tr>
 			  		<th colspan="7">
 			  	  	<div class="stacked-bar-graph" id="barChart${idName}">
-			        	<span class='neg-bar-1'></span>
+			        	<span class='neg-bar-3'></span>
 				        <span class='neg-bar-2'></span>
-				        <span class='neg-bar-3'></span>
+				        <span class='neg-bar-1'></span>
 
 				        <span class='neu-bar'></span>
 
@@ -43,37 +43,37 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			    <tr>
 			      <td class="dropPlace value-3 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value-2 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value-1 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value0 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value1 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value2 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value3 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			    </tr>
