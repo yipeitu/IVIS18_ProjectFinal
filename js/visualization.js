@@ -371,12 +371,14 @@ function actionClickNodes(d){
     if(clickedNodes.length == 0){
       // close
       hideInfobox("close");
+      // toggle('#legend');
     }
     return false;
   }
   else if(clickedNodes.length < MAX_CLICKS){
     clickedNodes.push(d);
     hideInfobox();
+    // toggle('#legend');
     return true;
   } else{
     alert("at most two targets");

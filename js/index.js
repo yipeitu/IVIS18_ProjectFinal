@@ -24,6 +24,7 @@ $(document).ready(function(){
     switch(activePage.split("/")[1]){
       case "sweden":
         $(".container-viz").empty();
+        // $(".container-viz").append("div");
         drawBall("structure_data5.json");
         $("#boxDescription").empty();
         $("#columns").empty();
