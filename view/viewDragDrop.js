@@ -1,4 +1,4 @@
-var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
+var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonData){
 	var idName = "table"+id.toString().replace(".", "");
 	$("#columns").append(`
 		<div id="${idName}">
@@ -81,20 +81,32 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			</table>
 		</div>
 	      `);
+	// console.log(jsonFile);
+	// Object.keys(influencedTargetsInfo).forEach(function(value){
+	// 	$("#"+idName).find("td.value"+value+" > .container").empty();
+	// 	colorBar(idName, value,influencedTargetsInfo[value].length, targetsNum/100);
+	// 	influencedTargetsInfo[value].forEach(function(target){
+	// 		$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName));
+	// 	})
+	// })
 	Object.keys(influencedTargetsInfo).forEach(function(value){
 		$("#"+idName).find("td.value"+value+" > .container").empty();
 		colorBar(idName, value,influencedTargetsInfo[value].length, targetsNum/100);
 		influencedTargetsInfo[value].forEach(function(target){
-			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName));
+			var textHover = "["+jsonData[target].Name+"]";
+			if(jsonData[id.toString()].reasons[target].length != 0){
+				textHover += (" "+ jsonData[id.toString()].reasons[target]);
+			}
+			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName, textHover));
 		})
 	})
 
 	dragDropAddListeners(idName);
 }
 
-var dragDropTarget = function(targetInfo, idName){
+var dragDropTarget = function(targetInfo, idName, targetHover){
 	// need to put reason
-	return `<div class="column m-1 class${idName}" draggable="true">${targetInfo}</div>`
+	return `<div class="column m-1 tableTarget class${idName}" draggable="true">${targetInfo}<div class="tableTargetText">${targetHover}</div></div>`
 }
 
 var colorBar = function(idName, colorValue, value, targetsNum){
