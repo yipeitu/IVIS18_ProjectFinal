@@ -4,12 +4,12 @@ $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
   $("div.page").hide();
-  $("nav li:first").addClass("current").show(); // Activate first page
+  $(".tabs div:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
   drawBall("structure_data5.json");
   // On Click Event (within list-element!)
-  $("nav div").click(function() {
-    $("nav a").removeClass("current"); // Remove any active class
+  $(".tabs div").click(function() {
+    $(".tabs a").removeClass("current"); // Remove any active class
     $(this).addClass("current"); // Add "current" class to selected page
     // console.log(this);
 
