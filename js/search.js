@@ -20,3 +20,12 @@ function searchFunction() {
     }
   } 
 }
+
+function getOptions(){
+  $("#browsers").empty()
+  $.getJSON("data/"+jsonFile, function(json){
+    Object.keys(json).forEach(function(key){
+      $("#browsers").append(`<option value="${json[key].Name}">`)
+    })
+  })
+}
