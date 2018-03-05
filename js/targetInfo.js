@@ -71,10 +71,10 @@ var getTarget = function(id){
         barChartText = list.length;
       }
       if (jsonFile === MONGOLIA ){
-        return list.length/0.17;
+        return list.length/(0.17+0.022);
       }
       else if (jsonFile === SWEDEN){
-        return list.length/0.34;
+        return list.length/(0.34+0.022);
       }
       else {
         return list.length;
