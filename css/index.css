@@ -433,7 +433,7 @@ li {
     position: absolute;
     width: 25px;
     height: 25px;
-    right: -17px;
+    right: -12.5px;
     background-color: white;
     border: 4px solid #7EC686;
     top: 15px;
@@ -481,7 +481,7 @@ li {
 
 /* Fix the circle for boxys on the right side */
 .right::after {
-    left: -16px;
+    left: -12.5px;
 }
 
 /* The actual content */
