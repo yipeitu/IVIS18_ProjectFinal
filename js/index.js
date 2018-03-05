@@ -1,5 +1,10 @@
 // LYNNS CODE
-var jsonFile = "db_data.json";
+// const SWEDEN = "db_data.json";
+// const MONGOLIA = "data_mongolia.json";
+const SWEDEN = "data_sweden.json";
+const MONGOLIA = "data_mongolia.json";
+
+var jsonFile = SWEDEN;
 $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
@@ -28,14 +33,14 @@ $(document).ready(function(){
         drawBall("structure_data5.json");
         $("#boxDescription").empty();
         $("#columns").empty();
-        jsonFile = "db_data.json";
+        jsonFile = SWEDEN;
         break;
       case "mongolia":
         $(".container-viz").empty();
         drawBall("structure_mongolia.json");
         $("#boxDescription").empty();
         $("#columns").empty();
-        jsonFile = "data_mongolia.json";
+        jsonFile = MONGOLIA;
         break;
       default:
         break;
