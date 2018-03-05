@@ -1,4 +1,8 @@
 var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonData){
+	var filename = "Target_" + id.toString().replace(".", "_");
+	var json_dump = encodeURI(JSON.stringify(influencedTargetsInfo, null, 2));
+	// Temporarily replace all quotes to (arbitrary) Z's to avoid problem with sending string,
+	// Revert this replacement in download.js
 	var idName = "table"+id.toString().replace(".", "");
 	$("#columns").append(`
 		<div id="${idName}">
@@ -7,7 +11,10 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonDa
 			  	<tr class="text-light h4 m-0" style="background-color: #7A7A79;">
 			  	  <th class="text-left style="width:90%">${id+" : "+jsonList.Name}</th>
 			  	  <th class="text-center" style="width:10%">
-			  	  	<button type="button" class="btn rounded" style="background-color: #61DADA"><b>DOWNLOAD</b></button
+			  	  	<button onclick="download_json('${filename}','${json_dump}')" 
+								type="button" class="btn rounded" 
+								style="background-color: #61DADA"><b>DOWNLOAD</b>
+							</button
 			  	  </th>
 			  	</tr>
 			  	</thead>
