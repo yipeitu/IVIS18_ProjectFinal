@@ -55,7 +55,8 @@ var drawBall = function(dataFileName){
     node = node
       .data(root.leaves())
         .enter().append("g")
-          .attr("class", "node")
+          .attr("class", function(d) {
+              return "node node_" + d.data.parent.key;})
           .attr("transform", function(d) {
               return "rotate(" + (d.x - 90) + ")translate("
               + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
@@ -141,20 +142,19 @@ function getStyle(d) {
     }
   });
   if (value == 3) {
-   color = "#62BF77"; z = 1;
+   color = "#62BF77"; z = 10;
   } else if (value == 2) {
-   color = "#96CE7E"; z = 2;
+   color = "#96CE7E"; z = 20;
   } else if (value == 1) {
-   color = "#D4E578"; z = 3;
+   color = "#D4E578"; z = 30;
   } else if (value == 0) {
    color = "blue"; z = 0;
   } else if (value == -1) {
-   color = "#F1A772"; z = 3;
+   color = "#F1A772"; z = 30;
   } else if (value == -2) {
-   color = "#F0686A"; z = 2;
+   color = "#F0686A"; z = 20;
   } else if (value == -3) {
-   color = "#A54A47";
-   z = 1;
+   color = "#A54A47"; z = 10;
   }
   var str1 = "stroke-width: ";
   var str2 = 2.5**Math.abs(value);
@@ -372,12 +372,14 @@ function actionClickNodes(d){
     if(clickedNodes.length == 0){
       // close
       hideInfobox("close");
+      // toggle('#legend');
     }
     return false;
   }
   else if(clickedNodes.length < MAX_CLICKS){
     clickedNodes.push(d);
     hideInfobox();
+    // toggle('#legend');
     return true;
   } else{
     alert("at most two targets");
@@ -514,6 +516,15 @@ function targetHover(hoverTarget){
       .classed("node-conflict", function(n){
         return inTargetsConflict.indexOf(n.data.name) != -1;
       })
+      .classed("noAttention", function(n){
+        if(namesClick.indexOf(n.data.name) != -1) return false;
+        if(inTargetsConflict.indexOf(n.data.name) != -1) return false;
+        Object.keys(valuesNodes).forEach(function(key){
+          if(valuesNodes[key].indexOf(n.data.name) != -1) return false;
+        })
+        return true;
+
+      })
 }
 
 
@@ -537,6 +548,7 @@ function targetOut(){
         .classed("node-2", false)
         .classed("node-1", false)
         .classed("node-conflict", false)
+        .classed("noAttention", false)
   } // non clicked targets
   else {
     // console.log("targetOut: after click")
@@ -552,7 +564,7 @@ function targetClick(d){
   // call targetHover
   if(actionClickNodes(d)){
     // console.log("targetClick: add target");
-    getTarget(d.data.id); 
+    getTarget(d.data.id);
   }
   targetHover(d);
 }
@@ -572,6 +584,6 @@ function targetUnClick(id){
   // remove
   if(!actionClickNodes(clickedNodes[index])){
     $("#box"+id).empty();
-    $("#table"+id).empty(); 
+    $("#table"+id).empty();
   }
 }

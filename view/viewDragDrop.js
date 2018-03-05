@@ -43,37 +43,37 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			    <tr>
 			      <td class="dropPlace value-3 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value-2 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value-1 class${idName}" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value0 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value1 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value2 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			      <td class="dropPlace value3 class${idName}"  ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
 			      	<div class="container">
-				      	
+
 				    </div>
 			      </td>
 			    </tr>
@@ -101,16 +101,16 @@ var colorBar = function(idName, colorValue, value, targetsNum){
 	if(value == 0) return;
 		switch(colorValue.toString()){
 			case "-3":
-				$("#barChart"+idName+" > .neg-bar-3").css("width", value/targetsNum+"%");
-				$("#barChart"+idName+" > .neg-bar-3").text(value);
+				$("#barChart"+idName+" > .neg-bar-1").css("width", value/targetsNum+"%");
+				$("#barChart"+idName+" > .neg-bar-1").text(value);
 				break;
 			case "-2":
 				$("#barChart"+idName+" > .neg-bar-2").css("width", value/targetsNum+"%");
 				$("#barChart"+idName+" > .neg-bar-2").text(value);
 				break;
 			case "-1":
-				$("#barChart"+idName+" > .neg-bar-1").css("width", value/targetsNum+"%");
-				$("#barChart"+idName+" > .neg-bar-1").text(value);
+				$("#barChart"+idName+" > .neg-bar-3").css("width", value/targetsNum+"%");
+				$("#barChart"+idName+" > .neg-bar-3").text(value);
 				break;
 			case "0":
 				$("#barChart"+idName+" > .neu-bar").css("width", value/targetsNum+"%");

@@ -2,8 +2,60 @@
 /*  font: 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 font-family: 'Pontano Sans', sans-serif;
 font-size: 12px;
-  fill: #bbb;
 }
+
+.node_1 {
+  fill: #E6223D;
+}
+.node_2 {
+  fill: #DEA73A;
+}
+.node_3 {
+  fill: #4CA247;
+}
+.node_4 {
+  fill: #C72030;
+}
+.node_5 {
+  fill: #EF402E;
+}
+.node_6 {
+  fill: #26BFE7;
+}
+.node_7 {
+  fill: #FBC412;
+}
+.node_8 {
+  fill: #A41C45;
+}
+.node_9 {
+  fill: #F26A2F;
+}
+.node_10 {
+  fill: #DF1768;
+}
+.node_11 {
+  fill: #F99C2A;
+}
+.node_12 {
+  fill: #C08E2D;
+}
+.node_13 {
+  fill: #3F7F47;
+}
+.node_14 {
+  fill: #1F97D5;
+}
+.node_15 {
+  fill: #5ABA47;
+}
+.node_16 {
+  fill: #136A9F;
+}
+.node_17 {
+  fill: #13496B;
+}
+
 
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -49,6 +101,10 @@ font-size: 12px;
 
 .node-conflict {
   fill: #BD69FF;
+}
+
+.noAttention{
+  fill: #f2f2f2;
 }
 
 .node3 {

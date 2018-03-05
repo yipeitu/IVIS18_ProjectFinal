@@ -1,5 +1,10 @@
 // LYNNS CODE
-var jsonFile = "db_data.json";
+// const SWEDEN = "db_data.json";
+// const MONGOLIA = "data_mongolia.json";
+const SWEDEN = "data_sweden.json";
+const MONGOLIA = "data_mongolia.json";
+
+var jsonFile = SWEDEN;
 $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
@@ -7,6 +12,7 @@ $(document).ready(function(){
   $(".tabs div:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
   drawBall("structure_data5.json");
+  getOptions();
   // On Click Event (within list-element!)
   $(".tabs div").click(function() {
     $(".tabs a").removeClass("current"); // Remove any active class
@@ -24,17 +30,20 @@ $(document).ready(function(){
     switch(activePage.split("/")[1]){
       case "sweden":
         $(".container-viz").empty();
+        // $(".container-viz").append("div");
         drawBall("structure_data5.json");
+        getOptions();
         $("#boxDescription").empty();
         $("#columns").empty();
-        jsonFile = "db_data.json";
+        jsonFile = SWEDEN;
         break;
       case "mongolia":
         $(".container-viz").empty();
         drawBall("structure_mongolia.json");
+        getOptions();
         $("#boxDescription").empty();
         $("#columns").empty();
-        jsonFile = "data_mongolia.json";
+        jsonFile = MONGOLIA;
         break;
       default:
         break;

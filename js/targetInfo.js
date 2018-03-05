@@ -70,15 +70,14 @@ var getTarget = function(id){
 
         barChartText = list.length;
       }
-      if (jsonFile === "data_mongolia.json" ){
-        // +0.22 because otherwise it breaks
+      if (jsonFile === MONGOLIA){
         return list.length/(0.17+0.022);
       }
-      else if (jsonFile === "db_data.json"){
+      else if (jsonFile === SWEDEN){
         return list.length/(0.34+0.022);
       }
       else {
-        return list.length;
+        return list.length/0.22;
       }
 
     }
@@ -153,11 +152,13 @@ var getTarget = function(id){
       <div class="col-md-3">
       <div class="image-container"
       onmouseover=hoverInfo(${id})
-      onmouseout=unHover("images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png")
+      onmouseout=unHover("${idName}")
       onclick=moreInfo(${parseInt(id)})
       >
       <img
-      src="images/UNpics_targets_png/GOAL_${parseInt(id)}_TARGET_${id}.png"
+      src="${jsonList.Icon}"
+      hover="${jsonList.IconHover}"
+      icon="${jsonList.Icon}"
       class="unImg"
       id="unImg${idName}" )
       >
@@ -167,7 +168,7 @@ var getTarget = function(id){
       </div>
       <div style="padding-top:.5em;text-align:center;max-width:11.1em;"><i>Click image for more information</i></div>
       </div>
-      <div class="col-md-8" style="padding-right:0;">
+      <div class="col-md-8" style="padding:0;">
 
         <h5>Affects on other targets</h5>
         <div class="stacked-bar-graph" id="barChart${idName}">
@@ -218,16 +219,32 @@ var hideInfobox = function(close="show") {
   $("#container").addClass("row parent");
   $(".container-viz").addClass("col-md-7");
   $("#boxDescription").show();
+//   if ( $("#boxDescription").css('display') === 'block' ){
+//     console.log("This function is running");
+//     $("#legend").hide();
+//     // toggle('#legend');
+// }
+// else {
+//   $("#legend").show();
+// }
 
   if ($('#container').hasClass('container')){
     $("#container").removeClass("container");
+    // $("#legend").show();
   }
+
+  if (!$('#container').hasClass('container')){
+    $("#legend").hide(15);
+    // toggle("#legend")
+  }
+
   if (close === 'close'){
     $("#container").removeClass("row parent");
     $(".container-viz").removeClass("col-md-7");
     $("#container").addClass("container");
     $("#boxDescription").empty();
     $("#columns").empty();
+    $("#legend").show(500);
     targetOut(null);
   }
 }
@@ -261,19 +278,20 @@ function hoverInfo(id) {
   var idName = id.toString().replace(".", "");
   var element = document.getElementById("unImg"+idName);
   id = parseInt(id);
-  if (id > 9) {
-    var image = "images/UNpics_goals/transparent" + id + ".png";
-  } else {
-    var image = "images/UNpics_goals/transparent0" + id + ".png";
-  }
+  var image = $("#unImg"+idName).attr("hover");
+  // if (id > 9) {
+  //   var image = "images/UNpics_goals/transparent" + id + ".png";
+  // } else {
+  //   var image = "images/UNpics_goals/transparent0" + id + ".png";
+  // }
   element.setAttribute('src', image);
   element.style.opacity = "0.4";
   var x = document.getElementById("image-text"+idName);
   x.style.display = "block";
 }
 
-function unHover(image) {
-  var id = image.split("_").slice(-1)[0].replace(".png", "").replace(".", "");
+function unHover(id) {
+  var image = $("#unImg"+id).attr("icon");
   var element = document.getElementById("unImg"+id)
   element.setAttribute('src', image);
   element.style.opacity = "1.0";
