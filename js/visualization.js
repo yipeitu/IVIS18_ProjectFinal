@@ -377,7 +377,7 @@ function actionClickNodes(d){
   }
   else if(clickedNodes.length < MAX_CLICKS){
     clickedNodes.push(d);
-    hideInfobox();
+    hideInfobox();  // Shows info box
     return true;
   } else{
     alert("at most two targets");
@@ -442,14 +442,36 @@ function targetHover(hoverTarget){
     })
 
   } // hover function can't work, when two targets clicked
+  else if() {
+    //////////// Links from first target clicked ////////////////////////
+    // Doesn't work properly. Links on hover gets lower opacity instead of the
+    // ones from the clicked target
+    link
+    .classed("link--target", function(l) {
+      if (l.target === clickedNodes[0])
+        return l.source.source = true;
+    })
+    .classed("link--source", function(l) {
+      if (l.source === clickedNodes[0])
+        return l.target.target = true;
+    })
+    .filter(function(l) { return (l.source === clickedNodes[0]) })
+    .attr("style", function(clickedNodes) {
+      // console.log(clickedNodes);
+      return getStyle(clickedNodes[0]).concat("stroke-opacity: 0.2;");
+    })
+    .raise();
+  }
   else {
     // console.log("targetHover: click 1 or click none")
     link
     .classed("link--target", function(l) {
-      if (l.target === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.source.source = true;
+      if (l.target === hoverTarget || clickedNodes.indexOf(l.source) > -1)
+        return l.source.source = true;
     })
     .classed("link--source", function(l) {
-      if (l.source === hoverTarget || clickedNodes.indexOf(l.source) > -1) return l.target.target = true;
+      if (l.source === hoverTarget || clickedNodes.indexOf(l.source) > -1)
+        return l.target.target = true;
     })
     .filter(function(l) { return (l.source === hoverTarget) || (clickedNodes.indexOf(l.source) > -1); })
     .attr("style", function(hoverTarget) {
@@ -476,6 +498,8 @@ function targetHover(hoverTarget){
           valuesNodes[target.value.toString()].push(target.target)
         }
       })
+
+      // Set lower opacity on clicked target
     }
 
     inTargetsConflict = inTargetsClick.filter(function(n) {
@@ -552,7 +576,7 @@ function targetClick(d){
   // call targetHover
   if(actionClickNodes(d)){
     // console.log("targetClick: add target");
-    getTarget(d.data.id); 
+    getTarget(d.data.id);
   }
   targetHover(d);
 }
@@ -573,6 +597,6 @@ function targetUnClick(id){
   // remove
   if(!actionClickNodes(clickedNodes[index])){
     $("#box"+id).empty();
-    $("#table"+id).empty(); 
+    $("#table"+id).empty();
   }
 }
