@@ -55,7 +55,8 @@ var drawBall = function(dataFileName){
     node = node
       .data(root.leaves())
         .enter().append("g")
-          .attr("class", "node")
+          .attr("class", function(d) {
+              return "node node_" + d.data.parent.key;})
           .attr("transform", function(d) {
               return "rotate(" + (d.x - 90) + ")translate("
               + (d.y + 3) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
@@ -515,6 +516,15 @@ function targetHover(hoverTarget){
       .classed("node-conflict", function(n){
         return inTargetsConflict.indexOf(n.data.name) != -1;
       })
+      .classed("noAttention", function(n){
+        if(namesClick.indexOf(n.data.name) != -1) return false;
+        if(inTargetsConflict.indexOf(n.data.name) != -1) return false;
+        Object.keys(valuesNodes).forEach(function(key){
+          if(valuesNodes[key].indexOf(n.data.name) != -1) return false;
+        })
+        return true;
+
+      })
 }
 
 
@@ -538,6 +548,7 @@ function targetOut(){
         .classed("node-2", false)
         .classed("node-1", false)
         .classed("node-conflict", false)
+        .classed("noAttention", false)
   } // non clicked targets
   else {
     // console.log("targetOut: after click")
