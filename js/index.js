@@ -12,7 +12,7 @@ $(document).ready(function(){
   $("nav li:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
   drawBall("structure_data5.json");
-
+  getOptions("sweden");
   // On Click Event (within list-element!)
   $("nav li").click(function() {
     $("nav a").removeClass("current"); // Remove any active class
@@ -34,7 +34,7 @@ $(document).ready(function(){
       $(".container-viz").empty();
       // $(".container-viz").append("div");
       drawBall("structure_data5.json");
-
+      getOptions("sweden");
       $("#boxDescription").empty();
       $("#columns").empty();
       jsonFile = SWEDEN;
@@ -42,7 +42,7 @@ $(document).ready(function(){
       case "mongolia":
       $(".container-viz").empty();
       drawBall("structure_mongolia.json");
-
+      getOptions("mongolia");
       $("#boxDescription").empty();
       $("#columns").empty();
       jsonFile = MONGOLIA;

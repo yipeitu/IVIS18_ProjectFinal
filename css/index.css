@@ -1,7 +1,8 @@
 body {
   /* font-family: 'Pontano Sans', sans-serif; */
   font-family: 'Montserrat', sans-serif;
-  font-weight: 100;
+  font-weight: 400;
+  background-color: #EEF2F6;
 }
 
 /* #close {
@@ -44,6 +45,7 @@ body {
   /* color: green; */
 }
 
+
 .jumbotron {
   padding-top: 0.9375em;
   padding-bottom: 0em;
@@ -51,7 +53,7 @@ body {
   /* padding-top: 0; */
   /* text-align: center; */
   color: black;
-  background-color: #EEF2F6;
+  background-color: #dee6ed;
   border-radius: 0;
 }
 
@@ -66,7 +68,9 @@ body {
 
 .form-inline {
   margin-bottom: 0;
+  /* justify-content: right; */
 }
+
 
 /* #mytabs a {
     position: absolute;
@@ -108,29 +112,57 @@ body {
     background-color: #00394d;
 } */
 
-/*  */
+/* CONTACT PAGE */
 
 .memberContainer{
   display: inline-block;
-  height: auto;
-  width: auto;
+  height: 100%;
+  width: 100%;
 }
 
-.memberContainer p {
+/* .memberContainer p {
   font-weight: bold;
-}
+} */
 
-.memberContainer img {
+.card img {
   padding-right: 0.625em;
   display: block;
-  float: left;
-  max-width: 9.375em;
-  max-height: 9.375em;
+  width: 100%;
+  clip: rect(0px, 50px, 50px, 0px,);
 }
 
-.memberInfoBox {
+/* .memberInfoBox {
   display: inline-block;
   margin: 0.625em;
+} */
+
+/* Three columns side by side */
+.col {
+    float: left;
+    width: 25%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+/* Add some shadows to create a card effect */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Some left and right padding inside the container */
+.cardinfo-container {
+    padding: 0 16px;
+}
+
+/* Clear floats */
+.cardinfo-container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.role {
+    color: grey;
 }
 
 /* TEMPORARY */
@@ -152,6 +184,7 @@ body {
 background-color: white;
 margin-left: 0.625em;
 border-radius: 0.125em;
+font-weight: 1000;
 }
 
 .btn-outline:hover {
@@ -182,6 +215,7 @@ border-radius: 0.125em;
 
 a.btn {
   color: black;
+  font-weight: 1000;
 }
 
 .unImg {

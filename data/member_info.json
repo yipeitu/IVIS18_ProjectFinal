@@ -3,14 +3,14 @@
     "id": "Lynn",
     "name": "Lynn Lennmor",
     "email": "lynnl@kth.se",
-    "role": ["Front End Developer", "UX-Research"],
+    "role": ["Front End Developer", " UX-Research"],
     "image": "images/profile_pictures/lynn.jpg"
   },
   "Member_2":{
     "id": "Claire",
     "name": "Claire Lee",
     "email": "pylee@kth.se",
-    "role": ["Designer", "UX-Research"],
+    "role": ["Designer", " UX-Research"],
     "image": "images/profile_pictures/claire.jpg"
   },
   "Member_3":{
@@ -24,7 +24,7 @@
     "id": "Elsa",
     "name": "Elsa Landberg",
     "email": "elsala@kth.se",
-    "role": ["Project Manager", "Designer"],
+    "role": ["Project Manager", " Designer"],
     "image": "images/profile_pictures/elsa.png"
   },
   "Member_5":{

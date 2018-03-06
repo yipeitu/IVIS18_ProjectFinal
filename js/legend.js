@@ -69,8 +69,11 @@ var exp_text = svg1.append("text")
 .style("text-anchor", "start")
 .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
 .attr("font-family", "Pontano Sans") //, sans-serif;
+.attr("font-size", "0.6875em")
+.attr("font-weight", '1000')
+.attr("color", 'black')
 .attr("font-size", "11px")
-.attr("fill", "#bbb");
+.attr("fill", "black");
 
 // svg1.append("text")
 //     .attr("x", -margin.left + 10)
@@ -176,14 +179,15 @@ nodeEnter.append('text')
       .text(function(d) { return d.data.name; })
       .attr("font-family", "Pontano Sans") //, sans-serif;
       .attr("font-size", "12px")
+      .attr("font-weight", '1000')
       .attr("fill", function(d) {
-        return d.children || d._children ? "#1998D1" : "#bbb";
+        return d.children || d._children ? "#1998D1" : "black";
       })
       .on("mouseover", function(d) {
         d3.select(this).attr("font-size", 14).style("fill", d.data.color);
       })
       .on("mouseout", function(d) {
-        d3.select(this).attr("font-size", 12).style("fill", "#bbb");
+        d3.select(this).attr("font-size", 12).style("fill", "black");
       })
       .on("click", labelClick);
 

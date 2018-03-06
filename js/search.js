@@ -14,18 +14,17 @@ function searchFunction() {
   for (i = 0; i < node._parents[0].childElementCount; i++) {
     targetObj = node._parents[0].children[i].__data__;
     targetKey = targetObj.data.key;
-    //console.log("filter: " + filter + " targetKey: " + targetKey.toUpperCase());
+    console.log("filter: " + filter + " targetKey: " + targetKey.toUpperCase());
     if(filter.split(": ")[1] == targetKey.toUpperCase()){
       targetClick(targetObj);
     }
   }
 }
 
-function getOptions(){
+function getOptions(name){
   console.log("here");
-  $("#browsers").empty()
-
-  if(jsonFile == SWEDEN){
+  $("#browsers").empty();
+  if(name == "sweden"){
     $("#browsers").append(`
       <option value="1.3: Social protection">
       <option value="1.5: Economic and social resilience">
@@ -60,7 +59,7 @@ function getOptions(){
       <option value="16.6: ffective institutions">
       <option value="17.11: ports from developing countries">
       <option value="17.13: croeconomic stability">`)
-  } else if(jsonFile == MONGOLIA){
+  } else if(name == "mongolia"){
     $("#browsers").append(`
         <option value="1: Protection of water">
         <option value="2: Drinking water supply">
