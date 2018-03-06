@@ -1,7 +1,8 @@
 body {
   /* font-family: 'Pontano Sans', sans-serif; */
   font-family: 'Montserrat', sans-serif;
-  font-weight: 100;
+  font-weight: 400;
+  background-color: #EEF2F6;
 }
 
 /* #close {
@@ -44,13 +45,14 @@ body {
   /* color: green; */
 }
 
+
 .jumbotron {
   padding-top: 0.9375em;
   padding-bottom: 0.3125em;
   /* padding-top: 0; */
   /* text-align: center; */
   color: black;
-  background-color: #EEF2F6;
+  background-color: #dee6ed;
   border-radius: 0;
 }
 
@@ -61,7 +63,9 @@ body {
 
 .form-inline {
   margin-bottom: 0;
+  /* justify-content: right; */
 }
+
 
 /* #mytabs a {
     position: absolute;
@@ -147,6 +151,7 @@ body {
 background-color: white;
 margin-left: 0.625em;
 border-radius: 0.125em;
+font-weight: 1000;
 }
 
 .btn-outline:hover {
@@ -177,6 +182,7 @@ border-radius: 0.125em;
 
 a.btn {
   color: black;
+  font-weight: 1000;
 }
 
 .unImg {
@@ -363,7 +369,7 @@ li {
      -o-transition: all 0.5s ease;
      transition: all 0.5s ease;
 }
-/* 
+/*
 #legend {
   display: none;
 } */
