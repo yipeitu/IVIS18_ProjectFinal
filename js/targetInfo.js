@@ -196,7 +196,7 @@ var getTarget = function(id){
         </div>
 
       <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-      <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+      <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="description fa fa-angle-right"></i> Description</p>
       <div id="description${idName}" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
       </div>
         <div class="col-md-1">
@@ -219,8 +219,11 @@ var toggle = function(id) {
     $(".legendButton").toggleClass('fa fa-chevron-right fa fa-chevron-down');
 
   }
+  else if(id.match("#description") != null){
+    $(id).animate({height:'toggle'},'inherit');
+    $(".description").toggleClass('fa fa-angle-right fa fa-angle-down');
+  }
   else {
-
     $(id).slideToggle();
   }
 }
