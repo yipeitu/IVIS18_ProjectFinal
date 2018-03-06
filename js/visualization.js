@@ -455,6 +455,61 @@ function targetHover(hoverTarget){
     })
 
   } // hover function can't work, when two targets clicked
+  else if(clickedNodes.length == 1) {
+    //////////// Links from first target clicked ////////////////////////
+    // Doesn't work properly. Links on hover gets lower opacity instead of the
+    // ones from the clicked target
+    link
+    .classed("link--target", function(l) {
+      if (l.target === clickedNodes[0]) return l.source.source = true;
+    })
+    .classed("link--source", function(l) {
+      if (l.source === clickedNodes[0]) return l.target.target = true;
+    })
+    .filter(function(l) { return (l.source === clickedNodes[0]); })
+    .attr("style", function(hoverTarget) {
+      return getStyle(hoverTarget);
+    })
+    .raise();
+
+    link
+    .classed("link--target", function(l) {
+      if (l.target === hoverTarget) return l.source.source = true;
+    })
+    .classed("link--source", function(l) {
+      if (l.source === hoverTarget) return l.target.target = true;
+    })
+    .filter(function(l) { return l.source === hoverTarget; })
+    .attr("style", function(hoverTarget) {
+      return getStyle(hoverTarget);
+    })
+    .raise();
+
+    // click target
+    if(clickedNodes.length > 0){
+      namesClick.push(clickedNodes[0].data.name);
+      clickedNodes[0].data.imports.forEach(function(target){
+        if(target.value !== 0 && target.target != hoverTarget.data.name){
+          inTargetsClick.push(target.target);
+          valuesNodes[target.value.toString()].push(target.target)
+        }
+      })
+    }
+
+    if(hoverTarget !== clickedNodes[0]){
+      // hover target
+      hoverTarget.data.imports.forEach(function(target){
+        if(target.value !== 0 && namesClick.indexOf(target.target) < 0){
+          inTargetsHover.push(target.target);
+          valuesNodes[target.value.toString()].push(target.target)
+        }
+      })
+    }
+
+    inTargetsConflict = inTargetsClick.filter(function(n) {
+        return inTargetsHover.indexOf(n) !== -1;
+    });
+  }
   else {
     // console.log("targetHover: click 1 or click none")
     link
