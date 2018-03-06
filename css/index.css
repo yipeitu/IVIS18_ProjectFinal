@@ -12,6 +12,10 @@ body {
     background:#ccc;
 } */
 
+h3 {
+  margin: 0px;
+}
+
 .container-viz {
   text-aligns: center;
   /* margin-left: 5%; */
@@ -48,8 +52,8 @@ body {
 
 .jumbotron {
   padding-top: 0.9375em;
-  padding-bottom: 0em;
-  margin-bottom: 0.5em;
+  padding-bottom: 0.9375em;
+  margin-bottom: 10px;
   /* padding-top: 0; */
   /* text-align: center; */
   color: black;
