@@ -395,7 +395,7 @@ function actionClickNodes(d){
 =======
     getTarget(d.data.id);
     hideInfobox();
-    
+
 >>>>>>> gh-pages
     return true;
   } // click
@@ -458,26 +458,26 @@ function targetHover(hoverTarget){
     })
 
   } // hover function can't work, when two targets clicked
-  else if() {
-    //////////// Links from first target clicked ////////////////////////
-    // Doesn't work properly. Links on hover gets lower opacity instead of the
-    // ones from the clicked target
-    link
-    .classed("link--target", function(l) {
-      if (l.target === clickedNodes[0])
-        return l.source.source = true;
-    })
-    .classed("link--source", function(l) {
-      if (l.source === clickedNodes[0])
-        return l.target.target = true;
-    })
-    .filter(function(l) { return (l.source === clickedNodes[0]) })
-    .attr("style", function(clickedNodes) {
-      // console.log(clickedNodes);
-      return getStyle(clickedNodes[0]).concat("stroke-opacity: 0.2;");
-    })
-    .raise();
-  }
+  // else if(clickedNodes.length === 1) {
+  //   //////////// Links from first target clicked ////////////////////////
+  //   // Doesn't work properly. Links on hover gets lower opacity instead of the
+  //   // ones from the clicked target
+  //   link
+  //   .classed("link--target", function(l) {
+  //     if (clickedNodes.indexOf(l.source) > -1)
+  //       return l.source.source = true;
+  //   })
+  //   .classed("link--source", function(l) {
+  //     if (clickedNodes.indexOf(l.source) > -1)
+  //       return l.target.target = true;
+  //   })
+  //   .filter(function(l) { return (clickedNodes.indexOf(l.source) > -1) })
+  //   .attr("style", function(clickedNodes) {
+  //     // console.log(clickedNodes);
+  //     return getStyle(clickedNodes[0]).concat("stroke-opacity: 0.2;");
+  //   })
+  //   .raise();
+  // }
   else {
     // console.log("targetHover: click 1 or click none")
     link
