@@ -18,16 +18,30 @@
 </head>
 
 <body>
-<div id="mytabs" class="tabs">
+  <div class="jumbotron">
+  <nav class="navbar navbar-default">
+    <div><img class="logo" src="images/infovis-logo4.png" style="max-width:auto;"></img></div>
+    <div><h3>SDG VISUALIZATION</h3></div>
+    <li><a class="btn btn-default" href="#page2/sweden" id="sweden"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/se.svg">Sweden</a></li>
+    <li><a class="btn btn-default" href="#page2/mongolia" id="btn3"><img class="icon mr-1" src="https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg">Mongolia</a></li>
+    <li><a class="btn btn-default" href="#page1" id="about">About</a></li>
+    <li><a class="btn btn-default" href="#page4" onclick="getMemberInfo();" id="btn4">Contact</a></li>
+
+  <div class="search-container">
+  </div>
+
+ </nav>
+ </div>
+<!-- <div id="mytabs" class="tabs">
   <div><a style="z-index:99999;" href="#page1" id="Home">Home</a></div>
   <div><a style="z-index:99999;" href="#page2/sweden" id="Sweden">Sweden</a></div>
   <div><a style="z-index:99999;" href="#page2/mongolia" id="Mongolia">Mongolia</a></div>
   <div><a style="z-index:99999;" href="#page4" onclick="getMemberInfo();" id="Contact">Contact</a></div>
-</div>
+</div> -->
 
-<div class="search-container">
+<!-- <div class="search-container">
 
-</div>
+</div> -->
 
   <!-- Seperate these pages into individual html files later. -->
 <div class="content" id="viewVis">
@@ -48,6 +62,7 @@
 <script src="view/viewSearch.js"></script>
 <script src="view/viewVisualization.js"></script>
 <script src="view/viewContact.js"></script>
+<script src="js/download.js"></script>
 <script src="view/viewDragDrop.js"></script>
 <script src="js/index.js"></script>
 <script src="js/visualization.js"></script>

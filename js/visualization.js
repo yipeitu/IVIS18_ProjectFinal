@@ -95,6 +95,7 @@ var drawBall = function(dataFileName){
         // });
   });
   clickedNodes.length = 0;
+  getOptions();
 }
 
 
@@ -390,12 +391,11 @@ function actionClickNodes(d){
   // click
   else if(clickedNodes.length < MAX_CLICKS && clickedNodes.indexOf(d) < 0){
     clickedNodes.push(d);
-<<<<<<< HEAD
-    hideInfobox();  // Shows info box
-=======
     getTarget(d.data.id);
     hideInfobox();
 
+<<<<<<< HEAD
+=======
 >>>>>>> gh-pages
     return true;
   } // click
@@ -600,14 +600,7 @@ function targetClick(d){
   // yes: unclicked -> add target, getData
   // no: clicked -> remove target
   // call targetHover
-<<<<<<< HEAD
-  if(actionClickNodes(d)){
-    // console.log("targetClick: add target");
-    getTarget(d.data.id);
-  }
-=======
   actionClickNodes(d)
->>>>>>> gh-pages
   targetHover(d);
 }
 
@@ -625,13 +618,8 @@ function targetUnClick(id){
   id = id.toString().replace(".", "");
   // remove
   if(!actionClickNodes(clickedNodes[index])){
-<<<<<<< HEAD
-    $("#box"+id).empty();
-    $("#table"+id).empty();
-=======
     $("#box"+id).remove();
     $("#table"+id).remove();
     targetOut();
->>>>>>> gh-pages
   }
 }

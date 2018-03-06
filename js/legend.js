@@ -7,7 +7,7 @@ var treeData =
       { "name": "Influenced +3",
         "color": "#62BF77",
         "value": "3",
-        "why": "Indivisible (+3): Inextricably linked to the achivement of another goal"},
+        "why": "Indivisible (+3): Inextricably linked to achivement of another goal"},
       { "name": "Influenced +2",
         "color": "#96CE7E",
         "value": "2",
@@ -33,7 +33,7 @@ var treeData =
         "value": "-3",
         "why": "Cancelling (-3): Makes it impossible to reach another goal"},
       {
-        "name": "Colliding Targets",
+        "name": "Shared Targets",
         "color": "#BD69FF",
         "value": "2",
         "why": "Two selected targets that influence the same targets"
@@ -43,8 +43,10 @@ var treeData =
 
 // Set the dimensions and margins of the diagram
 var margin = {top: 0, right: 5, bottom: 80, left: 110},
-    width = window.innerWidth*0.25 - margin.left - margin.right,
+    width = window.innerWidth*0.27 - margin.left - margin.right,
     height = 250 -margin.top - margin.bottom;
+
+    console.log(window.innerWidth);
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
@@ -67,14 +69,14 @@ var exp_text = svg1.append("text")
 .style("text-anchor", "start")
 .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
 .attr("font-family", "Pontano Sans") //, sans-serif;
-.attr("font-size", "14px")
+.attr("font-size", "11px")
 .attr("fill", "#bbb");
 
-svg1.append("text")
-    .attr("x", -margin.left + 10)
-    .attr("y", 40)
-    .style("text-anchor", "start")
-    .text("Legend");
+// svg1.append("text")
+//     .attr("x", -margin.left + 10)
+//     .attr("y", 40)
+//     .style("text-anchor", "start")
+//     .text("Legend");
 
 var left_box = svg1.append("rect")
     .attr("class", "side-rect")
@@ -129,7 +131,7 @@ function update(source) {
       links = treeData.descendants().slice(1);
 
   // Normalize for fixed-depth.
-  nodes.forEach(function(d){ d.y = d.depth * 180});
+  nodes.forEach(function(d){ d.y = d.depth * 100});
 
   // ****************** Nodes section ***************************
 
