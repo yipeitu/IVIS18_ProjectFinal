@@ -6,15 +6,24 @@ var getMemberInfo = function() {
     // console.log(json_m)
     for (var i in json_m) {
       member_info_list = json_m[i];
+      if(i % 4 == 0) {
+        if(i != 0) {
+          text += `</div>`
+        }
+        text += `<div class="row">`
+      }
 
-      text += `<div class="memberInfoBox">
-      <img src="${member_info_list.image}"></img>
-      <div class="lynn" style="float:left; text-align:left;">
-      <br>
-      <p>${member_info_list.name}</p>
-      <p>email: <a href="">${member_info_list.email}</a></p>
-      <p>Role:${member_info_list.role}</p>
-      </div></div>`
+      text += `
+      <div class="col">
+        <div class="card">
+          <img src="${member_info_list.image}"></img>
+          <div class="cardinfo-container">
+            <h2>${member_info_list.name}</h2>
+            <p class="role">${member_info_list.role}</p>
+            <p>E-mail: <a href="mailto:${member_info_list.email}">${member_info_list.email}</a></p>
+          </div>
+        </div>
+      </div>`
 
       $(".memberContainer")[0].innerHTML = text;
 
