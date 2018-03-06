@@ -69,14 +69,11 @@ var exp_text = svg1.append("text")
 .style("text-anchor", "start")
 .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
 .attr("font-family", "Pontano Sans") //, sans-serif;
-<<<<<<< HEAD
 .attr("font-size", "0.6875em")
 .attr("font-weight", '1000')
-.attr("color", 'black');
-=======
+.attr("color", 'black')
 .attr("font-size", "11px")
-.attr("fill", "#bbb");
->>>>>>> 6ae7e24e799f1a06accd521b810f5bd9172ffad0
+.attr("fill", "black");
 
 // svg1.append("text")
 //     .attr("x", -margin.left + 10)
