@@ -76,7 +76,7 @@ var drawBall = function(dataFileName){
           : -(Math.abs(sumOfChildren(d)) + 5));})
         // .attr("y", barHeight / 2)
         .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-        .text(function(d) { return d.data.key; });
+        .text(function(d) { return d.data.id.toString()+" "+d.data.key; });
 
     node.append("rect")
         .attr("width", function(d) {
