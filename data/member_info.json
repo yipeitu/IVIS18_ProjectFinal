@@ -3,56 +3,56 @@
     "id": "Lynn",
     "name": "Lynn Lennmor",
     "email": "lynnl@kth.se",
-    "role": ["Front End Developer", " UX-Research"],
+    "role": ["Front End Developer", "UX-Research", "Designer"],
     "image": "images/profile_pictures/lynn.jpg"
   },
   "Member_2":{
     "id": "Claire",
     "name": "Claire Lee",
     "email": "pylee@kth.se",
-    "role": ["Designer", " UX-Research"],
+    "role": ["Designer", "Front-end Assistant"],
     "image": "images/profile_pictures/claire.jpg"
   },
   "Member_3":{
     "id": "Jonas",
     "name": "Jonas Abu Nijmeh",
     "email": "jo9@kth.se",
-    "role": ["Front End Developer"],
+    "role": ["Front-end Assistant"],
     "image": "images/profile_pictures/jonas.png"
   },
   "Member_4":{
     "id": "Elsa",
     "name": "Elsa Landberg",
     "email": "elsala@kth.se",
-    "role": ["Project Manager", " Designer"],
+    "role": ["Project manager", "Designer", "Communication"],
     "image": "images/profile_pictures/elsa.png"
   },
   "Member_5":{
     "id": "Thony",
     "name": "Thony Price",
     "email": "thonyprice@gmail.com",
-    "role": ["Back End Developer"],
+    "role": ["Back-end Developer", "Data Analysis"],
     "image": "images/profile_pictures/thony.jpg"
   },
   "Member_6":{
     "id": "Yipei",
     "name": "Tu Yi-Pei",
     "email": "yptu@kth.se",
-    "role": ["Back End Developer", "Front End Developer"],
+    "role": ["Full-stack Developer", "Project Manager"],
     "image": "images/profile_pictures/yipeitu.jpg"
   },
   "Member_7":{
     "id": "Lucas",
     "name": "Lucas Grönborg",
     "email": "lucas94gronborg@gmail.com",
-    "role": ["Front End Developer"],
+    "role": ["Front-end Assistant"],
     "image": "images/profile_pictures/lucas.jpg"
   },
   "Member_8":{
     "id": "Bernardo",
     "name": "Bernardo Bacalhau",
     "email": "bbacalhau@gmail.com",
-    "role": ["Front End Developer"],
+    "role": ["Front-end Developer"],
     "image": "images/profile_pictures/bernardo.jpg"
   }
 }

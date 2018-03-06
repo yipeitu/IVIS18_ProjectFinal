@@ -14,7 +14,6 @@ function searchFunction() {
   for (i = 0; i < node._parents[0].childElementCount; i++) {
     targetObj = node._parents[0].children[i].__data__;
     targetKey = targetObj.data.key;
-    console.log("filter: " + filter + " targetKey: " + targetKey.toUpperCase());
     if(filter.split(": ")[1] == targetKey.toUpperCase()){
       targetClick(targetObj);
     }
