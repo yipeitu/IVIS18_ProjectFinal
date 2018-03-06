@@ -95,7 +95,6 @@ var drawBall = function(dataFileName){
         // });
   });
   clickedNodes.length = 0;
-  getOptions();
 }
 
 
