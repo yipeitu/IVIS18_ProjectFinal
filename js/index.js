@@ -1,15 +1,21 @@
 // LYNNS CODE
-var jsonFile = "db_data.json";
+// const SWEDEN = "db_data.json";
+// const MONGOLIA = "data_mongolia.json";
+const SWEDEN = "data_sweden.json";
+const MONGOLIA = "data_mongolia.json";
+
+var jsonFile = SWEDEN;
 $(document).ready(function(){
   // When page loads...:
   // $("div.content").hide(); // Hide all content
   $("div.page").hide();
-  $("nav li:first").addClass("current").show(); // Activate first page
+  $(".tabs div:first").addClass("current").show(); // Activate first page
   $("div.content div:first").show(); // Show first page content
   drawBall("structure_data5.json");
+  getOptions();
   // On Click Event (within list-element!)
-  $("nav div").click(function() {
-    $("nav a").removeClass("current"); // Remove any active class
+  $(".tabs div").click(function() {
+    $(".tabs a").removeClass("current"); // Remove any active class
     $(this).addClass("current"); // Add "current" class to selected page
     // console.log(this);
 
@@ -24,15 +30,20 @@ $(document).ready(function(){
     switch(activePage.split("/")[1]){
       case "sweden":
         $(".container-viz").empty();
+        // $(".container-viz").append("div");
         drawBall("structure_data5.json");
+        getOptions();
         $("#boxDescription").empty();
-        jsonFile = "db_data.json";
+        $("#columns").empty();
+        jsonFile = SWEDEN;
         break;
       case "mongolia":
         $(".container-viz").empty();
         drawBall("structure_mongolia.json");
+        getOptions();
         $("#boxDescription").empty();
-        jsonFile = "data_mongolia.json";
+        $("#columns").empty();
+        jsonFile = MONGOLIA;
         break;
       default:
         break;

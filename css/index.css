@@ -10,36 +10,43 @@ body {
     padding:2px 5px;
     background:#ccc;
 } */
-.round {
-border-bottom-left-radius: 100%30px;
-border-bottom-right-radius: 100%30px;
-}
 
 .container-viz {
-  width: 50%;
-  text-align: center;
+  text-aligns: center;
+  /* margin-left: 5%; */
 
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.col-md-7 {
+  margin-left: 6%;
 }
 
 #container {
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
+.container {
+  /* width: 100%; */
+  /* max-width: inherit; */
+  text-align: center;
+}
+
+/* HEADER */
 .navbar {
   justify-content: center;
   /* color: green; */
 }
 
 .jumbotron {
-  padding-top: 15px;
-  padding-bottom: 5px;
+  padding-top: 0.9375em;
+  padding-bottom: 0.3125em;
   /* padding-top: 0; */
   text-align: center;
   color: #FFFFFF;
@@ -49,8 +56,50 @@ border-bottom-right-radius: 100%30px;
 
 .jumbotron img {
   /* text-align: left; */
-  height: 86px;
+  height: 5.375em;
 }
+
+#mytabs a {
+    position: absolute;
+    left: -5em;
+    transition: 0.2s;
+    padding: 1em;
+    width: 6.25em;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 1000;
+    text-shadow: 0.2em 0.2em 0.2em black;
+    color: white;
+    border-radius: 0 0.3125em 0.3125em 0;
+}
+
+#mytabs a:hover {
+    left: 0;
+}
+
+#Home {
+    top: 3em;
+    background-color: #007399;
+}
+
+#Sweden {
+    top: 7em;
+    background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/se.svg");
+    background-size: 6.25em 4.125em;
+}
+
+#Mongolia {
+    top: 11em;
+    background-image: url("https://lipis.github.io/flag-icon-css/flags/4x3/mn.svg");
+    background-size: 6.25em 3.5em;
+}
+
+#contact {
+    top: 15em;
+    background-color: #00394d;
+}
+
+/*  */
 
 .memberContainer{
   display: inline-block;
@@ -63,16 +112,16 @@ border-bottom-right-radius: 100%30px;
 }
 
 .memberContainer img {
-  padding-right: 10px;
+  padding-right: 0.625em;
   display: block;
   float: left;
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 9.375em;
+  max-height: 9.375em;
 }
 
 .memberInfoBox {
   display: inline-block;
-  margin: 10px;
+  margin: 0.625em;
 }
 
 /* TEMPORARY */
@@ -116,8 +165,8 @@ a.btn {
 }
 
 .unImg {
-  height: 30%;
-  /*border-radius: 0.5em;*/
+  width: 100%;
+  border-radius: 0.2em;
 
 }
 
@@ -154,14 +203,19 @@ a.btn {
 
 /* Page 2 */
 .contentStyle {
-  font-size: 18px;
+  /* em or % ?*/
+  font-size: 112.5%;
   font-weight: 1000;
+}
+
+h5 {
+  font-size: 130%;
 }
 
 .pointer {
   cursor: pointer;
   margin: 0;
-  padding: 5px;
+  padding: 0.3125em;
   font-weight: 1000;
 }
 
@@ -170,13 +224,13 @@ a.btn {
 } */
 li {
   list-style-type: none;
-  padding-left: 17px;
-  max-width: 350px;
+  padding-left: 1.0625em;
+  max-width: 21.875em;
 }
 
 .posToNeg {
   font-weight: 1000;
-  font-size: 18px;
+  font-size: 112.5%;
 }
 
 #boxDescription {
@@ -219,7 +273,7 @@ li {
 .stacked-bar-graph {
   overflow: hidden;
   width: 100%;
-  height: 38px;
+  height: 2.375em;
  /* // background: #eee; */
   color:#414042;
   animation-delay: .1s;
@@ -233,8 +287,8 @@ li {
   /* //  color: #fff; */
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    padding: 10px;
+    font-size: 87.5%;
+    padding: 0.625em;
     text-align: left;
 
   }
@@ -282,15 +336,21 @@ li {
   }
 
   .legend {
+    /* transform: translate(0%, 50%); */
     margin: 0 auto;
     padding: 0;
-	   font-size: 1em;
+	   font-size: 0.9em;
      vertical-align: middle;
      width: 100%;
+
+     -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+     -o-transition: all 0.5s ease;
+     transition: all 0.5s ease;
 }
 
 .legendInfo {
-  padding-top: 10px;
+  padding-top: 0.625em;
   text-align: center;
 }
 
@@ -305,12 +365,137 @@ li {
     content: "";
     margin-right: .5em;
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 0.625em;
+    height: 0.625em;
 	background-color: #334D5C;
 }
 
 .icon {
   width: 2.6em;
   height: 2em !important;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #7EC686;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+/* boxy around content */
+.boxy {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+/* The circles on the timeline */
+.boxy::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: white;
+    border: 4px solid #7EC686;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Place the boxy to the left */
+.left {
+    left: 0;
+}
+
+/* Place the boxy to the right */
+.right {
+    left: 50%;
+}
+
+/* Add arrows to the left boxy (pointing right) */
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #EEF2F6;
+}
+
+/* Add arrows to the right boxy (pointing left) */
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #EEF2F6 transparent transparent;
+}
+
+/* Fix the circle for boxys on the right side */
+.right::after {
+    left: -16px;
+}
+
+/* The actual content */
+.content1 {
+    padding: 20px 30px;
+    background-color: #EEF2F6;
+    position: relative;
+    border-radius: 6px;
+}
+
+/* Media queries - Responsive timeline on screens less than 600px wide */
+@media all and (max-width: 600px) {
+  /* Place the timelime to the left */
+  .timeline::after {
+    left: 31px;
+  }
+  
+  /* Full-width boxys */
+  .boxy {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  /* Make sure that all arrows are pointing leftwards */
+  .boxy::before {
+    left: 60px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #EEF2F6 transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after, .right::after {
+    left: 15px;
+  }
+  
+  /* Make all right boxys behave like the left ones */
+  .right {
+    left: 0%;
+  }
 }
