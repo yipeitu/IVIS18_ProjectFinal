@@ -14,7 +14,7 @@ $("#page1")[0].innerHTML = `
   </div>
   <div class="boxy left">
     <div class="content1">
-      <h2>Stockholm</h2>
+      <h2>Sweden</h2>
       <p>The analysis identifies which targets have the most and least positive influence on the network and thus guides, where efforts may be directed (and not); where strong positive and negative links sit, raising warning flags to areas requiring extra attention; and how targets that reinforce each others’ progress cluster, suggesting where important cross-sectoral collaboration between actors is merited. How interactions play out is context specific and the approach is tested on the case of Sweden to illustrate how priority setting, with the objective to enhance progress across all 17 SDGs, might change if systemic impacts are taken into consideration. </p>
     </div>
   </div>
