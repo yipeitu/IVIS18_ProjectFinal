@@ -46,7 +46,7 @@ var margin = {top: 0, right: 5, bottom: 80, left: 110},
     width = window.innerWidth*0.27 - margin.left - margin.right,
     height = 250 -margin.top - margin.bottom;
 
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'

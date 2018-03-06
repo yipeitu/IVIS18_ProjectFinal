@@ -23,7 +23,7 @@ function searchFunction() {
 
 function getOptions(){
   $("#browsers").empty()
-  console.log("SEARCH");
+  // console.log("SEARCH");
   $.getJSON("data/"+jsonFile, function(json){
     Object.keys(json).forEach(function(key){
       $("#browsers").append(`<option value="${json[key].Name}">`)
