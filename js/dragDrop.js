@@ -62,14 +62,12 @@ function handleDrop(e) {
     }
 
     var idName = srcTargetName.replace("class", "");
-    console.log(idName);
     var targetsNum = ($(".column.m-1."+srcTargetName).length)/100;
     [-3, -2, -1, 0, 1, 2, 3].forEach(function(value){
     	var childrenElement = $(".value"+value.toString()+"."+srcTargetName).children();
    		var valueList = childrenElement
 				    		.contents()
 							.filter(function(){
-								console.log();
 								return $(this).text();
 							})
 		colorBar(idName, value, valueList.length, targetsNum);

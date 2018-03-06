@@ -7,7 +7,7 @@ var treeData =
       { "name": "Influenced +3",
         "color": "#62BF77",
         "value": "3",
-        "why": "Indivisible (+3): Inextricably linked to the achivement of another goal"},
+        "why": "Indivisible (+3): Inextricably linked to achivement of another goal"},
       { "name": "Influenced +2",
         "color": "#96CE7E",
         "value": "2",
@@ -33,7 +33,7 @@ var treeData =
         "value": "-3",
         "why": "Cancelling (-3): Makes it impossible to reach another goal"},
       {
-        "name": "Colliding Targets",
+        "name": "Shared Targets",
         "color": "#BD69FF",
         "value": "2",
         "why": "Two selected targets that influence the same targets"
@@ -46,7 +46,7 @@ var margin = {top: 0, right: 5, bottom: 80, left: 110},
     width = window.innerWidth*0.27 - margin.left - margin.right,
     height = 250 -margin.top - margin.bottom;
 
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
 
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
@@ -69,9 +69,14 @@ var exp_text = svg1.append("text")
 .style("text-anchor", "start")
 .text("Indivisible (+3): Inextricably linked to the achivement of another goal")
 .attr("font-family", "Pontano Sans") //, sans-serif;
+<<<<<<< HEAD
 .attr("font-size", "0.6875em")
 .attr("font-weight", '1000')
 .attr("color", 'black');
+=======
+.attr("font-size", "11px")
+.attr("fill", "#bbb");
+>>>>>>> 6ae7e24e799f1a06accd521b810f5bd9172ffad0
 
 // svg1.append("text")
 //     .attr("x", -margin.left + 10)

@@ -31,7 +31,7 @@ var getTarget = function(id){
         posList1.push(i);
         // console.log("Neutral" + i);
       }
-      else if (tragetAffect[i] === 0){
+      else if (tragetAffect[i] === 0 && i != id){
         neuList.push(i);
         // console.log("Negative" + i);
       }
@@ -57,7 +57,7 @@ var getTarget = function(id){
     var dragDropList = {"-3": negList3, "-2": negList2, "-1": negList1,
     "0": neuList, "1": posList1, "2": posList2, "3": posList3};
     createDragDropTable(id, dragDropList, negList3.length+negList2.length+
-      negList1.length+neuList.length+posList1.length+posList2.length+posList3.length);
+      negList1.length+neuList.length+posList1.length+posList2.length+posList3.length, json);
 
 // Not really pretty, but it works.
     var barChartText = "";
@@ -196,7 +196,7 @@ var getTarget = function(id){
         </div>
 
       <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-      <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="fa fa-angle-down"></i> Description</p>
+      <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="description fa fa-angle-right"></i> Description</p>
       <div id="description${idName}" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
       </div>
         <div class="col-md-1">
@@ -215,10 +215,15 @@ var toggle = function(id) {
   if(id ==='#legend'){
     $(id).animate({height:'toggle'},'inherit');
     // $("i").removeClass('fa fa-chevron-down');
+    // $("#legendColor").toggleClass("legendColor");
     $(".legendButton").toggleClass('fa fa-chevron-right fa fa-chevron-down');
+
+  }
+  else if(id.match("#description") != null){
+    $(id).animate({height:'toggle'},'inherit');
+    $(".description").toggleClass('fa fa-angle-right fa fa-angle-down');
   }
   else {
-
     $(id).slideToggle();
   }
 }

@@ -66,30 +66,27 @@
 .customisze {
   background-color: white;
 }
-/*.column header {
-  color: #fff;
-  text-shadow: #000 0 1px;
-  box-shadow: 5px;
-  padding: 5px;
-  background: -moz-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-  background: -webkit-gradient(linear, left top, right top,
-                               color-stop(0, rgb(0,0,0)),
-                               color-stop(0.50, rgb(79,79,79)),
-                               color-stop(1, rgb(21,21,21)));
-  background: -webkit-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-  background: -ms-linear-gradient(left center, rgb(0,0,0), rgb(79,79,79), rgb(21,21,21));
-  border-bottom: 1px solid #ddd;
-  -webkit-border-top-left-radius: 10px;
-  -moz-border-radius-topleft: 10px;
-  -ms-border-radius-topleft: 10px;
-  border-top-left-radius: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -ms-border-top-right-radius: 10px;
-  -moz-border-radius-topright: 10px;
-  border-top-right-radius: 10px;
-}*/
 
 .dropPlace.over{
 /*.column.over {*/
   border: 2px dashed #000;
+}
+
+.tableTargetText {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 100%;
+    background-color: #eee;
+    font-size: 1em;
+    font-weight: 700;
+    color: #000000;
+    z-index: 10;
+    padding: 1em;
+}
+.tableTarget {
+    position: relative;
+}
+.tableTarget:hover > .tableTargetText {
+    display: block
 }

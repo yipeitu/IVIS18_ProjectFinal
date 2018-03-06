@@ -1,4 +1,8 @@
-var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
+var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonData){
+	var targetId = id.toString();
+	var json_dump = encodeURI(JSON.stringify(influencedTargetsInfo, null, 2));
+	// Temporarily replace all quotes to (arbitrary) Z's to avoid problem with sending string,
+	// Revert this replacement in download.js
 	var idName = "table"+id.toString().replace(".", "");
 	$("#columns").append(`
 		<div id="${idName}">
@@ -7,7 +11,10 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			  	<tr class="text-light h4 m-0" style="background-color: #7A7A79;">
 			  	  <th class="text-left style="width:90%">${id+" : "+jsonList.Name}</th>
 			  	  <th class="text-center" style="width:10%">
-			  	  	<button type="button" class="btn rounded" style="background-color: #61DADA"><b>DOWNLOAD</b></button
+			  	  	<button id="btn${idName}" targetId="${targetId}"
+								type="button" class="btn rounded" 
+								style="background-color: #61DADA"><b>DOWNLOAD</b>
+							</button
 			  	  </th>
 			  	</tr>
 			  	</thead>
@@ -81,20 +88,35 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum){
 			</table>
 		</div>
 	      `);
+	// console.log(jsonFile);
+	// Object.keys(influencedTargetsInfo).forEach(function(value){
+	// 	$("#"+idName).find("td.value"+value+" > .container").empty();
+	// 	colorBar(idName, value,influencedTargetsInfo[value].length, targetsNum/100);
+	// 	influencedTargetsInfo[value].forEach(function(target){
+	// 		$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName));
+	// 	})
+	// })
 	Object.keys(influencedTargetsInfo).forEach(function(value){
 		$("#"+idName).find("td.value"+value+" > .container").empty();
 		colorBar(idName, value,influencedTargetsInfo[value].length, targetsNum/100);
 		influencedTargetsInfo[value].forEach(function(target){
-			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName));
+			var textHover = "["+jsonData[target].Name+"]";
+			if(jsonData[id.toString()].reasons[target].length != 0){
+				textHover += (" "+ jsonData[id.toString()].reasons[target]);
+			}
+			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName, textHover));
 		})
 	})
 
 	dragDropAddListeners(idName);
+
+	// onclick="download_json('${filename}','${json_dump}')"
+	$("#btn"+idName).click(download_json);
 }
 
-var dragDropTarget = function(targetInfo, idName){
+var dragDropTarget = function(targetInfo, idName, targetHover){
 	// need to put reason
-	return `<div class="column m-1 class${idName}" draggable="true">${targetInfo}</div>`
+	return `<div class="column m-1 tableTarget class${idName}" draggable="true">${targetInfo}<div class="tableTargetText">${targetHover}</div></div>`
 }
 
 var colorBar = function(idName, colorValue, value, targetsNum){
