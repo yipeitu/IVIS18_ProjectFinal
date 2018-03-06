@@ -21,7 +21,7 @@ function searchFunction() {
 }
 
 function getOptions(name){
-  console.log("here");
+  // console.log("here");
   $("#browsers").empty();
   if(name == "sweden"){
     $("#browsers").append(`

@@ -104,7 +104,7 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonDa
 			if(jsonData[id.toString()].reasons[target].length != 0){
 				textHover += (" "+ jsonData[id.toString()].reasons[target]);
 			}
-			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName, textHover));
+			$("#"+idName).find("td.value"+value+" > .container").append(dragDropTarget(target, idName, textHover, Object.keys(jsonData).length == 17));
 		})
 	})
 
@@ -114,9 +114,12 @@ var createDragDropTable = function(id, influencedTargetsInfo, targetsNum, jsonDa
 	$("#btn"+idName).click(download_json);
 }
 
-var dragDropTarget = function(targetInfo, idName, targetHover){
+var dragDropTarget = function(targetInfo, idName, targetHover, hover=false){
 	// need to put reason
-	return `<div class="column m-1 tableTarget class${idName}" draggable="true">${targetInfo}<div class="tableTargetText">${targetHover}</div></div>`
+	if(hover){
+		return `<div class="column m-1 tableTarget class${idName}" draggable="true">${targetInfo}<div class="tableTargetText">${targetHover}</div></div>`
+	}
+	return `<div class="column m-1 tableTarget class${idName}" draggable="true">${targetInfo}</div>`
 }
 
 var colorBar = function(idName, colorValue, value, targetsNum){
