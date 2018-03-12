@@ -17,7 +17,7 @@
     "id": "Jonas",
     "name": "Jonas Abu Nijmeh",
     "email": "jo9@kth.se",
-    "role": ["Front-end Developer"],
+    "role": ["Front-end Developer", " Designer"],
     "image": "images/profile_pictures/rect_jonas.png"
   },
   "Member_4":{
@@ -44,7 +44,7 @@
   "Member_7":{
     "id": "Lucas",
     "name": "Lucas Grönborg",
-    "email": "lucas94gronborg@gmail.com",
+    "email": "gronborg@kth.se",
     "role": ["Front-end Developer"],
     "image": "images/profile_pictures/rect_lucas.png"
   },
