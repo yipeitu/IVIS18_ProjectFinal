@@ -9,6 +9,7 @@ var treeMap = d3.tree().size([360,250]),
     rootSecond;
 var nodeSvg, linkSvg, nodeEnter, linkEnter, targetId, jsonFileRadar, currentFirst = null;
 var targetsRadar = [];
+var noColorRadar = [];
 
 var drawSecondOrder = function(fileName, id, jsonFile){
 	// var width = 960,
@@ -330,72 +331,44 @@ var drawRadar = function(){
 	    for(var j=0; j < targetsRadar.length; j++){
 	    	// LegendOptions.push(targetsRadar[j].AI+" "+targetsRadar[j].Name)
 	    	var legend = data[targetsRadar[j]].AI+" "+data[targetsRadar[j]].Name
+	    	
+	    	var noColor = noColorRadar.indexOf(targetsRadar[j].toString()) === -1? false:true
 	    	$("#selectedTargetsRadar").append(`
-	    		<label class="rounded p-2 text-white" style="opacity:0.5;background-color:${colorTargets(j)}">
-            		<input type="checkbox" id="iWave2" checked="true"> ${legend}</label>
+	    		<label class="rounded p-2 text-white" style="opacity:0.75;background-color:${colorTargets(j)}">
+            		<input type="checkbox" id="iRadar${targetsRadar[j]}" ${noColor? "":"checked=true"}}> ${legend}</label>
               `)
+	    	
 	    	var element = []
 	    	var keys = Object.keys(data[targetsRadar[j]].affect)
 	    	keys.sort(function(a,b){return parseFloat(a)-parseFloat(b)})
 	    	for(var k=0; k < keys.length; k++){
 	    		element.push({"area": keys[k], 
-	    			"value": (data[targetsRadar[j]].affect[keys[k]]+4), 
+	    			"value": noColor? 0:(data[targetsRadar[j]].affect[keys[k]]+4), 
 	    			"name": keys[k]+" "+data[keys[k]].Name,
 	    			"parent": targetsRadar[j]})
 	    	}
 	    	result.push(element)
 	    }
 	    RadarChart.draw("#chart", result, config);
+	    $("#selectedTargetsRadar input").on("change", function(){
+	    	var id = this.id.replace("iRadar", "")
+	    	// color
+	    	if(this.checked){
+	    		if(noColorRadar.indexOf(id) !== -1){
+	    			noColorRadar.splice(noColorRadar.indexOf(id), 1)
+	    			drawRadar()
+	    		}
+	    	} else{
+	    		// no color
+	    		
+	    		if(noColorRadar.indexOf(id) === -1){
+	    			noColorRadar.push(id)
+	    			drawRadar()
+	    		}
+	    	}
+			
+		});
+
 	});
 
-	// var svgRadar = d3.select('#body')
-	// 	.selectAll('svg')
-	// 	.append('svg')
-	// 	.attr("width", widthRadar)
-	// 	.attr("height", heightRadar);
-	// // var svgRadar = d3.select('#body')
-	// // 	.selectAll('svg')
-	// // 	.append('svg')
-	// // 	.attr("width", widthRadar+300)
-	// // 	.attr("height", heightRadar)
-
-	// //Create the title for the legend
-	// var text = svgRadar.append("text")
-	// 	.attr("class", "title")
-	// 	.attr('transform', 'translate(90,0)') 
-	// 	.attr("x", widthRadar/2)
-	// 	.attr("y", heightRadar/2)
-	// 	.attr("font-size", "12px")
-	// 	.attr("fill", "black")
-	// 	.text("What % of owners use a specific service in a week");
-			
-	// //Initiate Legend	
-	// var legend = svgRadar.append("g")
-	// 	.attr("class", "legend")
-	// 	.attr("height", 100)
-	// 	.attr("width", 200)
-	// 	.attr('transform', 'translate(90,20)') 
-	// 	;
-	// 	//Create colour squares
-	// 	legend.selectAll('rect')
-	// 	  .data(LegendOptions)
-	// 	  .enter()
-	// 	  .append("rect")
-	// 	  .attr("x", widthRadar - 65)
-	// 	  .attr("y", function(d, i){ return i * 20;})
-	// 	  .attr("width", 10)
-	// 	  .attr("height", 10)
-	// 	  .style("fill", function(d, i){ return d3.scale.category10(i);})
-	// 	  ;
-	// 	//Create text next to squares
-	// 	legend.selectAll('text')
-	// 	  .data(LegendOptions)
-	// 	  .enter()
-	// 	  .append("text")
-	// 	  .attr("x", widthRadar - 52)
-	// 	  .attr("y", function(d, i){ return i * 20 + 9;})
-	// 	  .attr("font-size", "11px")
-	// 	  .attr("fill", "#737373")
-	// 	  .text(function(d) { return d; })
-	// 	  ;	
 }
