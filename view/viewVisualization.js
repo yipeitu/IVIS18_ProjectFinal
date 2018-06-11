@@ -25,4 +25,32 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
 
     <div id="columns" style="display: none">
     </div>
+    <div id="tooltip" class="hidden">
+      <p><strong><span id="tooltipText"></span></strong></p>
+    </div>
+    
+    <div id="secondOrderDiv" style="display: none">
+      <table class="table table-bordered bg-light m-0">
+        <thead>
+          <tr class="text-light h4 m-0" style="background-color: #7A7A79;">
+            <th class="text-left" id="secondOrderTitle">Second Order Influence</th>
+          </tr>
+        </thead>
+      </table>
+    
+      <div id="secondOrder"></div>
+
+      <div id="chart">
+        <table class="table table-bordered bg-light m-0">
+          <thead>
+            <tr class="text-light h4 m-0" style="background-color: #7A7A79;">
+              <th class="text-left" id="radarTitle">Multiple Targets Influence</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="container" id="selectedTargetsRadar">
+          
+        </div>
+      </div>
+    </div>
   </div>`;

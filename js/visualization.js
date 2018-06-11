@@ -648,5 +648,6 @@ function targetUnClick(id){
     $("#box"+id).remove();
     $("#table"+id).remove();
     targetOut();
+    $("#secondOrderDiv").hide()
   }
 }

@@ -145,6 +145,7 @@ var getTarget = function(id){
   //   </div>
   //     </div>
   //     `;
+  var secondOrderFile = jsonFile.replace("data_", "").replace(".json", id+".json")
   var idName = id.toString().replace(".", "");
   $("#boxDescription").append(`
   <div id="box${idName}">
@@ -197,6 +198,7 @@ var getTarget = function(id){
         </div>
 
       <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
+      <button type="button" onclick="secondOrder('${secondOrderFile}', '${id.toString()}', '${jsonFile}')">Second Order</button>
       <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="description fa fa-angle-right"></i> Description</p>
       <div id="description${idName}" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
       </div>
@@ -227,6 +229,13 @@ var toggle = function(id) {
   else {
     $(id).slideToggle();
   }
+}
+
+var secondOrder = function(fileName, id, jsonFile) {
+  drawSecondOrder(fileName, id, jsonFile)
+  $("#secondOrderDiv").show()
+  $(window).scrollTop($('#secondOrder').offset().top-30)
+  // $("#secondOrder").focus()
 }
 
 var hideInfobox = function(close="show") {
