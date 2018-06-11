@@ -198,7 +198,7 @@ var getTarget = function(id){
         </div>
 
       <p style="padding-top:10px;"><text class="contentStyle">Total Net Influence:</text> ${jsonList.Sum}</p>
-      <button type="button" onclick="secondOrder('${secondOrderFile}', '${id.toString()}', '${jsonFile}')">Second Order</button>
+      <button type="button" class="btn btn-primary" onclick="secondOrder('${secondOrderFile}', '${id.toString()}', '${jsonFile}')">Second Order</button>
       <p onclick="toggle('#description${idName}')" class="pointer contentStyle"><i class="description fa fa-angle-right"></i> Description</p>
       <div id="description${idName}" style="display:none;padding-left:17px;max-width:430px;"><p>${jsonList.Description}</p></div>
       </div>

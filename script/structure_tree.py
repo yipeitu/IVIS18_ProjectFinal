@@ -1,12 +1,16 @@
 import json
 
+def numeric_compare(x, y):
+	return int(float(x)-float(y))
+
 result = []
+country = "mongolia"
 # mongolia data
-with open("../data/data_mongolia.json", "r") as rFile:
+with open("../data/data_"+country+".json", "r") as rFile:
 	data = json.load(rFile)
-	for key in sorted(dict.keys(data)):
+	for key in sorted(dict.keys(data), cmp=numeric_compare):
 		final = {"name": key, "name-long": data[key]["Name"],"children": [], "total": 0}
-		for first in dict.keys(data[key]["affect"]):
+		for first in sorted(dict.keys(data[key]["affect"]), cmp=numeric_compare):
 			if first == key or data[key]["affect"][first] == 0:
 				continue
 			# target number with target name
@@ -16,7 +20,7 @@ with open("../data/data_mongolia.json", "r") as rFile:
 			final["total"] += first_size
 			d = {"name": first_name, "name-long": data[first]["Name"], "size": first_size, "children": [], "total": 0}
 			# childrend: second order
-			for second in dict.keys(data[first]["affect"]):
+			for second in sorted(dict.keys(data[first]["affect"]), cmp=numeric_compare):
 				if second == first or data[key]["affect"][second] == 0:
 					continue
 				second_name = second
@@ -25,6 +29,6 @@ with open("../data/data_mongolia.json", "r") as rFile:
 				d["children"].append({"name": second_name, "name-long": data[second]["Name"],"size": second_size})
 				d["total"] += second_size
 			final["children"].append(d)
-		with open("../data/mongolia"+key+".json", "w") as wFile:
+		with open("../data/"+country+key+".json", "w") as wFile:
 			json.dump(final, wFile)
 

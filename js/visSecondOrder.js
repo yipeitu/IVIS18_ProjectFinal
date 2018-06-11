@@ -33,18 +33,41 @@ var drawSecondOrder = function(fileName, id, jsonFile){
     d3.json("data/"+fileName,function(error,treeData){
         if(error) throw error;
 
-        // $("#secondOrderTitle")[0].innerHTML = treeData["name"]+" "+treeData["name-long"]
         rootSecond = d3.hierarchy(treeData,function(d){
             return d.children;
         });
-
+        $("#barTargets").empty()
         rootSecond.each(function (d) {
-         	// console.log(d);
+         	if(d.depth <= 1){
+         		$("#barTargets").append(`
+         			<tr>
+         			<td>
+         			<button type="button" class="btn-sm rounded btn btn-outline-secondary" id="second${d.data.name}">${d.data.name+" "+d.data["name-long"]}</button>
+         			</td>
+         			<td>
+         			<div class="progress m-2">
+  						<div class="progress-bar ${d.data.total>0? "bg-success":"bg-danger"}" role="progressbar" style="width: ${parseInt((Math.abs(d.data.total)/Math.abs(treeData.total))*100)}%" aria-valuenow="${Math.abs(d.data.total)}" aria-valuemin="0" aria-valuemax="${Math.abs(treeData.total)}">${d.data.total}</div>
+					</div>
+					</td>
+					</tr>`)
+         	}
             d.name = d.data.name; //transferring name to a name variable
             d.id = i; //Assigning numerical Ids
             i += i;
         });
-
+        $("#barTargets button").on("click", function(){
+        	var id = this.id.replace("second", "")
+        	if(id === rootSecond.name) click(rootSecond)
+        	else{
+	        	for(var j=0; j < rootSecond.children.length; j++){
+	        		console.log(rootSecond.children[j])
+	        		if(rootSecond.children[j].depth <= 1 && rootSecond.children[j].name === this.id.replace("second", "")){
+	        			click(rootSecond.children[j])
+	        			break
+	        		}
+	        	}
+	        }
+        })
         rootSecond.x0 = heightSecond / 2;
         rootSecond.y0 = 0;
 
@@ -85,7 +108,7 @@ function updateSecond(source) {
 							.style("left", event.pageX)
 							.style("top", event.pageY)
 							.select("#tooltipText")
-							.text(d.data.name+" "+d.data["name-long"]+": "+(d.data.total? d.data.total:d.data.size));
+							.text(d.data.name+" "+d.data["name-long"]+": "+(d.depth==0? d.data.total:d.data.size));
 					    });
 						
 
@@ -94,12 +117,25 @@ function updateSecond(source) {
                     })
                     .on("mouseout", function() {
                     	d3.select("#tooltip").classed("hidden", true);
-
 			   		});
 	
-	nodeEnter.append("rect")
-		.attr("height", 15)
-        .attr("width", function(d) {
+	// nodeEnter.append("rect")
+	// 	.attr("height", 15)
+ //        .attr("width", function(d) {
+ //        	if(d.data.name == targetId){
+ //        		return 0;
+ //        	} 
+ //        	// else if(d.data.total){
+ //        	// 	return (Math.abs(parseFloat(d.data.total)))
+ //        	// }
+ //        	else {
+ //        		return (Math.abs(parseFloat(d.data.size)))*5
+ //        	}
+        	
+ //        })
+ //        .style("fill", colorSecond);
+    nodeEnter.append("circle")
+        .attr("r", function(d) {
         	if(d.data.name == targetId){
         		return 0;
         	} 
@@ -128,7 +164,7 @@ function updateSecond(source) {
 		// .duration(duration)
 		.attr("transform", function(d) { return "translate(" + project(d.x, d.y) + ")"; });
 
-    nodeSvg.select("rect")
+    nodeSvg.select("circle")
     	.style("fill", colorSecond);
 
 
@@ -141,8 +177,8 @@ function updateSecond(source) {
     	.attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; }) //for the animation to either go off there itself or come to centre
     	.remove();
 
-	nodeExit.select("rect")
-		.attr("width", 1e-6);
+	nodeExit.select("circle")
+		.attr("r", 1e-6);
 
 	nodeExit.select("text")
 		.style("fill-opacity", 1e-6);
@@ -202,6 +238,7 @@ function updateSecond(source) {
 }
 
 function click(d) {
+  d3.select("#tooltip").classed("hidden", true);
   if(d.data.name !== targetId && currentFirst !== d.id){
   	currentFirst = d.id
   	rootSecond.children.forEach(collapse);
@@ -225,6 +262,7 @@ function click(d) {
   	updateSecond(rootSecond);
   	// $(window).scrollTop($('.jumbotron').offset().top)
   }
+  $(window).scrollTop($('#secondOrder').offset().top-30)
 }
 
 

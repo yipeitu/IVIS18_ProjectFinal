@@ -33,11 +33,17 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
       <table class="table table-bordered bg-light m-0">
         <thead>
           <tr class="text-light h4 m-0" style="background-color: #7A7A79;">
-            <th class="text-left" id="secondOrderTitle">Second Order Influence</th>
+            <th colspan=2 class="text-left" id="secondOrderTitle">Second Order Influence</th>
+          </tr>
+          <tr>
+            <th scope="col" style="width: 35%">target name</th>
+            <th scope="col" style="width: 65%">total influence</th>
           </tr>
         </thead>
+        <tbody id="barTargets">
+        </tbody>
       </table>
-    
+
       <div id="secondOrder"></div>
 
       <div id="chart">
