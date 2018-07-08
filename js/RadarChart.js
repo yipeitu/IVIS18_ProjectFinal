@@ -43,27 +43,27 @@ var RadarChart = {
 
 		var tooltip;
 	
-    //Circular segments
-    for(var j=0; j<cfg.levels; j++){
-      var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
-      g.selectAll(".levels")
-       .data(allAxis)
-       .enter()
-       .append("svg:line")
-       .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
-       .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
-       .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
-       .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
-       .attr("class", "line")
-       .style("stroke", function(d){
-       	if(j > 3) return "green"
-       	else if(j <=2) return "red"
-       	else return "grey"
-       })
-       .style("stroke-opacity", "0.75")
-       .style("stroke-width", j == 3? "0.5em":"0.1em")
-       .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
-    }
+    // //Circular segments
+    // for(var j=0; j<cfg.levels; j++){
+    //   var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
+    //   g.selectAll(".levels")
+    //    .data(allAxis)
+    //    .enter()
+    //    .append("svg:line")
+    //    .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
+    //    .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
+    //    .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
+    //    .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
+    //    .attr("class", "line")
+    //    .style("stroke", function(d){
+    //    	if(j > 3) return "green"
+    //    	else if(j <=2) return "red"
+    //    	else return "grey"
+    //    })
+    //    .style("stroke-opacity", "0.6")
+    //    .style("stroke-width", j == 3? "0.1em":"0.5em")
+    //    .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
+    // }
 
     //Text indicating at what % each level is
     for(var j=0; j<cfg.levels; j++){
@@ -76,7 +76,7 @@ var RadarChart = {
        .attr("y", function(d){return levelFactor*(1-cfg.factor*Math.cos(0));})
        .attr("class", "legend")
        .style("font-family", "sans-serif")
-       .style("font-size", "1em")
+       .style("font-size", "1.2em")
        .attr("transform", "translate(" + (cfg.w/2-levelFactor + cfg.ToRight) + ", " + (cfg.h/2-levelFactor) + ")")
        .attr("fill", "#737373")
        .text(j-3);
@@ -98,7 +98,7 @@ var RadarChart = {
       .attr("y2", function(d, i){return cfg.h/2*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
       .attr("class", "line")
       .style("stroke", "grey")
-      .style("stroke-width", "1px");
+      .style("stroke-width", "0.05em");
 
     axis.append("text")
       .attr("class", "legend")
@@ -178,7 +178,7 @@ var RadarChart = {
       .data(y).enter()
       .append("svg:circle")
       .attr("class", "radar-chart-serie"+series)
-      .attr('r', cfg.radius)
+      .attr('r', "0.5em")
       .attr("alt", function(j){return Math.max(j.value, 0)})
       .attr("cx", function(j, i){
         dataValues.push([
@@ -192,7 +192,7 @@ var RadarChart = {
       })
       .attr("data-id", function(j){return j.area})
       .style("fill", "#fff")
-      .style("stroke-width", "2px")
+      .style("stroke-width", "0.1em")
       .style("stroke", cfg.color(series)).style("fill-opacity", .9)
       .on('mouseover', function(t){
       	// var name = d[0].filter(i => i.area === t)[0].name
@@ -221,5 +221,27 @@ var RadarChart = {
 
       series++;
     });
+
+    //Circular segments
+    for(var j=0; j<cfg.levels; j++){
+      var levelFactor = cfg.factor*radius*((j+1)/cfg.levels);
+      g.selectAll(".levels")
+       .data(allAxis)
+       .enter()
+       .append("svg:line")
+       .attr("x1", function(d, i){return levelFactor*(1-cfg.factor*Math.sin(i*cfg.radians/total));})
+       .attr("y1", function(d, i){return levelFactor*(1-cfg.factor*Math.cos(i*cfg.radians/total));})
+       .attr("x2", function(d, i){return levelFactor*(1-cfg.factor*Math.sin((i+1)*cfg.radians/total));})
+       .attr("y2", function(d, i){return levelFactor*(1-cfg.factor*Math.cos((i+1)*cfg.radians/total));})
+       .attr("class", "line")
+       .style("stroke", function(d){
+        if(j > 3) return "green"
+        else if(j <=2) return "red"
+        else return "yellow"
+       })
+       .style("stroke-opacity", "0.6")
+       .style("stroke-width", j == 3? "0.3em":"0.35em")
+       .attr("transform", "translate(" + (cfg.w/2-levelFactor) + ", " + (cfg.h/2-levelFactor) + ")");
+    }
     }
 };

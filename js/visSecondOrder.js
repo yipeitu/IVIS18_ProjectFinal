@@ -21,6 +21,7 @@ var drawSecondOrder = function(fileName, id, jsonFile){
  	targetsRadar = [id]
  	jsonFileRadar = jsonFile
  	$("#secondOrder").empty()
+ 	// $("#secondOrder").append(`<button type="button" class="btn-sm rounded btn btn-outline-secondary" onClick=clickTest()>Click</button>`)
     svgSecond = d3.select("#secondOrder").append("svg")
                 .attr("width",widthSecond)
                 .attr("height",heightSecond);
@@ -42,7 +43,7 @@ var drawSecondOrder = function(fileName, id, jsonFile){
          		$("#barTargets").append(`
          			<tr>
          			<td>
-         			<button type="button" class="btn-sm rounded btn btn-outline-secondary" id="second${d.data.name}">${d.data.name+" "+d.data["name-long"]}</button>
+         			<button type="button" class="btn-sm rounded btn" id="second${d.data.name}">${d.data.name+" "+d.data["name-long"]}</button>
          			</td>
          			<td>
          			<div class="progress m-2">
@@ -70,11 +71,15 @@ var drawSecondOrder = function(fileName, id, jsonFile){
         })
         rootSecond.x0 = heightSecond / 2;
         rootSecond.y0 = 0;
-
-        rootSecond.children.forEach(collapse);
+        // rootSecond.children.forEach(collapse);
         updateSecond(rootSecond);
         drawRadar()
     });
+}
+
+function clickCollapsed(){
+	rootSecond.children.forEach(collapse);
+	updateSecond(rootSecond);
 }
 
 function updateSecond(source) {
@@ -372,7 +377,7 @@ var drawRadar = function(){
 	    	
 	    	var noColor = noColorRadar.indexOf(targetsRadar[j].toString()) === -1? false:true
 	    	$("#selectedTargetsRadar").append(`
-	    		<label class="rounded p-2 text-white" style="opacity:0.75;background-color:${colorTargets(j)}">
+	    		<label class="rounded p-2 text-white h5" style="opacity:1;background-color:${colorTargets(j)}">
             		<input type="checkbox" id="iRadar${targetsRadar[j]}" ${noColor? "":"checked=true"}}> ${legend}</label>
               `)
 	    	

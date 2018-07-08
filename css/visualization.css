@@ -78,6 +78,7 @@ font-size: 1.2em;
   fill: none;
   pointer-events: none;
   position: absolute;
+  stroke-width: 0.75em;
 }
 
 .node:hover,
@@ -134,7 +135,7 @@ font-size: 1.2em;
 .link--source,
 .link--target {
   stroke-opacity: 1;
-  stroke-width: 2px;
+  stroke-width: 0.2em;
 }
 
 .link--source {

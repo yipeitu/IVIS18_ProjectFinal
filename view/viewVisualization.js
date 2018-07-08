@@ -43,7 +43,7 @@ $("#viewVis")[0].innerHTML = `<div id="page2" class="page">
         <tbody id="barTargets">
         </tbody>
       </table>
-
+      <button type="button" class="btn-lg btn-primary" onClick=clickCollapsed()>Collapsed</button>
       <div id="secondOrder"></div>
 
       <div id="chart">
